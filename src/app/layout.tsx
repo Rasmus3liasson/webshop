@@ -1,10 +1,10 @@
 import { Montserrat } from "next/font/google";
-
+import Header from "./components/Header/page";
+import "./globals.css";
 const monteserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Web Shop",
-  description: "Home page of my webshop",
 };
 
 export default function RootLayout({
@@ -14,7 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={monteserrat.className}>{children}</body>
+      <body className={`${monteserrat.className} m-0 p-0 box-border`}>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }

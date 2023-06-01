@@ -1,3 +1,7 @@
+export const metadata = {
+  description: "Home page of webshop",
+};
+
 export default function Home() {
-  return <h1>hej</h1>;
+  return <div className="text-green-500">hej</div>;
 }

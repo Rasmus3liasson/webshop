@@ -11,6 +11,7 @@ module.exports = {
         black: "#080707",
         white: "#fdfbfb",
         grey: "#595959",
+        greyLight: "#CFCFCF",
       },
       keyframes: {
         slideIn: {
@@ -52,6 +53,9 @@ module.exports = {
         slideInNav: "slideIn 0.4s forwards",
         searchInput: "searchField 0.4s forwards",
         navLinks: "navLinks 0.7s forwards",
+      },
+      transitionDuration: {
+        50: "50ms",
       },
     },
   },

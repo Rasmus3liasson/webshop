@@ -1,0 +1,18 @@
+import Link from "next/link";
+import React from "react";
+
+export default function Hero() {
+  return (
+    <div className="hero-bg flex items-center justify-center text-center mt-10">
+      <div className="bg-greyLight bg-opacity-50 w-50 text-white rounded-lg p-10 mx-9 lg:mx-0">
+        <h1 className="font-bold text-2xl mb-2 md:mb-4 md:text-3xl">Welcome</h1>
+        <p>We have a passion for fashion and people</p>
+        <Link href={"/clothes"}>
+          <button type="button" className="button-primary">
+            SHOP NOW
+          </button>
+        </Link>
+      </div>
+    </div>
+  );
+}

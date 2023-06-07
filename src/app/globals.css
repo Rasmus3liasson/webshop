@@ -8,3 +8,14 @@
 .footer-box {
   @apply flex items-center justify-center border-2 text-center rounded-xl mx-2 w-28 shadow-lg hover:scale-105 duration-50 ease-in-out;
 }
+.button-primary {
+  @apply bg-black text-white py-2 px-7 mt-5 rounded-full duration-75 hover:scale-102 active:scale-98 active:opacity-90;
+}
+
+.hero-bg {
+  background-image: url("/hero-background.jpeg");
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  min-height: 75vh;
+}

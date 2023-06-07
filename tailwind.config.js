@@ -9,9 +9,14 @@ module.exports = {
     extend: {
       colors: {
         black: "#080707",
-        white: "#fdfbfb",
+        white: "#FDFDFD",
         grey: "#595959",
         greyLight: "#CFCFCF",
+        background: "#FAFCFF",
+      },
+      scale: {
+        102: "1.02",
+        98: "0.98",
       },
       keyframes: {
         slideIn: {

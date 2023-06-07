@@ -14,19 +14,33 @@ module.exports = {
       },
       keyframes: {
         slideIn: {
-          "0%": {
+          from: {
             transform: "translateX(100%)",
             easing: "cubic-bezier(0.4, 0, 0.2, 1)",
           },
 
-          "100%": {
+          to: {
             transform: "translateX(0)",
             easing: "cubic-bezier(0.8, 0, 0.6, 1)",
+          },
+        },
+        searchField: {
+          "0%": {
+            marginLeft: "-30%",
+            opacity: "0",
+          },
+          "90%": {
+            opacity: "0.9",
+          },
+          "100%": {
+            marginLeft: "0%",
+            opacity: "1",
           },
         },
       },
       animation: {
         slideInNav: "slideIn 0.4s forwards",
+        searchInput: "searchField 0.4s forwards",
       },
     },
   },

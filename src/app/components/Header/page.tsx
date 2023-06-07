@@ -33,11 +33,14 @@ export default function Header() {
           <div>
             <List />
           </div>
-          <SearchInput />
+          <div>
+            <SearchInput searchInput={isActive} />
+          </div>
         </div>
 
         {/* Needs to correct the span so it is center */}
         <div className="flex">
+          <div></div>
           <div className="flex items-center">
             <span className="absolute top-8 right-32 lg:top-14 lg:right-20">
               3

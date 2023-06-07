@@ -16,6 +16,7 @@ export default function SearchInput() {
   ];
 
   const [searchInput, setSearchInput] = useState("");
+  const [searchField, setSearchField] = useState(false);
   const [searchResult, setSearchResult] = useState<string[]>();
   const [movieTitleArr, setMovieTitleArr] = useState<string[]>(hej);
   const [movieImageArr, setMovieImageArr] = useState<string[]>([]);
@@ -34,12 +35,19 @@ export default function SearchInput() {
     }
   };
 
+  const toggleSearchField = () => {
+    if (window.innerWidth >= 1024) {
+      setSearchField(!searchField);
+    }
+  };
+
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center justify-center">
       <form>
-        <div className="relative max-w-sm">
-          <div className="absolute inset-y-0 left-0 flex items-center pl-2">
+        <div className="relative md:flex max-w-sm">
+          <div className="absolute md:relative inset-y-0 left-0 flex items-center pl-2 z-10">
             <Image
+              onClick={toggleSearchField}
               src={"/search-icon.svg"}
               alt="search icon"
               width={30}
@@ -47,19 +55,21 @@ export default function SearchInput() {
               quality={100}
             />
           </div>
-          <input
-            onChange={manageInput}
-            type="search"
-            className="w-full p-2 pl-10 text-white rounded-xl bg-grey"
-            placeholder="Search"
-            required
-          />
+          {!searchField && (
+            <input
+              onChange={manageInput}
+              type="search"
+              className="w-full p-2 pl-10 md:pl-3 text-white rounded-xl animate-searchInput"
+              placeholder="Search"
+              required
+            />
+          )}
         </div>
       </form>
       {/* Condition to show dropdown */}
       {searchInput.length > 0 && (
         <div>
-          <ul className="grid grid-cols-4 mt-4 gap-4">
+          <ul className="grid grid-cols-4 mt-4 p-4 md:max-h-52 md:w-36 md:overflow-y-auto gap-4 md:flex md:flex-col md:absolute md:right-16 md:scale-110">
             {searchResult?.map((movieTitle, index) => {
               const movieIndex = movieTitleArr.indexOf(movieTitle);
 

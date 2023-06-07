@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import SearchInput from "./SearchInput";
 import List from "./List";
+import Account from "./Account";
 
 export default function Header() {
   const [isActive, setIsActive] = useState(false);
@@ -34,7 +35,7 @@ export default function Header() {
             <List />
           </div>
           <div>
-            <SearchInput searchInput={isActive} />
+            <SearchInput />
           </div>
         </div>
 
@@ -53,8 +54,9 @@ export default function Header() {
               height={30}
               quality={100}
             />
-
-            <Link href={"/login"}>Login</Link>
+            <div>
+              <Account />
+            </div>
           </div>
           <div className="lg:hidden">
             {!isActive ? (

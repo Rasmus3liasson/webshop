@@ -99,7 +99,7 @@ export default function SearchInput() {
       )}
       {/* If no matching results */}
       {searchInput.length > 1 && searchResult?.length === 0 && (
-        <div>
+        <div className="md:absolute md:top-20 right-14">
           <ul>
             <li className="no-match">Ingen matchning</li>
           </ul>

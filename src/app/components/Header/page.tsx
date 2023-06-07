@@ -43,11 +43,11 @@ export default function Header() {
         <div className="flex">
           <div></div>
           <div className="flex items-center">
-            <span className="absolute top-8 right-32 lg:top-14 lg:right-20">
+            <span className="absolute top-8 right-28 lg:top-14 lg:right-16">
               3
             </span>
             <Image
-              className="mr-2"
+              className="mr-0.5 lg:mr-0"
               src={"/header/shopping-cart-icon.png"}
               alt="shopping cart icon"
               width={30}

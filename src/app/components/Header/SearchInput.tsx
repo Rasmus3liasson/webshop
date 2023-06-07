@@ -59,7 +59,7 @@ export default function SearchInput() {
             <input
               onChange={manageInput}
               type="search"
-              className="w-full p-2 pl-10 md:pl-3 text-white rounded-xl animate-searchInput"
+              className="w-full p-2 pl-10 md:pl-3 text-black rounded-xl animate-searchInput"
               placeholder="Search"
               required
             />

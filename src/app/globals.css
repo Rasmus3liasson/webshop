@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .link-text {
-  @apply hover:scale-105 hover:opacity-95;
+  @apply hover:scale-105 hover:opacity-95 active:scale-95 duration-75;
 }

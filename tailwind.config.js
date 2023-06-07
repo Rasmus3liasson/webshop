@@ -37,10 +37,21 @@ module.exports = {
             opacity: "1",
           },
         },
+        navLinks: {
+          from: {
+            transform: "translateY(-100%)",
+            easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+          },
+          to: {
+            transform: "translateY(0)",
+            easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+          },
+        },
       },
       animation: {
         slideInNav: "slideIn 0.4s forwards",
         searchInput: "searchField 0.4s forwards",
+        navLinks: "navLinks 0.7s forwards",
       },
     },
   },

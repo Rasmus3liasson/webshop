@@ -21,7 +21,7 @@ export default function Account() {
         onClick={toggleDropdown}
       />
 
-      {!isActive && (
+      {isActive && (
         <div className="rounded-lg bg-grey text-gray-200 absolute right-4 top-16 lg:top-20">
           <div className="flex flex-col items-center">
             <div>

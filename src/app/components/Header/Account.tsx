@@ -14,7 +14,7 @@ export default function Account() {
   return (
     <>
       <Image
-        src={"/user.png"}
+        src={"/header/user.png"}
         alt="user icon"
         width={35}
         height={35}

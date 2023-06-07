@@ -19,7 +19,7 @@ export default function Header() {
       <nav className="flex items-center justify-between mx-6 pt-5">
         <Link href="/">
           <Image
-            src={"/logo.svg"}
+            src={"/header/logo.svg"}
             alt="logotype for webshop"
             width={30}
             height={30}
@@ -48,7 +48,7 @@ export default function Header() {
             </span>
             <Image
               className="mr-2"
-              src={"/shopping-cart-icon.png"}
+              src={"/header/shopping-cart-icon.png"}
               alt="shopping cart icon"
               width={30}
               height={30}
@@ -61,7 +61,7 @@ export default function Header() {
           <div className="lg:hidden">
             {!isActive ? (
               <Image
-                src={"/burger-menu-icon.svg"}
+                src={"/header/burger-menu-icon.svg"}
                 alt="hamburger menu icon"
                 width={40}
                 height={40}
@@ -69,7 +69,7 @@ export default function Header() {
               />
             ) : (
               <Image
-                src={"/cross-icon.svg"}
+                src={"/header/cross-icon.svg"}
                 alt="cross icon"
                 width={40}
                 height={40}

@@ -48,7 +48,7 @@ export default function SearchInput() {
           <div className="absolute md:relative inset-y-0 left-0 flex items-center pl-2 z-10">
             <Image
               onClick={toggleSearchField}
-              src={"/search-icon.svg"}
+              src={"/header/search-icon.svg"}
               alt="search icon"
               width={30}
               height={30}

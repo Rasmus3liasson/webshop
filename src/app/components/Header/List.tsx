@@ -30,7 +30,7 @@ export default function List() {
           Category
           <Image
             className={`ml-2 ${categoryList && "rotate-180 duration-100"}`}
-            src={"/down-arrow.svg"}
+            src={"/header/down-arrow.svg"}
             alt="arrow indicator"
             width={20}
             height={20}

@@ -1,36 +1,49 @@
 "use client";
 
+import React, { useState } from "react";
+import CategoryDropdown from "./filterDropdowns/CategoryDropdown";
+import Image from "next/image";
+import SizeDropdown from "./filterDropdowns/SizeDropdown";
+import ColorDropdown from "./filterDropdowns/ColorDropdown";
 import Link from "next/link";
-import React from "react";
-import { usePathname } from "next/navigation";
 
 export default function FilterAside() {
-  const pathName = usePathname();
+  const [filterBtn, setFilterBtn] = useState(false);
 
-  const generateListItem = (href: string, textCategory: string) => {
-    const isActive = pathName.includes(href);
-    const className = `link-text ${isActive ? "underline" : ""}`;
-
-    return (
-      <Link className={className} href={href}>
-        <li>{textCategory}</li>
-      </Link>
-    );
+  const toggleFilter = () => {
+    setFilterBtn(!filterBtn);
   };
 
   return (
     <aside className="flex flex-col items-center w-1/4 mt-16">
-      <h3 className="font-semibold text-xl">Kategorier</h3>
-      <div>
-        <ul className="flex flex-col gap-4 mt-3">
-          {generateListItem("/clothes/jackets", "Jackor")}
-          {generateListItem("/clothes/shirts", "Skjortor")}
-          {generateListItem("/clothes/t-shirts", "T-shirt")}
-          {generateListItem("/clothes/pants", "Byxor")}
-          {generateListItem("/clothes/jeans", "Jeans")}
-          {generateListItem("/clothes/shoes", "Skor")}
+      <button
+        className="font-semibold text-xl bg-greyLight rounded-full p-2 flex items-center gap-1"
+        onClick={toggleFilter}
+      >
+        Filtrera
+        <Image
+          className={`${filterBtn && "rotate-180 duration-100"}`}
+          src={"/list/down-arrow.svg"}
+          alt="arrow for list to show if dropdown is active"
+          width={20}
+          height={20}
+        />
+      </button>
+
+      {filterBtn && (
+        <ul className="flex flex-col items-center gap-2 mt-3">
+          <CategoryDropdown />
+          <SizeDropdown />
+          <ColorDropdown />
         </ul>
-      </div>
+      )}
+
+      {/* button to link to querystring to apply filters */}
+      <Link href={"#"}>
+        <button className="text-xl  flex items-center active:scale-95 duration-100">
+          Applicera
+        </button>
+      </Link>
     </aside>
   );
 }

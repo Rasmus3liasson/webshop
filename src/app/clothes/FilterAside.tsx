@@ -7,53 +7,28 @@ import { usePathname } from "next/navigation";
 export default function FilterAside() {
   const pathName = usePathname();
 
+  const generateListItem = (href: string, textCategory: string) => {
+    const isActive = pathName.includes(href);
+    const className = `link-text ${isActive ? "underline" : ""}`;
+
+    return (
+      <Link className={className} href={href}>
+        <li>{textCategory}</li>
+      </Link>
+    );
+  };
+
   return (
     <aside className="flex flex-col items-center w-1/4 mt-16">
       <h3 className="font-semibold text-xl">Kategorier</h3>
       <div>
         <ul className="flex flex-col gap-4 mt-3">
-          <Link
-            className={`link-text ${
-              pathName.includes("jackets") && "underline"
-            }`}
-            href={"/clothes/jackets"}
-          >
-            <li>Jackor</li>
-          </Link>
-          <Link
-            className={`link-text ${
-              pathName.includes("shirts") && "underline"
-            }`}
-            href={"/clothes/shirts"}
-          >
-            <li>Skjortor</li>
-          </Link>
-          <Link
-            className={`link-text ${
-              pathName.includes("t-shirts") && "underline"
-            }`}
-            href={"/clothes/t-shirts"}
-          >
-            <li>T-shirt</li>
-          </Link>
-          <Link
-            className={`link-text ${pathName.includes("pants") && "underline"}`}
-            href={"/clothes/pants"}
-          >
-            <li>Byxor</li>
-          </Link>
-          <Link
-            className={`link-text ${pathName.includes("jeans") && "underline"}`}
-            href={"/clothes/jeans"}
-          >
-            <li>Jeans</li>
-          </Link>
-          <Link
-            className={`link-text ${pathName.includes("shoes") && "underline"}`}
-            href={"/clothes/shoes"}
-          >
-            <li>Skor</li>
-          </Link>
+          {generateListItem("/clothes/jackets", "Jackor")}
+          {generateListItem("/clothes/shirts", "Skjortor")}
+          {generateListItem("/clothes/t-shirts", "T-shirt")}
+          {generateListItem("/clothes/pants", "Byxor")}
+          {generateListItem("/clothes/jeans", "Jeans")}
+          {generateListItem("/clothes/shoes", "Skor")}
         </ul>
       </div>
     </aside>

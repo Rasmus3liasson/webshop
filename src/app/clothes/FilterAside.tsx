@@ -15,9 +15,9 @@ export default function FilterAside() {
   };
 
   return (
-    <aside className="flex flex-col items-center w-1/4 mt-16">
+    <aside className="flex flex-col items-center absolute top-5 right-4 md:relative w-1/4 mt-16">
       <button
-        className="font-semibold text-xl bg-greyLight rounded-full p-2 flex items-center gap-1"
+        className="font-semibold text-xl rounded-full p-2 flex items-center gap-1"
         onClick={toggleFilter}
       >
         Filtrera
@@ -31,19 +31,18 @@ export default function FilterAside() {
       </button>
 
       {filterBtn && (
-        <ul className="flex flex-col items-center gap-2 mt-3">
+        <ul className="flex flex-col items-center gap-2 mt-3 bg-white p-7 rounded-lg">
           <CategoryDropdown />
           <SizeDropdown />
           <ColorDropdown />
+          {/* button to link to querystring to apply filters */}
+          <Link href={"#"}>
+            <button className="text-xl  flex items-center active:scale-95 duration-100">
+              Applicera
+            </button>
+          </Link>
         </ul>
       )}
-
-      {/* button to link to querystring to apply filters */}
-      <Link href={"#"}>
-        <button className="text-xl  flex items-center active:scale-95 duration-100">
-          Applicera
-        </button>
-      </Link>
     </aside>
   );
 }

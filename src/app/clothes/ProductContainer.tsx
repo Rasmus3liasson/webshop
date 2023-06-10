@@ -34,7 +34,7 @@ export default function ProductContainer() {
     setProductItems(testArr.slice(0, moreItemsAdded));
   };
   return (
-    <section className="mt-4 w-3/4">
+    <section className="mt-4 md:w-3/4 w-full">
       <div className="border-b-2 border-greyLight ">
         <p className="mb-4">Jackor</p>
       </div>
@@ -48,7 +48,7 @@ export default function ProductContainer() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-5 ">
             {productItems.map((product, index) => {
               return (
-                <div className="flex flex-col" key={index}>
+                <div className="flex flex-col items-center" key={index}>
                   <Image
                     src={"/dummy.jpeg"}
                     alt={product}

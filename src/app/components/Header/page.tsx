@@ -16,7 +16,7 @@ export default function Header() {
 
   return (
     <header>
-      <nav className="flex items-center justify-between mx-6 pt-5">
+      <nav className="flex items-center justify-between mx-6 pt-5 ">
         <Link href="/">
           <Image
             src={"/header/logo.svg"}
@@ -27,7 +27,7 @@ export default function Header() {
           />
         </Link>
         <div
-          className={`flex items-center justify-between flex-col md:flex-row absolute md:relative top-24 md:top-0 right-0 p-5 rounded-b-2xl md:rounded-none w-full lg:flex animate-slideInNav bg-white z-10 ${
+          className={`flex items-center justify-between flex-col md:flex-row absolute md:relative top-24 md:top-0 right-0 p-5 rounded-b-2xl md:rounded-none w-full lg:flex animate-slideInNav bg-white z-10 -mt-9 md:mt-0  ${
             !isActive && "hidden"
           }`}
         >

@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${monteserrat.className} m-0 p-0 box-border h-screen flex flex-col bg-background`}
+        className={`${monteserrat.className} m-0 p-0 box-border h-screen flex flex-col bg-background scroll-smooth`}
       >
         <Header />
         <main>{children}</main>

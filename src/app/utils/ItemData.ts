@@ -1,4 +1,5 @@
 import { ProductItemsInterface } from "@/types/items";
+import { sizeComparator } from "./sortSizes";
 import { config } from "dotenv";
 
 config();
@@ -16,14 +17,19 @@ export async function getItemData() {
   const res = await fetch(url, options);
   const data = await res.json();
 
-  // filtering the necassary data I want
+  // Filtering the necassary data I want
   const filteredData = data.results.map((item: ProductItemsInterface) => ({
+    id: item.code,
     name: item.name,
     imagePoster: item.images[0].url,
     price: item.price.value,
     galleryImages: item.galleryImages,
     similarImages: item.allArticleBaseImages,
+    clothingSizes: item.variantSizes
+      .map((item) => item.filterCode)
+      .sort(sizeComparator),
+    itemColor: item.articles[0].color.text.toUpperCase().split("/")[0],
   }));
 
-  return filteredData;
+  return filteredData[0];
 }

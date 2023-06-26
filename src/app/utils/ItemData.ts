@@ -31,5 +31,5 @@ export async function getItemData() {
     itemColor: item.articles[0].color.text.toUpperCase().split("/")[0],
   }));
 
-  return filteredData[0];
+  return filteredData;
 }

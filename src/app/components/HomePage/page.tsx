@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Hero from "./Hero";
-import ProductContainer from "./ProductContainer";
+import Hero from "./components/Hero";
+import ProductContainer from "./components/ProductContainer";
 import { FilteredDataInterface } from "@/types/items";
 
 export default function Page() {
-  const [items, setItems] = useState<FilteredDataInterface>([]);
+  const [items, setItems] = useState<FilteredDataInterface[]>([]);
 
   const fetchData = async () => {
     try {

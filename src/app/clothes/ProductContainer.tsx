@@ -34,10 +34,7 @@ export default function ProductContainer() {
     setProductItems(testArr.slice(0, moreItemsAdded));
   };
   return (
-    <section className="mt-4 md:w-3/4 w-full">
-      <div className="border-b-2 border-greyLight ">
-        <p className="mb-4">Jackor</p>
-      </div>
+    <section className="mt-16 md:w-3/4 w-full">
       <div className="flex gap-1 justify-center items-center flex-col">
         <div className="mt-2 bg-greyLight w-full text-center p-1">
           <span>{productItems.length}</span>

@@ -23,5 +23,11 @@ export async function getFilterData() {
     );
   });
 
-  return filterData;
+  //filter out the data that are empty
+  const existingProducts = filterData.map((filter) => {
+    const filtered = filter.values.filter((value) => value.count > 0);
+    return { ...filter, values: filtered };
+  });
+
+  return existingProducts;
 }

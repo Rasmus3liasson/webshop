@@ -1,23 +1,34 @@
 import Image from "next/image";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 
-export default function ColorDropdown() {
+export default function ColorDropdown({ filterData }: { filterData: any }) {
   const [color, setColor] = useState(false);
-  const [activeListArr, setActiveListArr] = useState<boolean[]>([]);
+
+  const searchParam = useSearchParams();
+  const queryStringColor = searchParam.get("color");
 
   const toggleDropdown = () => {
     setColor(!color);
   };
 
-  // toggle state of a list item at the index
-  const toggleActiveList = (index: number) => {
-    const updatedItems = [...activeListArr];
-    updatedItems[index] = !updatedItems[index];
+  const generateListItem = () => {
+    const colorsArr = filterData[0].values.map((colors) => colors.code);
+    const colorsList = colorsArr.map((colors: string, index: number) => {
+      const isActive = queryStringColor?.includes(colors);
+      const className = `link-text ${isActive ? "underline" : ""}`;
+      return (
+        <Link className={className} href={"#"}>
+          <li key={index}>{colors.toUpperCase()}</li>
+        </Link>
+      );
+    });
 
-    setActiveListArr(updatedItems);
+    return colorsList;
   };
 
-  const colorCircle = (bgColor: string, textColor: string, index: number) => {
+  /*   const colorCircle = (bgColor: string, textColor: string, index: number) => {
     return (
       <li
         key={index}
@@ -30,7 +41,7 @@ export default function ColorDropdown() {
         ></div>
       </li>
     );
-  };
+  }; */
 
   return (
     <>
@@ -45,15 +56,8 @@ export default function ColorDropdown() {
         />
       </li>
       {color && (
-        <ul className="flex flex-col gap-2">
-          {colorCircle("bg-white", "vit", 0)}
-          {colorCircle("bg-black", "svart", 1)}
-          {colorCircle("bg-grey", "grå", 2)}
-          {colorCircle("bg-blue-500", "blå", 3)}
-          {colorCircle("bg-green-500", "grön", 4)}
-          {colorCircle("bg-orange-200", "beige", 5)}
-          {colorCircle("bg-red-500", "röd", 6)}
-          {colorCircle("bg-yellow-200", "gul", 7)}
+        <ul className="flex flex-col items-center gap-2">
+          {generateListItem()}
         </ul>
       )}
     </>

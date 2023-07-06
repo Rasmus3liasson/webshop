@@ -21,7 +21,7 @@ export interface ProductItemsInterface {
   }[];
 }
 
-export interface FilteredDataInterface {
+export interface FilteredItemDataInterface {
   code: string;
   name: string;
   imagePoster: string;

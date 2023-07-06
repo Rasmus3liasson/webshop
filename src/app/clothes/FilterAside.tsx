@@ -6,6 +6,7 @@ import Image from "next/image";
 import SizeDropdown from "./filterDropdowns/SizeDropdown";
 import ColorDropdown from "./filterDropdowns/ColorDropdown";
 import Link from "next/link";
+import { filterMock } from "../../../mockData/filter";
 
 export default function FilterAside() {
   const [filterBtn, setFilterBtn] = useState(false);
@@ -15,7 +16,7 @@ export default function FilterAside() {
     setFilterBtn(!filterBtn);
   };
 
-  useEffect(() => {
+  /*   useEffect(() => {
     const getFilterData = async () => {
       const res = await fetch("/api/category");
       const data = await res.json();
@@ -23,9 +24,11 @@ export default function FilterAside() {
       setFilterAlternativesData(data);
     };
     getFilterData();
-  }, []);
+  }, []); */
 
-  console.log(filterAlternativesData[0]);
+  useEffect(() => {
+    setFilterAlternativesData(filterMock);
+  }, []);
 
   return (
     <aside className="flex flex-col items-center absolute top-5 right-4 md:relative w-1/4 mt-16 md:mt-12 ">

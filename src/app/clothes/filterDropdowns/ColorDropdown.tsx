@@ -1,9 +1,14 @@
+import { FilteredDataInterface } from "@/types/filter";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 
-export default function ColorDropdown({ filterData }: { filterData: any }) {
+export default function ColorDropdown({
+  filterData,
+}: {
+  filterData: FilteredDataInterface[];
+}) {
   const [color, setColor] = useState(false);
 
   const searchParam = useSearchParams();
@@ -19,14 +24,41 @@ export default function ColorDropdown({ filterData }: { filterData: any }) {
       const isActive = queryStringColor?.includes(colors);
       const className = `link-text ${isActive ? "underline" : ""}`;
       return (
-        <Link className={className} href={"#"}>
-          <li key={index}>{colors.toUpperCase()}</li>
+        <Link key={index} className={className} href={"#"}>
+          <li>{colors.toUpperCase()}</li>
         </Link>
       );
     });
 
     return colorsList;
   };
+
+  /* 
+  const generateListItem = () => {
+    if (!filterData || filterData.length === 0) {
+      // Handle case when filterData is undefined or empty
+      return null;
+    }
+
+    const firstFilter = filterData[0];
+    if (!firstFilter.values) {
+      // Handle case when the first filter does not have a 'values' property
+      return null;
+    }
+
+    const colorsArr = firstFilter.values.map((colors) => colors.code);
+    const colorsList = colorsArr.map((colors, index) => {
+      const isActive = queryStringColor?.includes(colors);
+      const className = `link-text ${isActive ? "underline" : ""}`;
+      return (
+        <Link className={className} href="#">
+          <li key={index}>{colors.toUpperCase()}</li>
+        </Link>
+      );
+    });
+
+    return colorsList;
+  }; */
 
   /*   const colorCircle = (bgColor: string, textColor: string, index: number) => {
     return (

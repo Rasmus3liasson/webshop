@@ -3,12 +3,14 @@
 import React, { useEffect, useState } from "react";
 import Hero from "./components/Hero";
 import ProductContainer from "./components/ProductContainer";
-import { FilteredDataInterface } from "@/types/items";
+
+import { itemsMock } from "../../../../mockData/items";
+import { FilteredItemDataInterface } from "@/types/items";
 
 export default function Page() {
-  const [items, setItems] = useState<FilteredDataInterface[]>([]);
+  const [items, setItems] = useState<FilteredItemDataInterface[]>([]);
 
-  const fetchData = async () => {
+  /*   const fetchData = async () => {
     try {
       const res = await fetch("/api/items");
       const data = await res.json();
@@ -18,7 +20,11 @@ export default function Page() {
     }
   };
 
-  fetchData();
+  fetchData(); */
+
+  useEffect(() => {
+    setItems(itemsMock);
+  }, []);
 
   return (
     <>

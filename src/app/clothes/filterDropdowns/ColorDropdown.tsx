@@ -17,63 +17,39 @@ export default function ColorDropdown({
   const toggleDropdown = () => {
     setColor(!color);
   };
-
   const generateListItem = () => {
     const colorsArr = filterData[0].values.map((colors) => colors.code);
-    const colorsList = colorsArr.map((colors: string, index: number) => {
-      const isActive = queryStringColor?.includes(colors);
+    const colorsList = colorsArr.map((colorCode: string, index: number) => {
+      const isActive = queryStringColor?.includes(colorCode);
       const className = `link-text ${isActive ? "underline" : ""}`;
+
+      // Find colorCode that match name
+      const colorCodeObj = filterData[2].values.find(
+        (color) => color.code.split("_")[0] === colorCode
+      );
+
+      const colorName = colorCodeObj ? colorCodeObj.code.split("_")[0] : null;
+
+      // doesn't render out the color if it doesn't match the name
+      if (!colorName) {
+        return null;
+      }
+
       return (
-        <Link key={index} className={className} href={"#"}>
-          <li>{colors.toUpperCase()}</li>
+        <Link key={index} className={className} href="#">
+          <li className="flex justify-center items-center gap-2">
+            {colorName?.toUpperCase()}
+            <span
+              style={{ background: colorCode }}
+              className="w-5 h-5 rounded-full opacity-80"
+            ></span>
+          </li>
         </Link>
       );
     });
 
     return colorsList;
   };
-
-  /* 
-  const generateListItem = () => {
-    if (!filterData || filterData.length === 0) {
-      // Handle case when filterData is undefined or empty
-      return null;
-    }
-
-    const firstFilter = filterData[0];
-    if (!firstFilter.values) {
-      // Handle case when the first filter does not have a 'values' property
-      return null;
-    }
-
-    const colorsArr = firstFilter.values.map((colors) => colors.code);
-    const colorsList = colorsArr.map((colors, index) => {
-      const isActive = queryStringColor?.includes(colors);
-      const className = `link-text ${isActive ? "underline" : ""}`;
-      return (
-        <Link className={className} href="#">
-          <li key={index}>{colors.toUpperCase()}</li>
-        </Link>
-      );
-    });
-
-    return colorsList;
-  }; */
-
-  /*   const colorCircle = (bgColor: string, textColor: string, index: number) => {
-    return (
-      <li
-        key={index}
-        onClick={() => toggleActiveList(index)}
-        className={`flex gap-2 ${activeListArr[index] && "underline"}`}
-      >
-        {textColor.toUpperCase()}
-        <div
-          className={`${bgColor} w-5 h-5 rounded-full border-2 bg border-greyLight`}
-        ></div>
-      </li>
-    );
-  }; */
 
   return (
     <>

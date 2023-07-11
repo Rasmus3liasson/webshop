@@ -7,10 +7,10 @@ import { handleFilterSettings } from "@/app/utils/functions/filterArray";
 
 export default function ColorDropdown({
   filterData,
-  colorFilter,
+  setColorFilter: setColorFilter,
 }: {
   filterData: FilteredDataInterface[];
-  colorFilter: React.Dispatch<React.SetStateAction<string[]>>;
+  setColorFilter: React.Dispatch<React.SetStateAction<string[]>>;
 }) {
   const [color, setColor] = useState(false);
 
@@ -40,14 +40,14 @@ export default function ColorDropdown({
 
       return (
         <li
-          onClick={() => handleFilterSettings(colorName, colorFilter)}
+          onClick={() => handleFilterSettings(colorName, setColorFilter)}
           key={index}
           className={`flex justify-center items-center gap-2 ${className}`}
         >
           {colorName?.toUpperCase()}
           <span
             style={{ background: colorCode }}
-            className="w-5 h-5 rounded-full opacity-80"
+            className="w-5 h-5 rounded-full opacity-80 border-2 border-greyLight"
           ></span>
         </li>
       );

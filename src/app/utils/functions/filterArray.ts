@@ -4,7 +4,7 @@ export const handleFilterSettings = (
   setState: React.Dispatch<React.SetStateAction<string[]>>
 ) => {
   setState((prevFilter) => {
-    const updatedFilter = prevFilter ? [...prevFilter] : [];
+    const updatedFilter = prevFilter && [...prevFilter];
     const index = updatedFilter.indexOf(linkName);
     if (index === -1) {
       // Adds to filter array

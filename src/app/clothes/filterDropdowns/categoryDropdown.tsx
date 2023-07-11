@@ -9,10 +9,10 @@ import { handleFilterSettings } from "@/app/utils/functions/filterArray";
 
 export default function CategoryDropdown({
   filterData,
-  categoryFilter,
+  setCategoryFilter,
 }: {
   filterData: FilteredDataInterface[];
-  categoryFilter: React.Dispatch<React.SetStateAction<string[]>>;
+  setCategoryFilter: React.Dispatch<React.SetStateAction<string[]>>;
 }) {
   const [category, setCategory] = useState(false);
 
@@ -37,7 +37,9 @@ export default function CategoryDropdown({
 
         return (
           <li
-            onClick={() => handleFilterSettings(categoryName, categoryFilter)}
+            onClick={() =>
+              handleFilterSettings(categoryName, setCategoryFilter)
+            }
             className={className}
             key={index}
           >
@@ -50,7 +52,7 @@ export default function CategoryDropdown({
   };
   return (
     <>
-      <li className="flex items-center gap-1" onClick={toggleDropdown}>
+      <li className="flex items-center gap-1 text-lg" onClick={toggleDropdown}>
         Kategorier
         <Image
           className={`${category && "rotate-180 duration-100"}`}
@@ -61,7 +63,7 @@ export default function CategoryDropdown({
         />
       </li>
       {category && (
-        <ul className="flex flex-col items-center gap-6">
+        <ul className="flex flex-col items-center gap-1">
           {generateListItem()}
         </ul>
       )}

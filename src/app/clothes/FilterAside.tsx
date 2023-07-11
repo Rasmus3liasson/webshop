@@ -6,6 +6,7 @@ import ColorDropdown from "./filterDropdowns/ColorDropdown";
 import Link from "next/link";
 import { filterMock } from "../../../mockData/filter";
 import { usePathname } from "next/navigation";
+import ActiveFilter from "./filterDropdowns/ActiveFilter";
 
 export default function FilterAside() {
   const [filterBtn, setFilterBtn] = useState(false);
@@ -58,14 +59,23 @@ export default function FilterAside() {
         <ul className="flex flex-col items-center gap-2 bg-white p-7 rounded-lg">
           <CategoryDropdown
             filterData={filterAlternativesData}
-            categoryFilter={setCategoryFilter}
+            setCategoryFilter={setCategoryFilter}
           />
           <ColorDropdown
             filterData={filterAlternativesData}
-            colorFilter={setColorFilter}
+            setColorFilter={setColorFilter}
           />
-          {/* button to link to querystring to apply filters */}
 
+          <>
+            <ActiveFilter
+              colorFilter={colorFilter}
+              setColorFilter={setColorFilter}
+              categoryFilter={categoryFilter}
+              setCategoryFilter={setCategoryFilter}
+            />
+          </>
+
+          {/* button to link to querystring to apply filters */}
           <Link href={pathname + "?" + createQueryString()}>
             <button className="text-xl flex items-center active:scale-95 duration-100 bg-lightBlue rounded-full py-1 px-3 mt-3 hover:opacity-90 active:opacity-100 shadow-lg">
               Applicera

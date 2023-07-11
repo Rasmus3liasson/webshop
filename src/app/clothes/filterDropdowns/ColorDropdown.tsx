@@ -3,11 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import React, { useState } from "react";
+import { handleFilterSettings } from "@/app/utils/functions/filterArray";
 
 export default function ColorDropdown({
   filterData,
+  colorFilter,
 }: {
   filterData: FilteredDataInterface[];
+  colorFilter: React.Dispatch<React.SetStateAction<string[]>>;
 }) {
   const [color, setColor] = useState(false);
 
@@ -21,7 +24,7 @@ export default function ColorDropdown({
     const colorsArr = filterData[0].values.map((colors) => colors.code);
     const colorsList = colorsArr.map((colorCode: string, index: number) => {
       const isActive = queryStringColor?.includes(colorCode);
-      const className = `link-text ${isActive ? "underline" : ""}`;
+      const className = `link-text ${isActive ? "hidden" : ""}`;
 
       // Find colorCode that match name
       const colorCodeObj = filterData[2].values.find(
@@ -36,15 +39,17 @@ export default function ColorDropdown({
       }
 
       return (
-        <Link key={index} className={className} href="#">
-          <li className="flex justify-center items-center gap-2">
-            {colorName?.toUpperCase()}
-            <span
-              style={{ background: colorCode }}
-              className="w-5 h-5 rounded-full opacity-80"
-            ></span>
-          </li>
-        </Link>
+        <li
+          onClick={() => handleFilterSettings(colorName, colorFilter)}
+          key={index}
+          className={`flex justify-center items-center gap-2 ${className}`}
+        >
+          {colorName?.toUpperCase()}
+          <span
+            style={{ background: colorCode }}
+            className="w-5 h-5 rounded-full opacity-80"
+          ></span>
+        </li>
       );
     });
 

@@ -17,6 +17,7 @@ module.exports = {
         grey: "#595959",
         greyLight: "#CFCFCF",
         background: "#FAFCFF",
+        lightBlue: "#84AEC3",
       },
       scale: {
         102: "1.02",

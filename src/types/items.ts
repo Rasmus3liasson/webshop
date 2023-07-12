@@ -22,15 +22,13 @@ export interface ProductItemsInterface {
 }
 
 export interface FilteredItemDataInterface {
-  code: string;
+  id: string;
   name: string;
   imagePoster: string;
   price: number;
-  galleryImages: string[];
+  galleryImages: { url: string; baseUrl: string }[];
   similarImages: string[];
-  clothingSizes: {
-    filterCode: string;
-  }[];
+  clothingSizes: string[];
   itemColor: string;
 }
 [];

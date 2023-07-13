@@ -24,9 +24,7 @@ export default function CategoryDropdown({
   };
 
   const generateListItem = () => {
-    const categoryData = filterData[1].values.map(
-      (categories) => categories.code
-    );
+    const categoryData = filterData.categories;
 
     const categoryList = categoryData.map(
       (categoryName: string, index: number) => {

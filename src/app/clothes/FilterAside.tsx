@@ -4,7 +4,8 @@ import CategoryDropdown from "./filterDropdowns/CategoryDropdown";
 import Image from "next/image";
 import ColorDropdown from "./filterDropdowns/ColorDropdown";
 import Link from "next/link";
-import { filterMock } from "../../../mockData/filter";
+import { filterOptionsMock } from "../../../mockData/items";
+
 import { usePathname } from "next/navigation";
 import ActiveFilter from "./filterDropdowns/ActiveFilter";
 
@@ -14,6 +15,8 @@ export default function FilterAside() {
   const [colorFilter, setColorFilter] = useState<string[]>([]);
   const [categoryFilter, setCategoryFilter] = useState<string[]>([]);
 
+  const data = filterOptionsMock;
+
   const pathname = usePathname();
 
   const toggleFilter = () => {
@@ -21,7 +24,7 @@ export default function FilterAside() {
   };
 
   useEffect(() => {
-    setFilterAlternativesData(filterMock);
+    setFilterAlternativesData(data);
   }, []);
 
   //Creates a queryString based on a the filters applied

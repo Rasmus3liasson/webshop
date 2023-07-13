@@ -9,7 +9,7 @@ export default function ColorDropdown({
   filterData,
   setColorFilter: setColorFilter,
 }: {
-  filterData: FilteredDataInterface[];
+  filterData: any;
   setColorFilter: React.Dispatch<React.SetStateAction<string[]>>;
 }) {
   const [color, setColor] = useState(false);
@@ -21,17 +21,17 @@ export default function ColorDropdown({
     setColor(!color);
   };
   const generateListItem = () => {
-    const colorsArr = filterData[0].values.map((colors) => colors.code);
+    const colorsArr = filterData.color;
     const colorsList = colorsArr.map((colorCode: string, index: number) => {
       const isActive = queryStringColor?.includes(colorCode);
       const className = `link-text ${isActive ? "hidden" : ""}`;
 
       // Find colorCode that match name
-      const colorCodeObj = filterData[2].values.find(
-        (color) => color.code.split("_")[0] === colorCode
-      );
+      const colorCodeObj = colorsArr.find((color) => color === colorCode);
 
-      const colorName = colorCodeObj ? colorCodeObj.code.split("_")[0] : null;
+      const colorName = colorCodeObj ? colorCodeObj : null;
+
+      console.log(colorName);
 
       // doesn't render out the color if it doesn't match the name
       if (!colorName) {
@@ -44,10 +44,10 @@ export default function ColorDropdown({
           key={index}
           className={`flex justify-center items-center gap-2 ${className}`}
         >
-          {colorName?.toUpperCase()}
+          {colorName}
           <span
             style={{ background: colorCode }}
-            className="w-5 h-5 rounded-full opacity-80 border-2 border-greyLight"
+            className="w-5 h-5 rounded-full opacity-80 border-2 border-grey"
           ></span>
         </li>
       );

@@ -23,12 +23,13 @@ export default function ProductContainer() {
     setProductItems(data.slice(0, moreItemsAdded));
   };
 
-  // Updating the state everytime the query changes
+  // Updating the state everytime the query changes or doesn't exist
   useEffect(() => {
-    setProductItems(data);
+    if (colorQuery && categoryQuery === null) {
+      setProductItems(data.slice(0, 8));
+    }
   }, [colorQuery, categoryQuery]);
 
-  console.log(productItems);
   return (
     <section className="mt-16 md:w-3/4 w-full">
       <div className="flex gap-1 justify-center items-center flex-col">
@@ -61,6 +62,8 @@ export default function ProductContainer() {
                   <div>
                     <p className="text-greyLight">{product.name}</p>
                     <p>{product.price}</p>
+                    <p>{product.itemCategory}</p>
+                    <p>{product.itemColor}</p>
                   </div>
                 </div>
               );

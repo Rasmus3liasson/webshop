@@ -1,31 +1,55 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
+import { FilterOptionsInterface } from "@/types/filter";
+import { handleFilterSettings } from "@/app/utils/functions/filterArray";
 
-export default function CategoryDropdown() {
-  const pathName = usePathname();
+export default function CategoryDropdown({
+  filterData,
+  setCategoryFilter,
+}: {
+  filterData: FilterOptionsInterface;
+  setCategoryFilter: React.Dispatch<React.SetStateAction<string[]>>;
+}) {
   const [category, setCategory] = useState(false);
+
+  const searchParam = useSearchParams();
+  const queryStringColor = searchParam.get("category");
 
   const toggleDropdown = () => {
     setCategory(!category);
   };
 
-  const generateListItem = (href: string, textCategory: string) => {
-    const isActive = pathName.includes(href);
-    const className = `link-text ${isActive ? "underline" : ""}`;
+  const generateListItem = () => {
+    const categoryData = filterData.categories;
 
-    return (
-      <Link className={className} href={href}>
-        <li>{textCategory}</li>
-      </Link>
+    const categoryList = categoryData.map(
+      (categoryName: string, index: number) => {
+        const isActive = queryStringColor
+          ?.toUpperCase()
+          ?.includes(categoryName.toUpperCase());
+        const className = `link-text ${isActive ? "hidden" : ""}`;
+
+        return (
+          <li
+            onClick={() =>
+              handleFilterSettings(categoryName, setCategoryFilter)
+            }
+            className={className}
+            key={index}
+          >
+            {categoryName}
+          </li>
+        );
+      }
     );
+    return categoryList;
   };
   return (
     <>
-      <li className="text-lg flex items-center gap-1" onClick={toggleDropdown}>
+      <li className="flex items-center gap-1 text-lg" onClick={toggleDropdown}>
         Kategorier
         <Image
           className={`${category && "rotate-180 duration-100"}`}
@@ -35,15 +59,9 @@ export default function CategoryDropdown() {
           height={20}
         />
       </li>
-
       {category && (
-        <ul className="flex flex-col items-center gap-4 mt-3">
-          {generateListItem("/clothes/jackets", "Jackor")}
-          {generateListItem("/clothes/shirts", "Skjortor")}
-          {generateListItem("/clothes/t-shirts", "T-shirt")}
-          {generateListItem("/clothes/pants", "Byxor")}
-          {generateListItem("/clothes/jeans", "Jeans")}
-          {generateListItem("/clothes/shoes", "Skor")}
+        <ul className="flex flex-col items-center gap-1">
+          {generateListItem()}
         </ul>
       )}
     </>

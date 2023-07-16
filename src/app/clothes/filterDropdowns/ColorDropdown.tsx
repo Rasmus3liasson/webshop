@@ -1,35 +1,50 @@
+import { ColorOptions, FilterOptionsInterface } from "@/types/filter";
 import Image from "next/image";
-import React, { useState } from "react";
 
-export default function ColorDropdown() {
+import { useSearchParams } from "next/navigation";
+import React, { useState } from "react";
+import { handleFilterSettings } from "@/app/utils/functions/filterArray";
+
+export default function ColorDropdown({
+  filterData,
+  setColorFilter: setColorFilter,
+}: {
+  filterData: FilterOptionsInterface;
+  setColorFilter: React.Dispatch<React.SetStateAction<string[]>>;
+}) {
   const [color, setColor] = useState(false);
-  const [activeListArr, setActiveListArr] = useState<boolean[]>([]);
+
+  const searchParam = useSearchParams();
+  const queryStringColor = searchParam.get("color");
 
   const toggleDropdown = () => {
     setColor(!color);
   };
 
-  // toggle state of a list item at the index
-  const toggleActiveList = (index: number) => {
-    const updatedItems = [...activeListArr];
-    updatedItems[index] = !updatedItems[index];
+  const generateListItem = () => {
+    const colorsArr = filterData.color;
+    const colorsList = colorsArr.map(
+      (colorObj: ColorOptions, index: number) => {
+        const isActive = queryStringColor?.includes(colorObj.text);
+        const className = `link-text ${isActive ? "hidden" : ""}`;
 
-    setActiveListArr(updatedItems);
-  };
-
-  const colorCircle = (bgColor: string, textColor: string, index: number) => {
-    return (
-      <li
-        key={index}
-        onClick={() => toggleActiveList(index)}
-        className={`flex gap-2 ${activeListArr[index] && "underline"}`}
-      >
-        {textColor.toUpperCase()}
-        <div
-          className={`${bgColor} w-5 h-5 rounded-full border-2 bg border-greyLight`}
-        ></div>
-      </li>
+        return (
+          <li
+            onClick={() => handleFilterSettings(colorObj.text, setColorFilter)}
+            key={index}
+            className={`flex justify-center items-center gap-2 ${className}`}
+          >
+            <p>{colorObj.text}</p>
+            <span
+              style={{ background: `#${colorObj.code}` }}
+              className="w-5 h-5 rounded-full opacity-80 border-2 border-grey"
+            ></span>
+          </li>
+        );
+      }
     );
+
+    return colorsList;
   };
 
   return (
@@ -45,15 +60,8 @@ export default function ColorDropdown() {
         />
       </li>
       {color && (
-        <ul className="flex flex-col gap-2">
-          {colorCircle("bg-white", "vit", 0)}
-          {colorCircle("bg-black", "svart", 1)}
-          {colorCircle("bg-grey", "grå", 2)}
-          {colorCircle("bg-blue-500", "blå", 3)}
-          {colorCircle("bg-green-500", "grön", 4)}
-          {colorCircle("bg-orange-200", "beige", 5)}
-          {colorCircle("bg-red-500", "röd", 6)}
-          {colorCircle("bg-yellow-200", "gul", 7)}
+        <ul className="flex flex-col items-center gap-2">
+          {generateListItem()}
         </ul>
       )}
     </>

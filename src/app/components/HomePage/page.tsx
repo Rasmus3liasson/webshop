@@ -1,13 +1,35 @@
-import Link from "next/link";
-import React from "react";
-import Hero from "./Hero";
-import ProductContainer from "./ProductContainer";
+"use client";
 
-export default function page() {
+import React, { useEffect, useState } from "react";
+import Hero from "./components/Hero";
+import ProductContainer from "./components/ProductContainer";
+
+import { itemsMock } from "../../../../mockData/items";
+import { FilteredItemDataInterface } from "@/types/items";
+
+export default function Page() {
+  const [items, setItems] = useState<FilteredItemDataInterface[]>([]);
+
+  /*   const fetchData = async () => {
+    try {
+      const res = await fetch("/api/items");
+      const data = await res.json();
+      setItems(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  fetchData(); */
+
+  useEffect(() => {
+    setItems(itemsMock);
+  }, []);
+
   return (
     <>
       <Hero />
-      <ProductContainer />
+      <ProductContainer items={items} />
     </>
   );
 }

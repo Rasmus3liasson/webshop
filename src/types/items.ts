@@ -17,6 +17,11 @@ export interface FilteredItemDataInterface {
 }
 [];
 
+export interface SearchInputInterface {
+  title: string;
+  imagePoster: string;
+}
+
 export interface FilterOptions {
   color: string[];
   categories: string[];

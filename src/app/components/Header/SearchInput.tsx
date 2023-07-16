@@ -1,33 +1,30 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
+import { useDebounce } from "use-debounce";
+import { itemsMock } from "../../../../mockData/items";
+import { SearchInputInterface } from "@/types/items";
 
 export default function SearchInput() {
-  //temorarly data
-  const hej = [
-    "hej",
-    "hello",
-    "holar",
-    "holat",
-    "hola",
-    "hola",
-    "hola",
-    "hola",
-  ];
+  const data: SearchInputInterface[] = itemsMock.map((item) => ({
+    title: item.name,
+    imagePoster: item.imagePoster,
+  }));
 
   const [searchInput, setSearchInput] = useState("");
   const [searchField, setSearchField] = useState(false);
-  const [searchResult, setSearchResult] = useState<string[]>();
-  const [movieTitleArr, setMovieTitleArr] = useState<string[]>(hej);
-  const [movieImageArr, setMovieImageArr] = useState<string[]>([]);
+  const [searchResult, setSearchResult] = useState<SearchInputInterface[]>([]);
+  const [itemData] = useState(data);
+
+  const [debounceValue] = useDebounce(searchInput, 2000);
 
   //filter and show result that match value
-  const manageInput = (event: { target: { value: string } }) => {
+  const manageInput = (event: ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
     setSearchInput(inputValue);
     if (inputValue.length >= 2) {
-      const filteredResults = movieTitleArr.filter((input) =>
-        input.toLowerCase().includes(inputValue.toLowerCase())
+      const filteredResults = itemData.filter((item) =>
+        item.title.toLowerCase().includes(debounceValue.toLowerCase())
       );
       setSearchResult(filteredResults);
     } else {
@@ -70,15 +67,13 @@ export default function SearchInput() {
       {searchInput.length > 0 && (
         <div>
           <ul className="grid grid-cols-4 mt-4 p-4 md:max-h-52 md:w-36 md:overflow-y-auto gap-4 md:flex md:flex-col md:absolute md:right-16 md:scale-110">
-            {searchResult?.map((movieTitle, index) => {
-              const movieIndex = movieTitleArr.indexOf(movieTitle);
-
+            {searchResult?.map((product, index) => {
               // Retrieve image using the index of title
-              const imageUrl = movieImageArr[movieIndex];
+              const imageUrl = product.imagePoster;
               return (
                 <li key={index}>
                   <Image
-                    src={"/dummy.jpeg"}
+                    src={imageUrl}
                     alt="poster of movie"
                     width={120}
                     height={130}
@@ -86,9 +81,9 @@ export default function SearchInput() {
                   <Link
                     className="dropdown-item"
                     href={"#"}
-                    onClick={() => setSearchInput(movieTitle)}
+                    onClick={() => setSearchInput(product.title)}
                   >
-                    <p>{movieTitle}</p>
+                    <p>{product.title}</p>
                     <p>price</p>
                   </Link>
                 </li>

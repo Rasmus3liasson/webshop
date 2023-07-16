@@ -1515,19 +1515,52 @@ const itemsData = [
     ],
     filterOptions: {
       color: [
-        "BLACK",
-        "LIGHT BLUE",
-        "CREAM",
-        "BEIGE",
-        "WHITE",
-        "NAVY BLUE",
-        "DARK BROWN",
-        "LIGHT BEIGE MELANGE",
-        "LIGHT BEIGE",
-        "DARK GRAY",
-        "LIGHT TAUPE",
+        {
+          text: "BLACK",
+          code: "000000",
+        },
+        {
+          text: "LIGHT BLUE",
+          code: "0000FF",
+        },
+        {
+          text: "CREAM",
+          code: "FFFFFF",
+        },
+        {
+          text: "BEIGE",
+          code: "F5F5DC",
+        },
+        {
+          text: "WHITE",
+          code: "F5F5DC",
+        },
+        {
+          text: "NAVY BLUE",
+          code: "0000FF",
+        },
+        {
+          text: "DARK BROWN",
+          code: "A52A2A",
+        },
+        {
+          text: "LIGHT BEIGE MELANGE",
+          code: "FFFFFF",
+        },
+        {
+          text: "DARK GRAY",
+          code: "808080",
+        },
+        {
+          text: "LIGHT BEIGE",
+          code: "FFFFFF",
+        },
+        {
+          text: "LIGHT TAUPE",
+          code: "808080",
+        },
       ],
-      categories: ["JACKET", "PANTS", "SHIRT", "SHORTS", "T-SHIRT"],
+      categories: ["JACKET", "SHIRT", "PANTS", "SHORTS", "T-SHIRT"],
     },
   },
 ];

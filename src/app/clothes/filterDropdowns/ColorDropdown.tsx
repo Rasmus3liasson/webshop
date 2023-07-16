@@ -1,6 +1,6 @@
-import { FilteredDataInterface } from "@/types/filter";
+import { ColorOptions, FilterOptionsInterface } from "@/types/filter";
 import Image from "next/image";
-import Link from "next/link";
+
 import { useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 import { handleFilterSettings } from "@/app/utils/functions/filterArray";
@@ -9,7 +9,7 @@ export default function ColorDropdown({
   filterData,
   setColorFilter: setColorFilter,
 }: {
-  filterData: any;
+  filterData: FilterOptionsInterface;
   setColorFilter: React.Dispatch<React.SetStateAction<string[]>>;
 }) {
   const [color, setColor] = useState(false);
@@ -20,39 +20,29 @@ export default function ColorDropdown({
   const toggleDropdown = () => {
     setColor(!color);
   };
+
   const generateListItem = () => {
     const colorsArr = filterData.color;
-    const colorsList = colorsArr.map((colorCode: string, index: number) => {
-      const isActive = queryStringColor?.includes(colorCode);
-      const className = `link-text ${isActive ? "hidden" : ""}`;
+    const colorsList = colorsArr.map(
+      (colorObj: ColorOptions, index: number) => {
+        const isActive = queryStringColor?.includes(colorObj.text);
+        const className = `link-text ${isActive ? "hidden" : ""}`;
 
-      // Find colorCode that match name
-      const colorCodeObj = colorsArr.find((color) => color === colorCode);
-
-      const colorName = colorCodeObj ? colorCodeObj : null;
-
-      console.log(colorName);
-      console.log(colorCodeObj);
-
-      // doesn't render out the color if it doesn't match the name
-      if (!colorName) {
-        return null;
+        return (
+          <li
+            onClick={() => handleFilterSettings(colorObj.text, setColorFilter)}
+            key={index}
+            className={`flex justify-center items-center gap-2 ${className}`}
+          >
+            <p>{colorObj.text}</p>
+            <span
+              style={{ background: `#${colorObj.code}` }}
+              className="w-5 h-5 rounded-full opacity-80 border-2 border-grey"
+            ></span>
+          </li>
+        );
       }
-
-      return (
-        <li
-          onClick={() => handleFilterSettings(colorName, setColorFilter)}
-          key={index}
-          className={`flex justify-center items-center gap-2 ${className}`}
-        >
-          <p>{colorCode}</p>
-          <span
-            style={{ background: "#A52A2A" }}
-            className="w-5 h-5 rounded-full opacity-80 border-2 border-grey"
-          ></span>
-        </li>
-      );
-    });
+    );
 
     return colorsList;
   };

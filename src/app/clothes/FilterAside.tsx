@@ -42,8 +42,6 @@ export default function FilterAside() {
     return params.toString();
   }, [colorFilter, categoryFilter]);
 
-  console.log(colorFilter);
-
   return (
     <aside className="flex flex-col items-center absolute top-5 right-4 md:relative w-1/4 mt-16 md:mt-12 z-10 ">
       <button

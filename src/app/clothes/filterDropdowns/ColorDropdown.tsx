@@ -32,6 +32,7 @@ export default function ColorDropdown({
       const colorName = colorCodeObj ? colorCodeObj : null;
 
       console.log(colorName);
+      console.log(colorCodeObj);
 
       // doesn't render out the color if it doesn't match the name
       if (!colorName) {
@@ -44,9 +45,9 @@ export default function ColorDropdown({
           key={index}
           className={`flex justify-center items-center gap-2 ${className}`}
         >
-          {colorName}
+          <p>{colorCode}</p>
           <span
-            style={{ background: colorCode }}
+            style={{ background: "#A52A2A" }}
             className="w-5 h-5 rounded-full opacity-80 border-2 border-grey"
           ></span>
         </li>

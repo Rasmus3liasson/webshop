@@ -35,6 +35,7 @@ export interface FilteredItemDataInterface {
   similarImages: string[];
   clothingSizes: string[];
   itemColor: string;
+  itemColorCode: string;
   itemCategory: string;
 }
 [];

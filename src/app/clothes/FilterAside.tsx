@@ -8,10 +8,12 @@ import { filterOptionsMock } from "../../../mockData/items";
 
 import { usePathname } from "next/navigation";
 import ActiveFilter from "./filterDropdowns/ActiveFilter";
+import { FilterOptionsInterface } from "@/types/filter";
 
 export default function FilterAside() {
   const [filterBtn, setFilterBtn] = useState(false);
-  const [filterAlternativesData, setFilterAlternativesData] = useState([]);
+  const [filterAlternativesData, setFilterAlternativesData] =
+    useState<FilterOptionsInterface>({ color: [], categories: [] });
   const [colorFilter, setColorFilter] = useState<string[]>([]);
   const [categoryFilter, setCategoryFilter] = useState<string[]>([]);
 

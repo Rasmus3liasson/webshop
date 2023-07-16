@@ -1,17 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
-import { FilteredDataInterface } from "@/types/filter";
+import { FilterOptionsInterface } from "@/types/filter";
 import { handleFilterSettings } from "@/app/utils/functions/filterArray";
 
 export default function CategoryDropdown({
   filterData,
   setCategoryFilter,
 }: {
-  filterData: FilteredDataInterface[];
+  filterData: FilterOptionsInterface;
   setCategoryFilter: React.Dispatch<React.SetStateAction<string[]>>;
 }) {
   const [category, setCategory] = useState(false);

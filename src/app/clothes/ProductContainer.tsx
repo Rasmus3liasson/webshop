@@ -62,8 +62,6 @@ export default function ProductContainer() {
                   <div>
                     <p className="text-greyLight">{product.name}</p>
                     <p>{product.price}</p>
-                    <p>{product.itemCategory}</p>
-                    <p>{product.itemColor}</p>
                   </div>
                 </div>
               );

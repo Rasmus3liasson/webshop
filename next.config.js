@@ -6,6 +6,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "lp2.hm.com",
       },
+      {
+        protocol: "https",
+        hostname: "image.hm.com",
+      },
     ],
   },
 };

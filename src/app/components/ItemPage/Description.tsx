@@ -48,6 +48,7 @@ export default function Description() {
             type="number"
             min={1}
             value={quantity}
+            onChange={(e) => setQuantity(parseInt(e.target.value))}
           />
           <span
             className="text-xl bg-slate-100"

@@ -37,16 +37,14 @@ export default function ImageContainer({
     const itemPostersArr = images.map((imageUrl) => imageUrl.url);
 
     return itemPostersArr.map((url, index) => (
-      <li onClick={() => handleActiveImg(url)} key={index}>
+      <li
+        className="hover:scale-105 duration-200 rounded-lg active:scale-100"
+        onClick={() => handleActiveImg(url)}
+        key={index}
+      >
         {/* setting a p tag because cant apply a width to the images */}
         <p className="w-24"></p>
-        <Image
-          className="w-24"
-          src={url}
-          alt="poster"
-          width={200}
-          height={200}
-        />
+        <Image src={url} alt="poster" width={200} height={200} />
       </li>
     ));
   };
@@ -54,7 +52,13 @@ export default function ImageContainer({
   return (
     <section className="flex flex-col items-center">
       <div>
-        <Image src={activeImg} alt="selected image" width={300} height={300} />
+        <Image
+          className="rounded-lg shadow-sm"
+          src={activeImg}
+          alt="selected image"
+          width={300}
+          height={300}
+        />
       </div>
       <div className="flex gap-4">
         <button onClick={scrollToFirstItem} aria-roledescription="slide button">
@@ -68,7 +72,7 @@ export default function ImageContainer({
         </button>
 
         <ul
-          className="flex gap-4 overflow-x-scroll my-9 w-96"
+          className="flex gap-4 overflow-x-scroll my-9 w-96 shadow-sm"
           ref={containerRef}
         >
           {allPosters()}

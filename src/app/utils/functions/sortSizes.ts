@@ -1,6 +1,6 @@
 // Function to sort size in correct order
 export const sizeComparator = (a: string, b: string) => {
-  const sizeOrder = ["XS", "S", "M", "L", "XL", "3XL"];
+  const sizeOrder = ["XS", "S", "M", "L", "XL", "XXL", "3XL"];
 
   // Check if the sizes are in other format with regex pattern
   const sizeFormatContainsR = (size: string) => /\d+R/.test(size);

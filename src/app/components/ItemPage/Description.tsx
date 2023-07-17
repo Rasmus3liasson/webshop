@@ -1,13 +1,19 @@
+import { sizeComparator } from "@/app/utils/functions/sortSizes";
+import { uniqueItemInterface } from "@/types/uniqueItem";
 import React, { useState } from "react";
 
-export default function Description() {
-  let quantityValue = 1;
+export default function Description({
+  itemData,
+}: {
+  itemData: uniqueItemInterface;
+}) {
+  const quantityValue = 1;
   const [quantity, setQuantity] = useState(quantityValue);
 
-  const sizeArr: string[] = ["small", "medium", "large"];
+  console.log(itemData.clothingSizes);
 
   const renderOptions = () => {
-    return sizeArr.map((size) => {
+    return itemData.clothingSizes.sort(sizeComparator).map((size) => {
       return (
         <option key={size} value={size}>
           {size}
@@ -17,10 +23,10 @@ export default function Description() {
   };
 
   return (
-    <div className="flex flex-col gap-5 items-center justify-center">
+    <div className="flex flex-col gap-5 items-center justify-center md:scale-125">
       <div className="mt-2">
-        <p>Name of item</p>
-        <p className="font-semibold">pricetag</p>
+        <p>{itemData.name}</p>
+        <p className="font-semibold">{itemData.price}</p>
       </div>
       <div>
         <label htmlFor="">Storlek:</label>
@@ -47,6 +53,7 @@ export default function Description() {
             className="text-center pl-3 w-16"
             type="number"
             min={1}
+            max={10}
             value={quantity}
             onChange={(e) => setQuantity(parseInt(e.target.value))}
           />
@@ -60,7 +67,7 @@ export default function Description() {
       </div>
 
       <button
-        className="bg-green text-white p-3 rounded-full mt-5 hover:scale-102 hover:opacity-90
+        className="bg-green text-white p-3 rounded-full mt-5 hover:scale-102 hover:opacity-90 shadow-lg
         "
       >
         Lägg till i varukorg +

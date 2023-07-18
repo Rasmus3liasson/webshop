@@ -1,25 +1,35 @@
+import { cartContext } from "@/app/utils/cartContext";
 import { sizeComparator } from "@/app/utils/functions/sortSizes";
 import { uniqueItemInterface } from "@/types/uniqueItem";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 export default function Description({
   itemData,
 }: {
   itemData: uniqueItemInterface;
 }) {
-  const quantityValue = 1;
-  const [quantity, setQuantity] = useState(quantityValue);
-
-  console.log(itemData.clothingSizes);
+  const [quantity, setQuantity] = useState(1);
+  const [size, setSize] = useState("");
+  const { setCart } = useContext(cartContext);
 
   const renderOptions = () => {
-    return itemData.clothingSizes.sort(sizeComparator).map((size) => {
+    return itemData.clothingSizes.sort(sizeComparator).map((itemSize) => {
       return (
-        <option key={size} value={size}>
-          {size}
+        <option key={itemSize} value={itemSize}>
+          {itemSize}
         </option>
       );
     });
+  };
+
+  const addToCart = () => {
+    const newItemToCart = {
+      title: itemData.name,
+      imageUrl: itemData.galleryImages[0].url,
+      size: size,
+      quantity: quantity,
+    };
+    setCart([newItemToCart]);
   };
 
   return (
@@ -30,7 +40,7 @@ export default function Description({
       </div>
       <div>
         <label htmlFor="">Storlek:</label>
-        <select name="size of item">
+        <select onChange={(e) => setSize(e.target.value)} name="size of item">
           Storlek
           {renderOptions()}
         </select>
@@ -67,6 +77,7 @@ export default function Description({
       </div>
 
       <button
+        onClick={addToCart}
         className="bg-green text-white p-3 rounded-full mt-5 hover:scale-102 hover:opacity-90 shadow-lg
         "
       >

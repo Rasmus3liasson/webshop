@@ -2,17 +2,27 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SearchInput from "./SearchInput";
 import List from "./List";
 import Account from "./Account";
+import CartDropdown from "./CartDropdown";
+import { cartContext } from "@/app/utils/cartContext";
 
 export default function Header() {
+  const { cart } = useContext(cartContext);
+
   const [isActive, setIsActive] = useState(false);
+  const [cartState, setCartState] = useState(false);
+  const [itemsLength, setItemLength] = useState(cart?.length);
 
   const toggleNavbar = () => {
     setIsActive(!isActive);
   };
+
+  useEffect(() => {
+    setItemLength(cart?.length);
+  }, [cart]);
 
   return (
     <header>
@@ -40,21 +50,27 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Needs to correct the span so it is center */}
-        <div className="flex">
-          <div></div>
+        <div className="flex items-center justify-center">
           <div className="flex items-center">
-            <span className="absolute top-8 right-28 lg:top-14 lg:right-16">
-              3
-            </span>
-            <Image
-              className="mr-0.5 lg:mr-0"
-              src={"/header/shopping-cart-icon.png"}
-              alt="shopping cart icon"
-              width={30}
-              height={30}
-              quality={100}
-            />
+            <div
+              onClick={() => {
+                setCartState(!cartState);
+              }}
+            >
+              <span className="cartSize">{itemsLength}</span>
+              <Image
+                className="mr-0.5 lg:mr-0"
+                src={"/header/shopping-cart-icon.png"}
+                alt="shopping cart icon"
+                width={35}
+                height={35}
+                quality={100}
+              />
+            </div>
+            {cartState && (
+              <CartDropdown cartState={cartState} setCartState={setCartState} />
+            )}
+
             <div>
               <Account />
             </div>

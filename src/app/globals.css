@@ -22,3 +22,18 @@
   width: 100%;
   min-height: 75vh;
 }
+
+/* styles.css */
+.cartSize {
+  position: absolute;
+  top: 33px;
+  right: 114px;
+}
+
+/* Media query for larger screens */
+@media (min-width: 1024px) {
+  .cartSize {
+    top: 54px;
+    right: 67px;
+  }
+}

@@ -1,5 +1,6 @@
 import { cartContext } from "@/app/utils/cartContext";
 import { sizeComparator } from "@/app/utils/functions/sortSizes";
+import { CartItemInterface } from "@/types/cart";
 import { uniqueItemInterface } from "@/types/uniqueItem";
 import React, { useContext, useState } from "react";
 
@@ -10,7 +11,7 @@ export default function Description({
 }) {
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState("");
-  const { setCart } = useContext(cartContext);
+  const { cart, setCart } = useContext(cartContext);
 
   const renderOptions = () => {
     return itemData.clothingSizes.sort(sizeComparator).map((itemSize) => {
@@ -28,8 +29,18 @@ export default function Description({
       imageUrl: itemData.galleryImages[0].url,
       size: size,
       quantity: quantity,
+      price: itemData.price,
     };
-    setCart([newItemToCart]);
+
+    //setting a default value for the array when its empty
+    const removesExistingItems: CartItemInterface[] = (cart ?? []).filter(
+      (item) =>
+        !(
+          item.title === newItemToCart.title && item.size === newItemToCart.size
+        )
+    );
+
+    setCart([newItemToCart, ...removesExistingItems]);
   };
 
   return (

@@ -9,9 +9,11 @@ export default function Description({
 }: {
   itemData: uniqueItemInterface;
 }) {
-  const [quantity, setQuantity] = useState(1);
-  const [size, setSize] = useState("");
   const { cart, setCart } = useContext(cartContext);
+  const [quantity, setQuantity] = useState(1);
+  const [size, setSize] = useState(
+    itemData.clothingSizes.sort(sizeComparator)[0]
+  );
 
   const renderOptions = () => {
     return itemData.clothingSizes.sort(sizeComparator).map((itemSize) => {

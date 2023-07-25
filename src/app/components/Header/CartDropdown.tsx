@@ -15,7 +15,7 @@ export default function CartDropdown({
     <>
       {cartState && (
         <div
-          className="border-b w-full absolute md:w-96 z-10 right-0 top-24 lg:top-32 border-greyLight bg-white px-4 py-8 sm:px-6 lg:px-8 rounded-xl"
+          className="border-b w-full absolute md:w-96 z-10 right-0 top-24 lg:top-32 border-greyLight bg-white px-4 py-8 sm:px-6 lg:px-8 rounded-xl animate-cartDropdown"
           aria-modal="true"
           role="dialog"
         >
@@ -27,13 +27,13 @@ export default function CartDropdown({
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 20 20"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="currentColor"
               className="h-5 w-5"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>

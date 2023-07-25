@@ -22,6 +22,8 @@ export default function Header() {
 
   useEffect(() => {
     setItemLength(cart?.length);
+
+    cart && cart.length > 0 && setCartState(true);
   }, [cart]);
 
   return (

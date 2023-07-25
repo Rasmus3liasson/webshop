@@ -60,11 +60,20 @@ module.exports = {
             easing: "cubic-bezier(0.4, 0, 0.2, 1)",
           },
         },
+        cartDropDownAppear: {
+          from: {
+            opacity: "0",
+          },
+          to: {
+            opacity: "100",
+          },
+        },
       },
       animation: {
         slideInNav: "slideIn 0.4s forwards",
         searchInput: "searchField 0.4s forwards",
         navLinks: "navLinks 0.7s forwards",
+        cartDropdown: "cartDropDownAppear 0.5s ease-in forwards",
       },
       transitionDuration: {
         50: "50ms",

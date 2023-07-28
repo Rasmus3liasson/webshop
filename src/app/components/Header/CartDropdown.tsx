@@ -64,6 +64,10 @@ export default function CartDropdown({
                         const removedItemFromCart = [...cart];
                         removedItemFromCart.splice(index, 1);
                         setCart(removedItemFromCart);
+                        localStorage.setItem(
+                          "cart",
+                          JSON.stringify(removedItemFromCart)
+                        );
                       }}
                       className="text-xl ml-9 cursor-pointer"
                     >

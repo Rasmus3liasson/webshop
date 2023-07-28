@@ -2,7 +2,7 @@ import { cartContext } from "@/app/utils/cartContext";
 import { sizeComparator } from "@/app/utils/functions/sortSizes";
 import { CartItemInterface } from "@/types/cart";
 import { uniqueItemInterface } from "@/types/uniqueItem";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 export default function Description({
   itemData,
@@ -14,6 +14,14 @@ export default function Description({
   const [size, setSize] = useState(
     itemData.clothingSizes.sort(sizeComparator)[0]
   );
+
+  // Load cart data from localStorage when the component mounts
+  useEffect(() => {
+    const cartFromStorage = localStorage.getItem("cart");
+    if (cartFromStorage) {
+      setCart(JSON.parse(cartFromStorage));
+    }
+  }, [setCart]);
 
   const renderOptions = () => {
     return itemData.clothingSizes.sort(sizeComparator).map((itemSize) => {
@@ -34,7 +42,7 @@ export default function Description({
       price: itemData.price,
     };
 
-    //setting a default value for the array when its empty
+    // Setting a default value for the array when it's empty
     const removesExistingItems: CartItemInterface[] = (cart ?? []).filter(
       (item) =>
         !(
@@ -42,7 +50,10 @@ export default function Description({
         )
     );
 
-    setCart([newItemToCart, ...removesExistingItems]);
+    const updatedCart = [newItemToCart, ...removesExistingItems];
+    setCart(updatedCart);
+
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
   return (

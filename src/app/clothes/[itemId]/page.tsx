@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext } from "react";
+import React from "react";
 import ImageContainer from "@/app/components/ItemPage/ImageContainer";
 import Description from "@/app/components/ItemPage/Description";
 import { uniqueItemMock } from "../../../../mockData/uniqueItemMock";

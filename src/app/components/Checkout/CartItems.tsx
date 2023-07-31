@@ -7,9 +7,13 @@ import React from "react";
 
 export default function CartItems({
   cartData,
+  setCart,
 }: {
   cartData: CartItemInterface[] | null;
+  setCart: React.Dispatch<React.SetStateAction<CartItemInterface[] | null>>;
 }) {
+  console.log(cartData);
+
   return (
     <>
       {cartData?.map((item, index) => (
@@ -28,7 +32,16 @@ export default function CartItems({
             </div>
             <div className="flex flex-col justify-between ml-4 flex-grow">
               <span className="font-bold text-sm">{item.title}</span>
-              <span className="font-semibold hover:text-red-500 text-gray-500 text-xs">
+              <span
+                onClick={() => {
+                  const updatedCart = [...cartData];
+                  updatedCart.splice(index, 1);
+
+                  setCart(updatedCart);
+                  sessionStorage.setItem("cart", JSON.stringify(updatedCart));
+                }}
+                className="font-semibold hover:text-red-600 text-grey text-xs"
+              >
                 Ta bort
               </span>
             </div>

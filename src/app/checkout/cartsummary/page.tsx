@@ -6,7 +6,7 @@ import Summary from "../../components/Checkout/Summary";
 import { cartContext } from "@/app/utils/cartContext";
 
 export default function page() {
-  const { cart } = useContext(cartContext);
+  const { cart, setCart } = useContext(cartContext);
 
   return (
     <div className="flex flex-col items-center md:flex-row shadow-md my-10 mx-10">
@@ -29,7 +29,7 @@ export default function page() {
           </h3>
         </div>
 
-        <CartItems cartData={cart} />
+        <CartItems cartData={cart} setCart={setCart} />
       </div>
       <Summary cartData={cart} />
     </div>

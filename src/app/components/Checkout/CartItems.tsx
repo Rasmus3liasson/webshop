@@ -8,11 +8,11 @@ import React from "react";
 export default function CartItems({
   cartData,
 }: {
-  cartData: CartItemInterface[];
+  cartData: CartItemInterface[] | null;
 }) {
   return (
     <>
-      {cartData.map((item, index) => (
+      {cartData?.map((item, index) => (
         <div
           key={index}
           className="flex items-center hover:bg-greyLight duration-200 ease-out -mx-8 px-6 py-5"

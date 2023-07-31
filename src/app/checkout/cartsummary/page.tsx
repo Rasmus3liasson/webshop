@@ -6,7 +6,7 @@ import Summary from "../../components/Checkout/Summary";
 import { cartContext } from "@/app/utils/cartContext";
 
 export default function page() {
-  /*   const cartData = JSON.parse(sessionStorage.getItem("cart") ?? "[]"); */
+  const { cart } = useContext(cartContext);
 
   return (
     <div className="flex flex-col items-center md:flex-row shadow-md my-10 mx-10">
@@ -29,9 +29,9 @@ export default function page() {
           </h3>
         </div>
 
-        {/*     <CartItems cartData={cartData} /> */}
+        <CartItems cartData={cart} />
       </div>
-      {/*      <Summary cartData={cartData} /> */}
+      <Summary cartData={cart} />
     </div>
   );
 }

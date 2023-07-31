@@ -3,6 +3,7 @@ import Header from "./components/Header/page";
 import "./globals.css";
 import Footer from "./components/Footer/page";
 import { CartContextProvider } from "./utils/cartContext";
+
 const monteserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata = {

@@ -15,9 +15,9 @@ export default function Description({
     itemData.clothingSizes.sort(sizeComparator)[0]
   );
 
-  // Load cart data from localStorage when the component mounts
+  // Load cart data from sessionStorage when the component mounts
   useEffect(() => {
-    const cartFromStorage = localStorage.getItem("cart");
+    const cartFromStorage = sessionStorage.getItem("cart");
     if (cartFromStorage) {
       setCart(JSON.parse(cartFromStorage));
     }
@@ -53,7 +53,7 @@ export default function Description({
     const updatedCart = [newItemToCart, ...removesExistingItems];
     setCart(updatedCart);
 
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    sessionStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
   return (

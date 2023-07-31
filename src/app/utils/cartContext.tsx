@@ -12,7 +12,10 @@ export const cartContext = createContext<{
 });
 
 export const CartContextProvider = ({ children }) => {
-  const [cart, setCart] = useState<CartItemInterface[] | null>([]);
+  const [cart, setCart] = useState<CartItemInterface[] | null>(() => {
+    const cartFromStorage = sessionStorage.getItem("cart");
+    return cartFromStorage ? JSON.parse(cartFromStorage) : [];
+  });
 
   return (
     <cartContext.Provider value={{ cart, setCart }}>

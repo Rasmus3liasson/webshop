@@ -1,3 +1,4 @@
+import { sendStripePayment } from "@/app/utils/functions/stripePayment";
 import { CartItemInterface } from "@/types/cart";
 import React from "react";
 
@@ -22,7 +23,14 @@ export default function Summary({
           <span>Total kostnad</span>
           <span>{totalCost} €</span>
         </div>
-        <button className="text-md bg-black text-white p-3 rounded-3xl hover:scale-102 hover:opacity-90 duration-200 active:scale-98">
+        <button
+          onClick={() => {
+            if (cartData) {
+              sendStripePayment(cartData);
+            }
+          }}
+          className="text-md bg-black text-white p-3 rounded-3xl hover:scale-102 hover:opacity-90 duration-200 active:scale-98"
+        >
           Till betalning
         </button>
       </div>

@@ -12,8 +12,6 @@ export default function CartItems({
   cartData: CartItemInterface[] | null;
   setCart: React.Dispatch<React.SetStateAction<CartItemInterface[] | null>>;
 }) {
-  console.log(cartData);
-
   return (
     <>
       {cartData?.map((item, index) => (

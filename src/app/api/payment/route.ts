@@ -1,6 +1,10 @@
+import { headers } from "next/headers";
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(request: Request) {
+  const headerList = headers();
+  const host = headerList.get("host");
+
   try {
     const { data } = await request.json();
 
@@ -16,12 +20,13 @@ export async function POST(request: Request) {
       quantity: item.quantity,
     }));
 
-    console.log(data.map((item) => item.imageUrl));
+    console.log(host);
     const session = await stripe.checkout.sessions.create({
       line_items: lineItems,
       mode: "payment",
-      success_url: "http://localhost:3001/success",
-      cancel_url: "http://localhost:3001/cancel",
+
+      success_url: `${host}/order-confirmation?status=success`,
+      cancel_url: `${host}/order-confirmation?status=declined`,
     });
 
     return new Response(JSON.stringify({ session }), {

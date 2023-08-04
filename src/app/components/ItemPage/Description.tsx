@@ -39,7 +39,7 @@ export default function Description({
       imageUrl: itemData.galleryImages[0].url,
       size: size,
       quantity: quantity,
-      price: itemData.price,
+      price: itemData.price * quantity,
     };
 
     // Setting a default value for the array when it's empty
@@ -88,7 +88,7 @@ export default function Description({
             type="number"
             min={1}
             max={10}
-            value={quantity}
+            value={Number(quantity)}
             onChange={(e) => setQuantity(parseInt(e.target.value))}
           />
           <span

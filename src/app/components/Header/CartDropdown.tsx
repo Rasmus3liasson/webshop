@@ -57,7 +57,9 @@ export default function CartDropdown({
                       <p>{cartItem.title}</p>
                       <p>Storlek: {cartItem.size}</p>
                       <p>Antal: {cartItem.quantity}</p>
-                      <p className="font-semibold">{cartItem.price}</p>
+                      <p className="font-semibold">
+                        {cartItem.price * cartItem.quantity}
+                      </p>
                     </div>
                     <div
                       onClick={() => {

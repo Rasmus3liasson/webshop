@@ -19,20 +19,26 @@ export default function Summary({
   return (
     <div className="md:w-1/4 w-full px-8 pb-10 flex items-center justify-center flex-col">
       <div className="mt-8 flex flex-col items-center justify-between">
-        <div className="py-6 text-lg font-semibold flex flex-col items-center">
-          <span>Total kostnad</span>
-          <span>{totalCost} $</span>
-        </div>
-        <button
-          onClick={() => {
-            if (cartData) {
-              sendStripePayment(cartData);
-            }
-          }}
-          className="text-md bg-black text-white p-3 rounded-3xl hover:scale-102 hover:opacity-90 duration-200 active:scale-98"
-        >
-          Till betalning
-        </button>
+        {cartData !== null && cartData.length > 0 ? (
+          <>
+            <div className="py-6 text-lg font-semibold flex flex-col items-center">
+              <span>Total kostnad</span>
+              <span>{totalCost} $</span>
+            </div>
+            <button
+              onClick={() => {
+                if (cartData) {
+                  sendStripePayment(cartData);
+                }
+              }}
+              className="text-md bg-black text-white p-3 rounded-3xl hover:scale-102 hover:opacity-90 duration-200 active:scale-98"
+            >
+              Till betalning
+            </button>
+          </>
+        ) : (
+          <p className="text-xl font-medium -mt-9">Din kundkorg är tom</p>
+        )}
       </div>
     </div>
   );

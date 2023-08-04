@@ -8,7 +8,6 @@ import Declined from "./Declined";
 
 export default function page() {
   const params = useSearchParams();
-
   const query = params.get("status");
 
   return (

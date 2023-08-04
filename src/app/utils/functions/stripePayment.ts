@@ -18,10 +18,9 @@ export const sendStripePayment = async (cart: CartItemInterface[]) => {
       throw new Error("Kunde inte göra betalningen");
     }
 
-    // Handle the response from the server here
-    const data = await res.json();
-    // You can use 'data' to handle the response from the server after payment processing
-    console.log(data);
+    // Handle the response from the server and direct the user to new URL
+    const { session } = await res.json();
+    window.location.href = session.url;
   } catch (error) {
     console.error(error);
   }

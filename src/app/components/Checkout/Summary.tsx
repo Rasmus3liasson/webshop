@@ -21,7 +21,7 @@ export default function Summary({
       <div className="mt-8 flex flex-col items-center justify-between">
         <div className="py-6 text-lg font-semibold flex flex-col items-center">
           <span>Total kostnad</span>
-          <span>{totalCost} €</span>
+          <span>{totalCost} $</span>
         </div>
         <button
           onClick={() => {

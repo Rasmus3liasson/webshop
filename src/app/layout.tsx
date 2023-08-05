@@ -23,7 +23,9 @@ export default function RootLayout({
         <CartContextProvider>
           <>
             <Header />
-            <main>{children}</main>
+            <main className="flex items-center justify-center flex-col">
+              {children}
+            </main>
             <Footer />
           </>
         </CartContextProvider>

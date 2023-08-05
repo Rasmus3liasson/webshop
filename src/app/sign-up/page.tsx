@@ -18,9 +18,8 @@ export default function page() {
       return console.log(error);
     }
 
-    // else successful
-    console.log(result);
-    /*    return router.push("/admin"); */
+    console.log(result?.user);
+    /* return router.push("/"); */
   };
   return (
     <div className="wrapper">
@@ -35,10 +34,10 @@ export default function page() {
               type="email"
               name="email"
               id="email"
-              placeholder="example@mail.com"
+              placeholder="example@hotmail.com"
             />
           </label>
-          <label htmlFor="password">
+          <label>
             <p>Password</p>
             <input
               onChange={(e) => setPassword(e.target.value)}

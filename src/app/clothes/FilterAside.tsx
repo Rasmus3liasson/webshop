@@ -1,6 +1,6 @@
 "use client";
 import React, { useCallback, useEffect, useState } from "react";
-import CategoryDropdown from "./filterDropdowns/CategoryDropdown";
+import CategoryDropdown from "./filterDropdowns/categoryDropdown";
 import Image from "next/image";
 import ColorDropdown from "./filterDropdowns/ColorDropdown";
 import Link from "next/link";

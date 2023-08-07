@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import signIn from "@/app/utils/firebase/auth/signIn";
 import signOutFromAccount from "@/app/utils/firebase/auth/signOut";
 import { useRouter } from "next/navigation";
 import signInGoogle from "@/app/utils/firebase/auth/signInGoogle";
 import Image from "next/image";
+import { accountContext } from "@/app/utils/firebase/accountContext";
 
 export default function SignInForm({
   showSignIn,
@@ -14,6 +15,7 @@ export default function SignInForm({
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { user, setUser } = useContext(accountContext);
 
   const router = useRouter();
 
@@ -29,11 +31,18 @@ export default function SignInForm({
       }
       return;
     }
-
-    console.log(result?.user.accessToken);
+    console.log(result?.user.displayName);
   };
   const handleGoogleSignIn = async () => {
     const { result, error } = await signInGoogle();
+
+    const accountData = {
+      name: result?.user.displayName?.toUpperCase().split(" ")[0].toString(),
+      email: result?.user.email,
+      initialsImageUrl: result?.user.photoURL,
+    };
+
+    result && setUser(accountData);
 
     if (error) {
       console.log(error);

@@ -2,6 +2,7 @@ import { Montserrat } from "next/font/google";
 import Header from "./components/Header/page";
 import "./globals.css";
 import Footer from "./components/Footer/page";
+import { AccountContextProvider } from "./utils/firebase/accountContext";
 import { CartContextProvider } from "./utils/cartContext";
 
 const monteserrat = Montserrat({ subsets: ["latin"] });
@@ -21,13 +22,15 @@ export default function RootLayout({
         className={`${monteserrat.className} m-0 p-0 box-border h-screen flex flex-col bg-background scroll-smooth`}
       >
         <CartContextProvider>
-          <>
-            <Header />
-            <main className="flex items-center justify-center flex-col">
-              {children}
-            </main>
-            <Footer />
-          </>
+          <AccountContextProvider>
+            <>
+              <Header />
+              <main className="flex items-center justify-center flex-col">
+                {children}
+              </main>
+              <Footer />
+            </>
+          </AccountContextProvider>
         </CartContextProvider>
       </body>
     </html>

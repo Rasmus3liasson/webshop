@@ -5,5 +5,5 @@ export interface UserDataInterface {
 }
 export interface AccountContextInterface {
   user: UserDataInterface | null;
-  setUser: (userData: UserDataInterface) => void;
+  setUser: (userData: UserDataInterface | null) => void;
 }

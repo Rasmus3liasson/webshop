@@ -15,6 +15,7 @@ export default function SignInForm({
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const { user, setUser } = useContext(accountContext);
 
   const router = useRouter();
@@ -49,6 +50,8 @@ export default function SignInForm({
       return;
     }
   };
+
+  console.log(user);
 
   return (
     <div className="bg-white shadow-lg rounded-3xl p-20 md:p-14 w-5/6 my-28">

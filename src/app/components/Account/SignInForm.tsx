@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import signIn from "@/app/utils/firebase/auth/signIn";
 import signOutFromAccount from "@/app/utils/firebase/auth/signOut";
 import { useRouter } from "next/navigation";
+import signInGoogle from "@/app/utils/firebase/auth/signInGoogle";
+import Image from "next/image";
 
 export default function SignInForm({
   showSignIn,
@@ -21,13 +23,24 @@ export default function SignInForm({
     const { result, error } = await signIn(email, password);
 
     if (error) {
-      console.log(error);
+      console.log("Couldn't create account because of " + error);
+      if (email || password === "") {
+        alert("Du kan inte lämna fälten tomma");
+      }
       return;
     }
 
     console.log(result?.user.accessToken);
-    /* return router.push("/admin");   */
   };
+  const handleGoogleSignIn = async () => {
+    const { result, error } = await signInGoogle();
+
+    if (error) {
+      console.log(error);
+      return;
+    }
+  };
+
   return (
     <div className="bg-white shadow-lg rounded-3xl p-20 md:p-14 w-5/6 my-28">
       <div className="flex flex-col items-center justify-center">
@@ -67,7 +80,23 @@ export default function SignInForm({
               >
                 Skapa ett konto
               </h3>
-
+            </div>
+            <div className="flex items-center justify-center flex-col md:flex-row gap-5">
+              <div>
+                <button
+                  onClick={handleGoogleSignIn}
+                  type="button"
+                  className="button-primary md:w-32 flex items-center justify-center gap-4"
+                >
+                  <Image
+                    className="md:w-9 md:h-7"
+                    src={"google.svg"}
+                    alt="google icon"
+                    height={20}
+                    width={20}
+                  />
+                </button>
+              </div>
               <div className="relative">
                 <button className="button-primary">Logga in</button>
               </div>

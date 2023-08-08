@@ -38,7 +38,6 @@ export default function SignUpForm() {
       return;
     }
 
-    console.log(result?.user.displayName);
     router.push("/login");
   };
 

@@ -20,6 +20,7 @@ module.exports = {
         green: "#66CDAA",
         background: "#FAFCFF",
         lightBlue: "#84AEC3",
+        initialIcon: "#aac2c7",
       },
       scale: {
         102: "1.02",

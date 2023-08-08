@@ -15,8 +15,9 @@ export default function SignInForm({
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [signInSucces, setSignInSucces] = useState(true);
 
-  const { user, setUser } = useContext(accountContext);
+  const { setUser } = useContext(accountContext);
 
   const router = useRouter();
 
@@ -25,14 +26,23 @@ export default function SignInForm({
 
     const { result, error } = await signIn(email, password);
 
+    const accountData = {
+      name: result?.user.displayName?.toUpperCase().split(" ")[0].toString(),
+      email: result?.user.email,
+      initialsImageUrl: result?.user.photoURL,
+    };
+
+    result && setUser(accountData);
+    window.localStorage.setItem("user", JSON.stringify(accountData));
+
     if (error) {
       console.log("Couldn't create account because of " + error);
+
       if (email || password === "") {
         alert("Du kan inte lämna fälten tomma");
       }
       return;
     }
-    console.log(result?.user.displayName);
   };
   const handleGoogleSignIn = async () => {
     const { result, error } = await signInGoogle();
@@ -44,14 +54,13 @@ export default function SignInForm({
     };
 
     result && setUser(accountData);
+    window.localStorage.setItem("user", JSON.stringify(accountData));
 
     if (error) {
       console.log(error);
       return;
     }
   };
-
-  console.log(user);
 
   return (
     <div className="bg-white shadow-lg rounded-3xl p-20 md:p-14 w-5/6 my-28">

@@ -27,8 +27,6 @@ export default function Account() {
     }
   }, [dataFromLocalStorage]);
 
-  console.log(user);
-
   return (
     <>
       <div onClick={() => setIsActive(!isActive)}>

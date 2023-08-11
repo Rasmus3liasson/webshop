@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div className=" bg-greyLight w-full text-white p-4 mt-auto">
+    <div className=" bg-greyLight w-full text-white p-4 mt-auto rounded-t-2xl">
       <div className="my-4 text-3xl text-center lg:text-4xl">
         <p>Webshop</p>
       </div>
@@ -12,46 +12,38 @@ export default function Footer() {
           <div className="footer-box">
             <div className="flex flex-col items-center p-4">
               <Image
-                src={"/footer/lock.png"}
+                src={"/footer/payment.svg"}
                 alt="lock image"
-                width={30}
-                height={30}
+                width={60}
+                height={60}
               />
-              <p className="mt-2">Secure payments</p>
+              <p className="mt-2">Säkra betalningar</p>
             </div>
           </div>
           <div className="footer-box">
             <div className="flex flex-col items-center p-4">
               <Image
-                src={"/footer/package.png"}
+                src={"/footer/return.svg"}
                 alt="lock image"
-                width={30}
-                height={30}
+                width={60}
+                height={60}
               />
-              <p className="mt-2">Free returns</p>
+              <p className="mt-2">Gratis returer</p>
             </div>
           </div>
           <div className="footer-box">
             <div className="flex flex-col items-center p-4">
               <Image
-                src={"/footer/truck.png"}
+                src={"/footer/shipping.svg"}
                 alt="lock image"
-                width={30}
-                height={30}
+                width={60}
+                height={60}
               />
-              <p className="mt-2">Free Shippment</p>
+              <p className="mt-2">Fri frakt</p>
             </div>
           </div>
         </div>
         <div className="mt-5 lg:scale-110 flex flex-col items-center">
-          <div className="flex flex-col items-center">
-            <p className="mb-2">Become a Member</p>
-            <input
-              type="text"
-              placeholder="Your email"
-              className="rounded-lg pl-2 p-1 text-sm shadow-md"
-            />
-          </div>
           <div className="flex flex-col items-center mt-5">
             <p className="text-xl">Samarbete med:</p>
             <ul className="flex items-center justify-center gap-3 flex-col lg:flex-row mt-2">

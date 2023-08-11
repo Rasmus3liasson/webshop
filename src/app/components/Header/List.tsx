@@ -27,7 +27,7 @@ export default function List() {
             categoryList && "underline duration-100"
           }  flex `}
         >
-          Category
+          Kläder
           <Image
             className={`ml-2 ${categoryList && "rotate-180 duration-100"}`}
             src={"/list/down-arrow.svg"}
@@ -38,7 +38,7 @@ export default function List() {
         </li>
         {categoryList && <CategoryList />}
         <li className={`link-text ${pathName === "/about" && "underline"} `}>
-          <Link href="/about">About</Link>
+          <Link href="/about">Om oss</Link>
         </li>
       </ul>
     </>

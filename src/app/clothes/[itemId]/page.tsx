@@ -12,7 +12,7 @@ export default function SpecificItem() {
 
   return (
     <>
-      <section className="bg-greyLighter mx-2 py-6 flex flex-col md:flex-row justify-evenly mt-9">
+      <section className="mx-2 py-6 flex flex-col md:flex-row justify-evenly my-9">
         <ImageContainer images={itemImages} />
         <Description itemData={data} />
       </section>

@@ -4,6 +4,7 @@ import "./globals.css";
 import Footer from "./components/Footer/page";
 import { AccountContextProvider } from "./utils/firebase/accountContext";
 import { CartContextProvider } from "./utils/cartContext";
+import NextTopLoader from "nextjs-toploader";
 
 const monteserrat = Montserrat({ subsets: ["latin"] });
 
@@ -21,6 +22,11 @@ export default function RootLayout({
       <body
         className={`${monteserrat.className} m-0 p-0 box-border h-screen flex flex-col bg-background scroll-smooth`}
       >
+        <NextTopLoader
+          color="#080707"
+          showSpinner={false}
+          easing="ease-in-out"
+        />
         <CartContextProvider>
           <AccountContextProvider>
             <>

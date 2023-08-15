@@ -8,11 +8,16 @@ import { useSearchParams } from "next/navigation";
 import { FilteredItemDataInterface } from "@/types/items";
 import Loading from "./loading";
 
-export default function ProductContainer() {
-  const [productItems, setProductItems] = useState<FilteredItemDataInterface[]>(
-    []
-  );
-  const [displayedItems, setDisplayedItems] = useState(0);
+export default function ProductContainer({
+  productitems,
+}: {
+  productitems: FilteredItemDataInterface[];
+}) {
+  // copy of the data so i can reset to the originaldata om getting
+  const [itemData, setItemData] = useState<FilteredItemDataInterface[]>([
+    ...productitems,
+  ]);
+  const [displayedItems, setDisplayedItems] = useState(8);
   const [loading, setLoading] = useState(false);
 
   const searchParams = useSearchParams();
@@ -20,51 +25,58 @@ export default function ProductContainer() {
   const colorQuery = searchParams.get("color");
   const categoryQuery = searchParams.get("category");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const itemData = await fetch("/api/items");
-        const data = await itemData.json();
-        /* setProductItems(data.productItems.slice(0, 8)); */
-        setProductItems(data);
-        setDisplayedItems(8);
-        setLoading(true);
-      } catch (error) {
-        console.error("Kunde inte hämta datan", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   // adding items
   const handleShowMore = () => {
-    if (displayedItems + 8 <= productItems.length) {
+    if (displayedItems + 8 <= itemData.length) {
       setDisplayedItems((prevCount) => prevCount + 8);
     } else {
-      setDisplayedItems(productItems.length);
+      setDisplayedItems(itemData.length);
     }
   };
 
+  //setting loading state
+  useEffect(() => {
+    if (productitems) {
+      setLoading(true);
+    }
+  }, [productitems]);
+
   // Updating the state everytime the query changes or doesn't exist
   useEffect(() => {
-    if (colorQuery && categoryQuery === null) {
-      setProductItems(productItems.slice(0, 8));
+    // No queries, display all items
+    if (colorQuery === null && categoryQuery === null) {
+      setItemData([...productitems]);
+    } else {
+      const filteredItems = productitems.filter((item) => {
+        if (colorQuery && item.itemColor !== colorQuery) {
+          return false;
+        }
+        if (categoryQuery && item.itemCategory !== categoryQuery) {
+          return false;
+        }
+        return true;
+      });
+
+      setItemData(filteredItems);
     }
-  }, [colorQuery, categoryQuery, productItems]);
+  }, [colorQuery, categoryQuery, productitems]);
 
   return (
     <section className="my-16 md:w-3/4 w-full">
       <div className="flex gap-1 justify-center items-center flex-col">
         <div className="mt-2 bg-greyLight w-full text-center p-1">
-          <span>{displayedItems}</span>
+          <span>
+            {displayedItems > itemData.length
+              ? itemData.length
+              : displayedItems}
+          </span>
           <span>/</span>
-          <span>{productItems.length}</span>
+          <span>{itemData.length}</span>
         </div>
         <div className="w-full">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-5 ">
             {loading
-              ? productItems.slice(0, displayedItems).map((product) => (
+              ? itemData.slice(0, displayedItems).map((product) => (
                   <div className="flex flex-col items-center" key={product.id}>
                     <div className="relative">
                       <Image
@@ -96,7 +108,7 @@ export default function ProductContainer() {
                 )}
           </div>
         </div>
-        {displayedItems !== productItems.length && (
+        {displayedItems !== itemData.length && (
           <button onClick={handleShowMore}>Show More</button>
         )}
       </div>

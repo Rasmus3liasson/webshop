@@ -87,9 +87,17 @@ export default function ProductContainer({
                       />
 
                       {/* overlay for images */}
-                      <div className="absolute top-0 left-0 w-full h-full bg-greyLight opacity-0 duration-150 hover:opacity-60">
-                        <ul className="flex items-center justify-center absolute bottom-0 left-2/4 right-2/4">
-                          <li className="">{product.clothingSizes}</li>
+                      <div className="absolute top-0 left-0 w-full h-full bg-greyLight opacity-0 duration-150 hover:opacity-60 flex justify-center items-center">
+                        <ul className="w-full h-full overflow-scroll scrollbar-hide px-4 flex flex-col items-center justify-center">
+                          {product.clothingSizes.map((size, index) => (
+                            <li key={index} className="text-xl hover:scale-102">
+                              {size
+                                .toString()
+                                .replaceAll("R", "")
+                                .split(",")
+                                .join(" ")}
+                            </li>
+                          ))}
                         </ul>
                       </div>
                     </div>

@@ -1,16 +1,39 @@
 import { FilteredItemDataInterface } from "@/types/items";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Loading from "../loading";
 
-export default function ProductContainer({
-  items,
-}: {
-  items: FilteredItemDataInterface[];
-}) {
+export default function ProductContainer() {
+  const [items, setItems] = useState<FilteredItemDataInterface[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchItemData = async () => {
+      try {
+        const res = await fetch("/api/items");
+        const data = await res.json();
+        /* setItems(data.productItems); */
+        //the mocked data real api should have .productItem
+        setItems(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchItemData();
+  }, []);
+
   //only want 3 on the home page
   const products = items.slice(0, 3).map((item) => item);
   const router = useRouter();
+
+  // when data load show skeleton
+  if (loading) {
+    return <Loading />;
+  }
 
   const renderItemsHomePage = () => (
     <div className="mx-5 my-16 md:my-24 sm:grid grid-cols-3 gap-5 space-y-4 md:space-y-0 justify-items-center md:mx-5">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ProductContainer from "./ProductContainer";
 import FilterAside from "./FilterAside";
 

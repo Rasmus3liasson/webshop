@@ -3,7 +3,7 @@ import {
   FilteredItemDataInterface,
   FilteredProductData,
 } from "@/types/items";
-import { sizeComparator } from "./sortSizes";
+import { sizeComparator } from "./functions/sortSizes";
 import { config } from "dotenv";
 
 config();

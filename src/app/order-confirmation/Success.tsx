@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { cartContext } from "../utils/cartContext";
 
 export default function Success() {
+  const { setCart } = useContext(cartContext);
+
+  //clearing the cart
+  useEffect(() => {
+    setCart([]);
+    window.sessionStorage.removeItem("cart");
+  }, [setCart]);
+
   return (
     <div className="flex flex-col items-center space-y-2">
       <svg

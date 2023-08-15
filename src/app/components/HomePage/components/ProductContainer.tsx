@@ -27,7 +27,9 @@ export default function ProductContainer() {
   }, []);
 
   //only want 3 on the home page
-  const products = items.slice(0, 3).map((item) => item);
+
+  const randomOrderArr = items.sort((a, b) => 0.5 - Math.random());
+  const products = randomOrderArr.slice(0, 3).map((item) => item);
   const router = useRouter();
 
   // when data load show skeleton
@@ -43,8 +45,8 @@ export default function ProductContainer() {
           key={index}
           className="text-center shadow-lg image-hover"
         >
-          <div className="flex flex-col items-center justify-center gap-2">
-            <h2 className="font-bold text-lg mb-2 md:mb-4 md:text-2xl max-w-3 mt-3">
+          <div className="flex flex-col items-center justify-center gap-2 h-full w-full">
+            <h2 className="font-bold text-lg mb-2 md:mb-4 md:text-2xl max-w-3 px-2">
               {itemDetails.name}
             </h2>
 

@@ -83,7 +83,7 @@ export default function CartDropdown({
             <div className="flex items-center flex-col gap-6">
               {cart?.length !== 0 ? (
                 <Link
-                  href="/cart"
+                  href="/checkout/cartsummary"
                   className="w-52 rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600 text-center mt-4"
                 >
                   Till kassan

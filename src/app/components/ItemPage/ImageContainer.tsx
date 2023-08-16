@@ -78,7 +78,7 @@ export default function ImageContainer({
         </button>
 
         <ul
-          className="flex gap-4 overflow-x-scroll my-9 w-96 shadow-sm"
+          className="flex gap-4 overflow-x-scroll scrollbar-hide my-9 w-96 shadow-sm"
           ref={containerRef}
         >
           {allPosters()}

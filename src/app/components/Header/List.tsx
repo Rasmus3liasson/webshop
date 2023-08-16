@@ -10,10 +10,6 @@ export default function List() {
 
   const [categoryList, setCategoryList] = useState(false);
 
-  const toggleCategoryList = () => {
-    setCategoryList(!categoryList);
-  };
-
   return (
     <>
       <ul className="flex flex-col md:flex-row gap-7 lg:ml-36 md:gap-20 items-center md:m-0 mb-5 ">
@@ -22,7 +18,7 @@ export default function List() {
         </li>
 
         <li
-          onClick={toggleCategoryList}
+          onClick={() => setCategoryList(!categoryList)}
           className={`link-text ${
             categoryList && "underline duration-100"
           }  flex `}
@@ -36,7 +32,7 @@ export default function List() {
             height={20}
           />
         </li>
-        {categoryList && <CategoryList />}
+        {categoryList && <CategoryList setListState={setCategoryList} />}
         <li className={`link-text ${pathName === "/about" && "underline"} `}>
           <Link href="/about">Om oss</Link>
         </li>

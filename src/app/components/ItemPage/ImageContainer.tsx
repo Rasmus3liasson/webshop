@@ -1,19 +1,25 @@
 import { ItemImagesInterface } from "@/types/uniqueItem";
 
 import Image from "next/image";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function ImageContainer({
   images,
 }: {
   images: ItemImagesInterface[];
 }) {
-  const [activeImg, setActiveImg] = useState(images[0].url);
+  const [activeImg, setActiveImg] = useState("");
+
+  useEffect(() => {
+    if (images) {
+      const shuffledImages = [...images].sort(() => 0.5 - Math.random());
+      setActiveImg(shuffledImages[0].url);
+    }
+  }, [images]);
 
   const handleActiveImg = (e: string) => {
     setActiveImg(e);
   };
-
   const containerRef = useRef<HTMLUListElement>(null);
 
   const scrollToFirstItem = () => {

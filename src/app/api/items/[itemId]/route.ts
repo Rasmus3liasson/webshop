@@ -1,5 +1,6 @@
 import { FilteredProductData } from "@/types/items";
 import { getItemData } from "../../../utils/ItemData";
+import { itemsMock } from "../../../../../mockData/items";
 
 export async function GET(
   request: string,
@@ -8,9 +9,14 @@ export async function GET(
   const itemId = params.itemId;
 
   try {
-    const itemData: FilteredProductData = await getItemData();
+    /*    const itemData: FilteredProductData = await getItemData();
 
     const uniqedItems = itemData.productItems.find(
+      (item: { id: string }) => item.id === itemId
+    ); */
+
+    const itemData = itemsMock;
+    const uniqedItems = itemData.find(
       (item: { id: string }) => item.id === itemId
     );
 

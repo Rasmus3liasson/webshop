@@ -5,7 +5,7 @@ import CartItems from "../../components/Checkout/CartItems";
 import Summary from "../../components/Checkout/Summary";
 import { cartContext } from "@/app/utils/cartContext";
 
-export default function page() {
+export default function Page() {
   const { cart, setCart } = useContext(cartContext);
 
   return (

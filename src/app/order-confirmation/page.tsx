@@ -6,7 +6,7 @@ import React from "react";
 import Success from "./Success";
 import Declined from "./Declined";
 
-export default function page() {
+export default function Page() {
   const params = useSearchParams();
   const query = params.get("status");
 

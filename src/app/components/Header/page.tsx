@@ -16,10 +16,6 @@ export default function Header() {
   const [cartState, setCartState] = useState(false);
   const [itemsLength, setItemLength] = useState(cart?.length);
 
-  const toggleNavbar = () => {
-    setIsActive(!isActive);
-  };
-
   useEffect(() => {
     setItemLength(cart?.length);
   }, [cart]);
@@ -75,14 +71,13 @@ export default function Header() {
               <Account />
             </div>
           </div>
-          <div className="lg:hidden">
+          <div onClick={() => setIsActive(!isActive)} className="lg:hidden">
             {!isActive ? (
               <Image
                 src={"/header/burger-menu-icon.svg"}
                 alt="hamburger menu icon"
                 width={40}
                 height={40}
-                onClick={toggleNavbar}
               />
             ) : (
               <Image
@@ -90,7 +85,6 @@ export default function Header() {
                 alt="cross icon"
                 width={40}
                 height={40}
-                onClick={toggleNavbar}
               />
             )}
           </div>

@@ -73,14 +73,17 @@ export default function CartDropdown({
                       }}
                       className="text-xl ml-9 cursor-pointer"
                     >
-                      <span> &#10005;</span>
+                      <span>&#10005;</span>
                     </div>
                   </li>
                 );
               })}
             </ul>
 
-            <div className="flex items-center flex-col gap-6">
+            <div
+              onClick={() => setCartState(!cartState)}
+              className="flex items-center flex-col gap-6"
+            >
               {cart?.length !== 0 ? (
                 <Link
                   href="/checkout/cartsummary"

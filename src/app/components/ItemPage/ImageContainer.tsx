@@ -8,7 +8,7 @@ export default function ImageContainer({
 }: {
   images: ItemImagesInterface[];
 }) {
-  const [activeImg, setActiveImg] = useState("");
+  const [activeImg, setActiveImg] = useState(images[0].url);
 
   useEffect(() => {
     if (images) {

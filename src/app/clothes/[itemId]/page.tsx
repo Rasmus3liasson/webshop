@@ -33,7 +33,7 @@ export default function SpecificItem({
     };
 
     fetchData();
-  }, []);
+  }, [itemId]);
 
   if (isLoading) {
     return <h1>Laddar...</h1>;
@@ -44,7 +44,7 @@ export default function SpecificItem({
 
   return (
     <>
-      <section className="mx-2 py-6 flex flex-col md:flex-row justify-evenly my-9">
+      <section className="mx-2 py-6 flex flex-col md:flex-row justify-evenly my-9 lg:gap-20">
         <ImageContainer images={itemImages} />
         <Description itemData={data} />
       </section>

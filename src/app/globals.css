@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .link-text {
-  @apply hover:scale-105 hover:opacity-95 active:scale-95 duration-75;
+  @apply hover:scale-105 hover:opacity-95 active:scale-95 duration-200;
 }
 .footer-box {
   @apply flex items-center justify-center border-2 text-center rounded-xl mx-2 w-28 shadow-lg hover:scale-105 duration-50 ease-in-out;

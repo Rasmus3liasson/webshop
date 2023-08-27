@@ -15,7 +15,7 @@ export default function CartDropdown({
     <>
       {cartState && (
         <div
-          className="border-b w-full absolute md:w-96 z-10 right-0 top-24 lg:top-32 border-greyLight bg-white px-4 py-8 sm:px-6 lg:px-8 rounded-xl animate-cartDropdown"
+          className="border-b w-full absolute md:w-96 z-10 right-0 top-24 lg:top-32 border-greyLight bg-background px-4 py-8 sm:px-6 lg:px-8 rounded-xl animate-cartDropdown"
           aria-modal="true"
           role="dialog"
         >

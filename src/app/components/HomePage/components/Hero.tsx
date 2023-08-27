@@ -11,7 +11,7 @@ export default function Hero() {
 
         <Link href={"/clothes"}>
           <button type="button" className="button-primary">
-            SHOP NOW
+            Handla här
           </button>
         </Link>
       </div>

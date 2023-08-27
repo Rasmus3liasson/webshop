@@ -49,14 +49,17 @@ export default function Footer() {
             <ul className="flex items-center justify-center gap-3 flex-col lg:flex-row mt-2">
               <li>
                 <Image
+                  className="w-auto h-auto"
                   src={"/footer/postnord.svg"}
                   alt="postnord logotype"
                   width={80}
                   height={80}
+                  priority={true}
                 />
               </li>
               <li>
                 <Image
+                  className="w-auto h-auto"
                   src={"/footer/budbee.svg"}
                   alt="postnord logotype"
                   width={80}
@@ -65,6 +68,7 @@ export default function Footer() {
               </li>
               <li>
                 <Image
+                  className="w-auto h-auto"
                   src={"/footer/klarna.svg"}
                   alt="postnord logotype"
                   width={80}

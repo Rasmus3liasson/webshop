@@ -23,6 +23,12 @@ export async function POST(request: Request) {
 
     const session = await stripe.checkout.sessions.create({
       line_items: lineItems,
+      shipping_address_collection: {
+        allowed_countries: ["US", "SE"],
+      },
+      phone_number_collection: {
+        enabled: true,
+      },
       mode: "payment",
       success_url: `${domain}/order-confirmation?status=success`,
       cancel_url: `${domain}/order-confirmation?status=declined`,

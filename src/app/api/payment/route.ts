@@ -7,7 +7,7 @@ export async function POST(request: Request) {
     const headerList = headers();
     const domain = headerList.get("origin");
 
-    const { data } = await request.json();
+    const { data, email } = await request.json();
 
     const lineItems = data.map((item) => ({
       price_data: {
@@ -26,6 +26,7 @@ export async function POST(request: Request) {
       shipping_address_collection: {
         allowed_countries: ["US", "SE"],
       },
+      customer_email: email,
       phone_number_collection: {
         enabled: true,
       },

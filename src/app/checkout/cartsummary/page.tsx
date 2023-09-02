@@ -14,20 +14,22 @@ export default function Page() {
         <div className="flex justify-between border-b pb-8">
           <h1 className="font-semibold text-2xl">Kundkorg</h1>
         </div>
-        <div className="flex mt-10 mb-5">
-          <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/5">
-            Product
-          </h3>
-          <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">
-            Antal
-          </h3>
-          <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">
-            Pris
-          </h3>
-          <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">
-            Total
-          </h3>
-        </div>
+        {cart?.length !== 0 && (
+          <div className="flex mt-10 mb-5">
+            <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/5">
+              Product
+            </h3>
+            <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">
+              Antal
+            </h3>
+            <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">
+              Pris
+            </h3>
+            <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">
+              Total
+            </h3>
+          </div>
+        )}
 
         <CartItems cartData={cart} setCart={setCart} />
       </div>

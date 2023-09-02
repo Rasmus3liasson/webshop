@@ -5,6 +5,7 @@ import ImageContainer from "@/app/components/ItemPage/ImageContainer";
 import Description from "@/app/components/ItemPage/Description";
 import { uniqueItemMock } from "../../../../mockData/uniqueItemMock";
 import { uniqueItemInterface } from "@/types/uniqueItem";
+import Loading from "../loading";
 
 export default function SpecificItem({
   params,
@@ -36,7 +37,7 @@ export default function SpecificItem({
   }, [itemId]);
 
   if (isLoading) {
-    return <h1>Laddar...</h1>;
+    return <Loading />;
   }
 
   const data = productItems || uniqueItemMock[0];

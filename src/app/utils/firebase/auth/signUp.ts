@@ -23,8 +23,11 @@ export default async function signUp(
         displayName: name,
       });
     }
-  } catch (e) {
-    error = e;
+
+    console.log("Ny användare skapad");
+  } catch (error) {
+    error.code === "auth/email-already-in-use" &&
+      console.log("Användaren finns redan");
   }
 
   return { result, error };

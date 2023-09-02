@@ -23,7 +23,7 @@ export default function Header() {
   return (
     <header>
       <nav className="flex items-center justify-between mx-6 pt-5">
-        <Link href="/">
+        <Link href={"/"}>
           <Image
             src={"/header/logo.svg"}
             alt="logotype for webshop"

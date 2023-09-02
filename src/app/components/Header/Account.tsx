@@ -22,10 +22,8 @@ export default function Account() {
   const router = useRouter();
 
   useEffect(() => {
-    if (!dataFromLocalStorage) {
-      setUser(null);
-    }
-  }, [dataFromLocalStorage]);
+    setUser(dataFromLocalStorage !== null ? dataFromLocalStorage : null);
+  }, []);
 
   return (
     <>
@@ -61,8 +59,7 @@ export default function Account() {
                 {user && (
                   <p
                     onClick={() => {
-                      signOutFromAccount();
-                      router.push("/");
+                      signOutFromAccount(setUser);
                       router.refresh();
                     }}
                   >

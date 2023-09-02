@@ -18,7 +18,6 @@ export default function SignInForm({
   const [signInSucces, setSignInSucces] = useState(true);
 
   const { setUser } = useContext(accountContext);
-
   const router = useRouter();
 
   const handleForm = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -43,6 +42,7 @@ export default function SignInForm({
       }
       return;
     }
+    result && router.back();
   };
   const handleGoogleSignIn = async () => {
     const { result, error } = await signInGoogle();
@@ -55,6 +55,7 @@ export default function SignInForm({
 
     result && setUser(accountData);
     window.localStorage.setItem("user", JSON.stringify(accountData));
+    result && router.back();
 
     if (error) {
       console.log(error);

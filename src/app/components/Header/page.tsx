@@ -8,6 +8,7 @@ import List from "./List";
 import Account from "./Account";
 import CartDropdown from "./CartDropdown";
 import { cartContext } from "@/app/utils/cartContext";
+import { getItemsFromApi } from "@/app/utils/dataFromApi";
 
 export default function Header() {
   const { cart } = useContext(cartContext);
@@ -16,6 +17,7 @@ export default function Header() {
   const [cartState, setCartState] = useState(false);
   const [itemsLength, setItemLength] = useState(cart?.length);
   const [copyCartLength, setCopyCartLength] = useState(cart?.length || 0);
+  const [itemData, setItemData] = useState([]);
 
   useEffect(() => {
     // Compare the current cart length with the previous cart length
@@ -31,6 +33,19 @@ export default function Header() {
     setCopyCartLength(currentCartLength);
     setItemLength(cart?.length);
   }, [cart]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await getItemsFromApi();
+        setItemData(data);
+      } catch (error) {
+        console.error("Kunde inte hämta datan", error);
+      }
+    }
+
+    fetchData();
+  }, []);
 
   return (
     <header>
@@ -54,7 +69,7 @@ export default function Header() {
           </>
 
           <>
-            <SearchInput />
+            <SearchInput data={itemData} />
           </>
         </div>
 

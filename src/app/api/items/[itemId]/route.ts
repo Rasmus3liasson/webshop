@@ -9,13 +9,8 @@ export async function GET(
   const itemId = params.itemId;
 
   try {
-    /*    const itemData: FilteredProductData = await getItemData();
-
-    const uniqedItems = itemData.productItems.find(
-      (item: { id: string }) => item.id === itemId
-    ); */
-
-    const itemData = itemsMock;
+    const dataFromApi: FilteredProductData = await getItemData();
+    const itemData = dataFromApi.productItems || itemsMock.productItems;
     const uniqedItems = itemData.find(
       (item: { id: string }) => item.id === itemId
     );

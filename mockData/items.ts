@@ -1565,5 +1565,5 @@ const itemsData = [
   },
 ];
 
-export const itemsMock = itemsData[0].productItems;
+export const itemsMock = itemsData[0];
 export const filterOptionsMock = itemsData[0].filterOptions;

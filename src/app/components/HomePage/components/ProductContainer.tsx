@@ -3,31 +3,28 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Loading from "../loading";
+import { getItemsFromApi } from "@/app/utils/dataFromApi";
 
 export default function ProductContainer() {
   const [items, setItems] = useState<FilteredItemDataInterface[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchItemData = async () => {
+    async function fetchData() {
       try {
-        const res = await fetch("/api/items");
-        const data = await res.json();
-        /* setItems(data.productItems); */
-        //the mocked data real api should have .productItem
+        const data = await getItemsFromApi();
         setItems(data);
-        setLoading(false);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Kunde inte hämta datan", error);
+      } finally {
         setLoading(false);
       }
-    };
+    }
 
-    fetchItemData();
+    fetchData();
   }, []);
 
   //only want 3 on the home page
-
   const randomOrderArr = items.sort((a, b) => 0.5 - Math.random());
   const products = randomOrderArr.slice(0, 3).map((item) => item);
   const router = useRouter();

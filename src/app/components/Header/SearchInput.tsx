@@ -5,21 +5,22 @@ import { useDebounce } from "use-debounce";
 import { itemsMock } from "../../../../mockData/items";
 import { SearchInputInterface } from "@/types/items";
 
-export default function SearchInput() {
-  const data: SearchInputInterface[] = itemsMock.map((item) => ({
+export default function SearchInput({ data }: { data: any }) {
+  const dataFilter: SearchInputInterface[] = data.map((item) => ({
     title: item.name,
     imagePoster: item.imagePoster,
   }));
 
   const [searchInput, setSearchInput] = useState("");
   const [searchField, setSearchField] = useState(false);
-  const [searchResult, setSearchResult] = useState<SearchInputInterface[]>([]);
-  const [itemData] = useState(data);
+  const [searchResult, setSearchResult] =
+    useState<SearchInputInterface[]>(dataFilter);
 
-  const [debounceValue] = useDebounce(searchInput, 2000);
+  const [debounceValue] = useDebounce(searchInput, 1000);
 
   //filter and show result that match value
   const manageInput = (event: ChangeEvent<HTMLInputElement>) => {
+    const itemData = dataFilter;
     const inputValue = event.target.value;
     setSearchInput(inputValue);
     if (inputValue.length >= 2) {

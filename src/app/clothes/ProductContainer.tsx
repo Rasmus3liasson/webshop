@@ -76,50 +76,41 @@ export default function ProductContainer({
         </div>
         <div className="w-full">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-5 ">
-            {loading
-              ? itemData.slice(0, displayedItems).map((product) => (
-                  <div className="flex flex-col items-center" key={product.id}>
-                    <Link href={`/clothes/${product.id}`}>
-                      <div className="relative">
-                        <Image
-                          src={product.imagePoster}
-                          alt={"product poster image"}
-                          width={200}
-                          height={200}
-                        />
+            {loading &&
+              itemData.slice(0, displayedItems).map((product) => (
+                <div className="flex flex-col items-center" key={product.id}>
+                  <Link href={`/clothes/${product.id}`}>
+                    <div className="relative">
+                      <Image
+                        src={product.imagePoster}
+                        alt={"product poster image"}
+                        width={200}
+                        height={200}
+                      />
 
-                        {/* overlay for images */}
-                        <div className="absolute top-0 left-0 w-full h-full bg-greyLight opacity-0 duration-150 hover:opacity-60 flex justify-center items-center">
-                          <ul className="w-full h-full overflow-scroll scrollbar-hide px-4 flex flex-col items-center justify-center">
-                            {product.clothingSizes.map((size, index) => (
-                              <li
-                                key={index}
-                                className="text-xl hover:scale-102"
-                              >
-                                {size
-                                  .toString()
-                                  .replaceAll("R", "")
-                                  .split(",")
-                                  .join(" ")}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
+                      {/* overlay for images */}
+                      <div className="absolute top-0 left-0 w-full h-full bg-greyLight opacity-0 duration-150 hover:opacity-60 flex justify-center items-center">
+                        <ul className="w-full h-full overflow-scroll scrollbar-hide px-4 flex flex-col items-center justify-center">
+                          {product.clothingSizes.map((size, index) => (
+                            <li key={index} className="text-xl hover:scale-102">
+                              {size
+                                .toString()
+                                .replaceAll("R", "")
+                                .split(",")
+                                .join(" ")}
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                    </Link>
-
-                    <div>
-                      <p className="text-greyLight">{product.name}</p>
-                      <p>{product.price}</p>
                     </div>
+                  </Link>
+
+                  <div>
+                    <p className="text-greyLight">{product.name}</p>
+                    <p>{product.price}</p>
                   </div>
-                ))
-              : [...new Array(displayedItems)].map(
-                  (
-                    _,
-                    index //undercore for unused parameter
-                  ) => <Loading key={index} />
-                )}
+                </div>
+              ))}
           </div>
         </div>
         {displayedItems !== itemData.length && (

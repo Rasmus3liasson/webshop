@@ -5,7 +5,7 @@ import ImageContainer from "@/app/components/ItemPage/ImageContainer";
 import Description from "@/app/components/ItemPage/Description";
 import { uniqueItemMock } from "../../../../mockData/uniqueItemMock";
 import { uniqueItemInterface } from "@/types/uniqueItem";
-import Loading from "../loading";
+import Loading from "./loading";
 
 export default function SpecificItem({
   params,

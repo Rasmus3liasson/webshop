@@ -2,11 +2,9 @@ import React from "react";
 
 export default function Loading() {
   return (
-    <div className="mt-12 animate-pulse space-x-1 rounded-xl border p-6 flex flex-col items-center ">
-      <div className="flex flex-col space-y-2 w-28 h-40 ">
-        <div className="h-2/4 w-full rounded-md bg-gray-300 "></div>
-        <div className="h-1/4 rounded-md bg-gray-300 "></div>
-        <div className="h-1/4 rounded-md bg-gray-300 "></div>
+    <div className="flex justify-center items-center h-screen bg-green-300">
+      <div className="flex items-center justify-center ">
+        <div className="w-40 h-40 border-t-4 border-b-4 border-green-900 rounded-full animate-spin"></div>
       </div>
     </div>
   );

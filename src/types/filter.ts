@@ -4,6 +4,6 @@ export interface ColorOptions {
 }
 
 export interface FilterOptionsInterface {
-  color: ColorOptions[];
+  color: { text: string; code: string }[];
   categories: string[];
 }

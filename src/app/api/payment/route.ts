@@ -9,7 +9,7 @@ export async function POST(request: Request) {
 
     const { data, email } = await request.json();
 
-    const lineItems = data.map((item) => ({
+    const lineItems = data.map((item: StripPaymentInterface) => ({
       price_data: {
         currency: "usd",
         product_data: {

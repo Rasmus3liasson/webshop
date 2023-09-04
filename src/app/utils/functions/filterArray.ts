@@ -20,6 +20,7 @@ export const handleFilterSettings = (
   });
 };
 export const filterItemsArray = (dataArray: FilteredItemDataInterface[]) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const searchParams = useSearchParams();
 
   const colorQuery = searchParams.get("color");
@@ -34,7 +35,11 @@ export const filterItemsArray = (dataArray: FilteredItemDataInterface[]) => {
 
   const filteredItems = dataArray.filter((productItem) => {
     const colorMatches = queryStringColor
-      ? queryStringColor.includes(productItem.itemColor)
+      ? queryStringColor.some((queryColor) =>
+          [productItem.itemColor.text, productItem.itemColor.code].includes(
+            queryColor
+          )
+        )
       : true;
 
     return colorMatches;

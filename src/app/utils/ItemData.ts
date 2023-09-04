@@ -30,8 +30,8 @@ export async function getItemData() {
   }
 
   // Filtering the necassary data I want
-  const filteredItemData: FilteredItemDataInterface = data.results.map(
-    (item) => {
+  const filteredItemData: FilteredItemDataInterface[] = data.results.map(
+    (item: any) => {
       const itemColorText = item.articles[0].color.text
         .toUpperCase()
         .split("/")[0];
@@ -45,7 +45,7 @@ export async function getItemData() {
         galleryImages: item.galleryImages,
         similarImages: item.allArticleBaseImages,
         clothingSizes: item.variantSizes
-          .map((item) => item.filterCode)
+          .map((item: { filterCode: string }) => item.filterCode)
           .sort(sizeComparator),
 
         itemColor: {
@@ -59,7 +59,8 @@ export async function getItemData() {
   );
 
   const colorOptions = data.results.map(
-    (item) => item.articles[0].color.text.toUpperCase().split("/")[0]
+    (item: { articles: { color: { text: string } }[] }) =>
+      item.articles[0].color.text.toUpperCase().split("/")[0]
   );
   const uniqueColorOptions = removeDuplicateVaules(colorOptions);
 
@@ -72,7 +73,7 @@ export async function getItemData() {
         )?.itemColor.code ?? "",
     })),
     categories: removeDuplicateVaules(
-      data.results.map((item) =>
+      data.results.map((item: { name: string }) =>
         item.name.split(" ").slice(-1).toString().toUpperCase()
       )
     ),

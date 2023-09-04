@@ -1,3 +1,4 @@
+"use client";
 import { cartContext } from "@/app/utils/cartContext";
 import Image from "next/image";
 import Link from "next/link";

@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   updateProfile,
+  AuthError,
 } from "firebase/auth";
 
 const auth = getAuth(firebase_app);
@@ -26,8 +27,12 @@ export default async function signUp(
 
     console.log("Ny användare skapad");
   } catch (error) {
-    error.code === "auth/email-already-in-use" &&
+    const authError = error as AuthError;
+
+    authError.code === "auth/email-already-in-use" &&
       console.log("Användaren finns redan");
+
+    error = authError;
   }
 
   return { result, error };

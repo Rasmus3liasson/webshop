@@ -1,11 +1,15 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { ChangeEvent, useState } from "react";
 import { useDebounce } from "use-debounce";
-import { itemsMock } from "../../../../mockData/items";
-import { SearchInputInterface } from "@/types/items";
+import { FilteredItemDataInterface, SearchInputInterface } from "@/types/items";
 
-export default function SearchInput({ data }: { data: any }) {
+export default function SearchInput({
+  data,
+}: {
+  data: FilteredItemDataInterface[];
+}) {
   const dataFilter: SearchInputInterface[] = data.map((item) => ({
     title: item.name,
     imagePoster: item.imagePoster,

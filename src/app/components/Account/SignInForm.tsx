@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import signIn from "@/app/utils/firebase/auth/signIn";
-import signOutFromAccount from "@/app/utils/firebase/auth/signOut";
 import { useRouter } from "next/navigation";
 import signInGoogle from "@/app/utils/firebase/auth/signInGoogle";
 import Image from "next/image";
 import { accountContext } from "@/app/utils/firebase/accountContext";
+import { AccountContextInterface } from "@/types/account";
 
 export default function SignInForm({
   showSignIn,
@@ -15,9 +15,8 @@ export default function SignInForm({
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [signInSucces, setSignInSucces] = useState(true);
 
-  const { setUser } = useContext(accountContext);
+  const { setUser } = useContext(accountContext) as AccountContextInterface;
   const router = useRouter();
 
   const handleForm = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -26,9 +25,10 @@ export default function SignInForm({
     const { result, error } = await signIn(email, password);
 
     const accountData = {
-      name: result?.user.displayName?.toUpperCase().split(" ")[0].toString(),
-      email: result?.user.email,
-      initialsImageUrl: result?.user.photoURL,
+      name:
+        result?.user.displayName?.toUpperCase().split(" ")[0]?.toString() || "",
+      email: result?.user.email || "",
+      initialsImageUrl: result?.user.photoURL || "",
     };
 
     result && setUser(accountData);
@@ -48,9 +48,10 @@ export default function SignInForm({
     const { result, error } = await signInGoogle();
 
     const accountData = {
-      name: result?.user.displayName?.toUpperCase().split(" ")[0].toString(),
-      email: result?.user.email,
-      initialsImageUrl: result?.user.photoURL,
+      name:
+        result?.user.displayName?.toUpperCase().split(" ")[0]?.toString() || "",
+      email: result?.user.email || "",
+      initialsImageUrl: result?.user.photoURL || "",
     };
 
     result && setUser(accountData);

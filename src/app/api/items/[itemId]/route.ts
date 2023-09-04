@@ -1,16 +1,17 @@
-import { FilteredProductData } from "@/types/items";
+import { FilteredItemDataInterface, FilteredProductData } from "@/types/items";
 import { getItemData } from "../../../utils/ItemData";
 import { itemsMock } from "../../../../../mockData/items";
 
 export async function GET(
-  request: string,
+  _request: Request,
   { params }: { params: { itemId: string } }
 ) {
   const itemId = params.itemId;
 
   try {
     const dataFromApi: FilteredProductData = await getItemData();
-    const itemData = dataFromApi.productItems || itemsMock.productItems;
+    const itemData: FilteredItemDataInterface[] =
+      dataFromApi.productItems || itemsMock.productItems;
     const uniqedItems = itemData.find(
       (item: { id: string }) => item.id === itemId
     );

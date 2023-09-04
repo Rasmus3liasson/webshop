@@ -9,6 +9,7 @@ import Account from "./Account";
 import CartDropdown from "./CartDropdown";
 import { cartContext } from "@/app/utils/cartContext";
 import { getItemsFromApi } from "@/app/utils/dataFromApi";
+import { FilteredItemDataInterface } from "@/types/items";
 
 export default function Header() {
   const { cart } = useContext(cartContext);
@@ -17,7 +18,7 @@ export default function Header() {
   const [cartState, setCartState] = useState(false);
   const [itemsLength, setItemLength] = useState(cart?.length);
   const [copyCartLength, setCopyCartLength] = useState(cart?.length || 0);
-  const [itemData, setItemData] = useState([]);
+  const [itemData, setItemData] = useState<FilteredItemDataInterface[]>([]);
 
   useEffect(() => {
     // Compare the current cart length with the previous cart length
@@ -32,7 +33,7 @@ export default function Header() {
 
     setCopyCartLength(currentCartLength);
     setItemLength(cart?.length);
-  }, [cart]);
+  }, [cart, copyCartLength]);
 
   useEffect(() => {
     async function fetchData() {

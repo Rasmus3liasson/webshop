@@ -4,8 +4,7 @@ import React, { useState } from "react";
 import SignInForm from "../components/Account/SignInForm";
 import SignUpForm from "../components/Account/SignUpForm";
 
-export default function page() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+export default function Page() {
   const [showSignIn, setShowSignIn] = useState(false);
 
   return (
@@ -13,7 +12,7 @@ export default function page() {
       {!showSignIn ? (
         <SignInForm showSignIn={showSignIn} setShowSignIn={setShowSignIn} />
       ) : (
-        <SignUpForm setShowSignIn={setShowSignIn} />
+        <SignUpForm />
       )}
     </>
   );

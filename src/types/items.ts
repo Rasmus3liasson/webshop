@@ -1,4 +1,5 @@
 export interface FilteredItemDataInterface {
+  find(arg0: (item: { id: string }) => boolean): unknown;
   id: string;
   name: string;
   imagePoster: string;
@@ -11,11 +12,13 @@ export interface FilteredItemDataInterface {
   ];
   similarImages: string[];
   clothingSizes: string[];
-  itemColor: string;
+  itemColor: {
+    text: string;
+    code: string;
+  };
   itemColorCode: string;
   itemCategory: string;
 }
-[];
 
 export interface SearchInputInterface {
   title: string;
@@ -23,11 +26,11 @@ export interface SearchInputInterface {
 }
 
 export interface FilterOptions {
-  color: string[];
+  color: { text: string; code: string }[];
   categories: string[];
 }
 
 export interface FilteredProductData {
-  productItems: FilteredItemDataInterface;
+  productItems: FilteredItemDataInterface[];
   filterOptions: FilterOptions;
 }

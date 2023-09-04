@@ -17,8 +17,12 @@ export const CartContextProvider = ({
   children: React.ReactNode;
 }) => {
   const [cart, setCart] = useState<CartItemInterface[] | null>(() => {
-    const cartFromStorage = sessionStorage.getItem("cart");
-    return cartFromStorage ? JSON.parse(cartFromStorage) : [];
+    if (typeof window !== "undefined") {
+      const cartFromStorage = window.sessionStorage.getItem("cart");
+      return cartFromStorage ? JSON.parse(cartFromStorage) : [];
+    } else {
+      return [];
+    }
   });
 
   return (

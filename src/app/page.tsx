@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import HomePage from "./components/HomePage/page";
 
 export const metadata = {

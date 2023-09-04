@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProductContainer from "./ProductContainer";
 import FilterAside from "./FilterAside";
 import { FilteredItemDataInterface } from "@/types/items";

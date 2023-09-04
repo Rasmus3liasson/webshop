@@ -1,7 +1,7 @@
 export interface UserDataInterface {
-  name: string;
-  email: string;
-  initialsImageUrl: string;
+  name?: string;
+  email?: string;
+  initialsImageUrl?: string;
 }
 export interface AccountContextInterface {
   user: UserDataInterface | null;

@@ -1,3 +1,4 @@
+"use client";
 import { accountContext } from "@/app/utils/firebase/accountContext";
 import signOutFromAccount from "@/app/utils/firebase/auth/signOut";
 import { AccountContextInterface, UserDataInterface } from "@/types/account";
@@ -23,7 +24,7 @@ export default function Account() {
 
   useEffect(() => {
     setUser(dataFromLocalStorage !== null ? dataFromLocalStorage : null);
-  }, []);
+  }, [dataFromLocalStorage, setUser]);
 
   return (
     <>
@@ -39,7 +40,7 @@ export default function Account() {
             />
           ) : (
             <div className="bg-initialIcon text-white rounded-full p-2 w-9 text-center">
-              {user.name.slice(0, 1).toLowerCase()}
+              {user.name?.slice(0, 1).toLowerCase()}
             </div>
           )
         ) : (

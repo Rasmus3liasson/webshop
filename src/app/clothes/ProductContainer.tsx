@@ -6,7 +6,6 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { FilteredItemDataInterface } from "@/types/items";
-import Loading from "./loading";
 import Link from "next/link";
 
 export default function ProductContainer({
@@ -49,9 +48,14 @@ export default function ProductContainer({
       setItemData([...productitems]);
     } else {
       const filteredItems = productitems.filter((item) => {
-        if (colorQuery && item.itemColor !== colorQuery) {
+        if (
+          colorQuery &&
+          item.itemColor.text !== colorQuery &&
+          item.itemColor.code !== colorQuery
+        ) {
           return false;
         }
+
         if (categoryQuery && item.itemCategory !== categoryQuery) {
           return false;
         }

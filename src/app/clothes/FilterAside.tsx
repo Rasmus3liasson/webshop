@@ -27,7 +27,7 @@ export default function FilterAside() {
 
   useEffect(() => {
     setFilterAlternativesData(data);
-  }, []);
+  }, [data]);
 
   //Creates a queryString based on a the filters applied
   const createQueryString = useCallback(() => {

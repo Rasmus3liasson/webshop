@@ -67,14 +67,14 @@ export default function Description({
         <p className="font-semibold">{itemData.price}</p>
       </div>
       <div>
-        <label htmlFor="">Storlek:</label>
+        <label>Storlek:</label>
         <select onChange={(e) => setSize(e.target.value)} name="size of item">
           Storlek
           {renderOptions()}
         </select>
       </div>
       <div>
-        <label htmlFor="">Antal:</label>
+        <label>Antal:</label>
 
         <div>
           <span

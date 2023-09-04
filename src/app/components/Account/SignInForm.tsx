@@ -32,7 +32,9 @@ export default function SignInForm({
     };
 
     result && setUser(accountData);
-    window.localStorage.setItem("user", JSON.stringify(accountData));
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("user", JSON.stringify(accountData));
+    }
 
     if (error) {
       console.log("Couldn't create account because of " + error);
@@ -55,7 +57,9 @@ export default function SignInForm({
     };
 
     result && setUser(accountData);
-    window.localStorage.setItem("user", JSON.stringify(accountData));
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("user", JSON.stringify(accountData));
+    }
     result && router.back();
 
     if (error) {

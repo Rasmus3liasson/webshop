@@ -17,7 +17,6 @@ export default function SpecificItem({
     uniqueItemInterface | undefined
   >();
 
-  //setting up an loading state so my mocked data want appear before the async data im retrieving
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

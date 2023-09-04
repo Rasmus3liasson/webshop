@@ -1,7 +1,7 @@
 "use client";
 import { accountContext } from "@/app/utils/firebase/accountContext";
 import signOutFromAccount from "@/app/utils/firebase/auth/signOut";
-import { AccountContextInterface, UserDataInterface } from "@/types/account";
+import { AccountContextInterface } from "@/types/account";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -10,21 +10,23 @@ import React, { useContext, useEffect, useState } from "react";
 
 export default function Account() {
   const [isActive, setIsActive] = useState(false);
+  const router = useRouter();
 
-  const localStorageAccount = window.localStorage.getItem("user");
-  const dataFromLocalStorage =
-    localStorageAccount !== null ? JSON.parse(localStorageAccount) : null;
-
-  // Clearing context if localstorage dont exist
+  // Clearing context if local storage doesn't exist
   const { user, setUser } = useContext(
     accountContext
   ) as AccountContextInterface;
 
-  const router = useRouter();
+  if (typeof window !== "undefined") {
+    const localStorageAccount = window.localStorage.getItem("user");
+    const dataFromLocalStorage =
+      localStorageAccount !== null ? JSON.parse(localStorageAccount) : null;
 
-  useEffect(() => {
-    setUser(dataFromLocalStorage !== null ? dataFromLocalStorage : null);
-  }, [dataFromLocalStorage, setUser]);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
+      setUser(dataFromLocalStorage !== null ? dataFromLocalStorage : null);
+    }, [dataFromLocalStorage, setUser]);
+  }
 
   return (
     <>

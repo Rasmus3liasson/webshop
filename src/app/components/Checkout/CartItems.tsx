@@ -36,7 +36,9 @@ export default function CartItems({
                   updatedCart.splice(index, 1);
 
                   setCart(updatedCart);
-                  sessionStorage.setItem("cart", JSON.stringify(updatedCart));
+                  if (typeof window !== "undefined") {
+                    sessionStorage.setItem("cart", JSON.stringify(updatedCart));
+                  }
                 }}
                 className="font-semibold hover:text-red-600 text-grey text-xs"
               >

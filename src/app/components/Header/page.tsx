@@ -23,12 +23,10 @@ export default function Header() {
   useEffect(() => {
     // Compare the current cart length with the previous cart length
     // to show the cartDropdown when items are added
-
     const currentCartLength = cart?.length || 0;
+
     if (currentCartLength > copyCartLength) {
       setCartState(true);
-    } else {
-      setCartState(false);
     }
 
     setCopyCartLength(currentCartLength);

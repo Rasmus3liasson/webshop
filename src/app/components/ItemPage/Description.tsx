@@ -17,9 +17,11 @@ export default function Description({
 
   // Load cart data from sessionStorage when the component mounts
   useEffect(() => {
-    const cartFromStorage = sessionStorage.getItem("cart");
-    if (cartFromStorage) {
-      setCart(JSON.parse(cartFromStorage));
+    if (typeof window !== "undefined") {
+      const cartFromStorage = sessionStorage.getItem("cart");
+      if (cartFromStorage) {
+        setCart(JSON.parse(cartFromStorage));
+      }
     }
   }, [setCart]);
 
@@ -53,7 +55,9 @@ export default function Description({
     const updatedCart = [newItemToCart, ...removesExistingItems];
     setCart(updatedCart);
 
-    sessionStorage.setItem("cart", JSON.stringify(updatedCart));
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("cart", JSON.stringify(updatedCart));
+    }
   };
 
   return (

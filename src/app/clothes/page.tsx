@@ -29,10 +29,12 @@ export default function Clothes() {
 
   return (
     <>
-      <section className="flex flex-col justify-between">
-        <FilterAside />
+      <section className="flex justify-between">
         {loading ? (
-          <ProductContainer productitems={productItems} />
+          <>
+            <FilterAside />
+            <ProductContainer productitems={productItems} />
+          </>
         ) : (
           <div>
             {Array.from({ length: 8 }, (_, index) => (

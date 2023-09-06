@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Loading() {
   return (
-    <div className="flex w-full flex-1 flex-col items-center">
+    <div className="flex flex-1 flex-col md:flex-row gap:9 items-center w-3/4 gap-6 md:gap-12">
       {[...new Array(3)].map((_, index) => (
         // underscore to avoid undefiended in console
         <div

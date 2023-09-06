@@ -1,10 +1,8 @@
 import { getFilterData } from "@/app/utils/filterData";
-import { filterMock } from "../../../../mockData/filter";
 
 export async function GET(_request: Request) {
   try {
-    let filterDataApi = await getFilterData();
-    const filterData = filterDataApi || filterMock;
+    const filterData = await getFilterData();
 
     return new Response(JSON.stringify(filterData), {
       headers: {

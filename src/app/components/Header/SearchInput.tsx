@@ -8,12 +8,14 @@ import { FilteredItemDataInterface, SearchInputInterface } from "@/types/items";
 export default function SearchInput({
   data,
 }: {
-  data: FilteredItemDataInterface[];
+  data?: FilteredItemDataInterface[];
 }) {
-  const dataFilter: SearchInputInterface[] = data.map((item) => ({
-    title: item.name,
-    imagePoster: item.imagePoster,
-  }));
+  const dataFilter: SearchInputInterface[] = Array.isArray(data)
+    ? data.map((item) => ({
+        title: item.name,
+        imagePoster: item.imagePoster,
+      }))
+    : [];
 
   const [searchInput, setSearchInput] = useState("");
   const [searchField, setSearchField] = useState(false);

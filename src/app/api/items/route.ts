@@ -1,10 +1,8 @@
-import { itemsMock } from "../../../../mockData/items";
 import { getItemData } from "../../utils/ItemData";
 
 export async function GET(_request: Request) {
   try {
-    const itemDataApi = await getItemData();
-    const itemData = itemDataApi || itemsMock;
+    const itemData = await getItemData();
 
     return new Response(JSON.stringify(itemData), {
       headers: {

@@ -9,6 +9,7 @@ import { getItemsFromApi } from "@/app/utils/dataFromApi";
 export default function ProductContainer() {
   const [items, setItems] = useState<FilteredItemDataInterface[]>([]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     async function fetchData() {
@@ -25,10 +26,14 @@ export default function ProductContainer() {
     fetchData();
   }, []);
 
+  let products: FilteredItemDataInterface[] = [];
   //only want 3 on the home page
-  const randomOrderArr = items.sort((a, b) => 0.5 - Math.random());
-  const products = randomOrderArr.slice(0, 3).map((item) => item);
-  const router = useRouter();
+  // Check if items is not empty before sorting and slicing
+  if (items && items.length > 0) {
+    //only want 3 on the home page
+    const randomOrderArr = items.sort((a, b) => 0.5 - Math.random());
+    products = randomOrderArr.slice(0, 3).map((item) => item);
+  }
 
   // when data load show skeleton
   if (loading) {

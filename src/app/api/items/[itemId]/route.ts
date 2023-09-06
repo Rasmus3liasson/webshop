@@ -9,9 +9,9 @@ export async function GET(
   const itemId = params.itemId;
 
   try {
-    const dataFromApi: FilteredProductData = await getItemData();
-    const itemData: FilteredItemDataInterface[] =
-      dataFromApi.productItems || itemsMock.productItems;
+    const dataFromApi = await getItemData();
+    const itemData: FilteredItemDataInterface[] = (dataFromApi.productItems ||
+      itemsMock.productItems) as FilteredItemDataInterface[];
     const uniqedItems = itemData.find(
       (item: { id: string }) => item.id === itemId
     );

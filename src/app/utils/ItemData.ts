@@ -9,6 +9,14 @@ import { itemsMock } from "../../../mockData/items";
 
 config();
 
+// removes duplicate values from array
+function removeDuplicateVaules(array: string[]) {
+  const uniqueValues = array.filter((value, index) => {
+    return array.indexOf(value) === index;
+  });
+  return uniqueValues;
+}
+
 export async function getItemData() {
   try {
     const url =
@@ -22,14 +30,6 @@ export async function getItemData() {
     };
     const res = await fetch(url, options);
     const data = await res.json();
-
-    // removes duplicate values from array
-    function removeDuplicateVaules(array: string[]) {
-      const uniqueValues = array.filter((value, index) => {
-        return array.indexOf(value) === index;
-      });
-      return uniqueValues;
-    }
 
     // Filtering the necassary data I want
     const filteredItemData: FilteredItemDataInterface[] = data.results.map(

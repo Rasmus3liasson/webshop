@@ -73,7 +73,7 @@ export default function SearchInput({
       {/* Condition to show dropdown */}
       {searchInput.length > 0 && (
         <div>
-          <ul className="grid grid-cols-4 mt-4 p-4 md:max-h-52 md:w-36 md:overflow-y-auto gap-4 md:flex md:flex-col md:absolute md:right-16 md:scale-110">
+          <ul className="grid grid-cols-4 mt-4 p-4 md:max-h-52 md:w-36 md:overflow-y-auto gap-4 md:flex md:flex-col md:absolute md:right-16 md:scale-110 bg-white">
             {searchResult?.map((product, index) => {
               // Retrieve image using the index of title
               const imageUrl = product.imagePoster;

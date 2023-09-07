@@ -26,7 +26,7 @@ export async function POST(request: Request) {
       shipping_address_collection: {
         allowed_countries: ["US", "SE"],
       },
-      customer_email: email,
+      customer_email: email.trim() !== "" ? email : "test@example.com",
       phone_number_collection: {
         enabled: true,
       },

@@ -47,7 +47,11 @@ export default function ActiveFilter({
           ))}
           <button
             className="text-lg underline hover:scale-105 active:scale-98 duration-150"
-            onClick={() => setActiveFilters([])}
+            onClick={() => {
+              setActiveFilters([]);
+              setColorFilter([]);
+              setColorFilter([]);
+            }}
           >
             Clear
           </button>

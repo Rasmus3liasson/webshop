@@ -12,6 +12,25 @@ export interface FilteredItemDataInterface {
   ];
   similarImages: string[];
   clothingSizes: string[];
+  itemColor: string;
+  itemColorCode: string;
+  itemCategory: string;
+}
+
+export interface FilteredItemDataInterfaceFromHM {
+  find(arg0: (item: { id: string }) => boolean): unknown;
+  id: string;
+  name: string;
+  imagePoster: string;
+  price: number;
+  galleryImages: [
+    {
+      url: string;
+      baseUrl: string;
+    }
+  ];
+  similarImages: string[];
+  clothingSizes: string[];
   itemColor: {
     text: string;
     code: string;
@@ -31,6 +50,6 @@ export interface FilterOptions {
 }
 
 export interface FilteredProductData {
-  productItems: FilteredItemDataInterface[];
+  productItems: FilteredItemDataInterface[] | FilteredItemDataInterfaceFromHM[];
   filterOptions: FilterOptions;
 }

@@ -48,11 +48,7 @@ export default function ProductContainer({
       setItemData([...productitems]);
     } else {
       const filteredItems = productitems.filter((item) => {
-        if (
-          colorQuery &&
-          item.itemColor.text !== colorQuery &&
-          item.itemColor.code !== colorQuery
-        ) {
+        if (colorQuery && item.itemColor !== colorQuery) {
           return false;
         }
 
@@ -117,7 +113,7 @@ export default function ProductContainer({
               ))}
           </div>
         </div>
-        {displayedItems !== itemData.length && (
+        {itemData.length > displayedItems && (
           <button onClick={handleShowMore}>Show More</button>
         )}
       </div>

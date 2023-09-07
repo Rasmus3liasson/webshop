@@ -1,6 +1,6 @@
 import {
   FilterOptions,
-  FilteredItemDataInterface,
+  FilteredItemDataInterfaceFromHM,
   FilteredProductData,
 } from "@/types/items";
 import { sizeComparator } from "./functions/sortSizes";
@@ -32,8 +32,8 @@ export async function getItemData() {
     const data = await res.json();
 
     // Filtering the necassary data I want
-    const filteredItemData: FilteredItemDataInterface[] = data.results.map(
-      (item: any) => {
+    const filteredItemData: FilteredItemDataInterfaceFromHM[] =
+      data.results.map((item: any) => {
         const itemColorText = item.articles[0].color.text
           .toUpperCase()
           .split("/")[0];
@@ -57,8 +57,7 @@ export async function getItemData() {
           itemColorCode: itemColorCode,
           itemCategory: item.name.split(" ").slice(-1).toString().toUpperCase(),
         };
-      }
-    );
+      });
 
     const colorOptions = data.results.map(
       (item: { articles: { color: { text: string } }[] }) =>

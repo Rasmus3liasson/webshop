@@ -44,7 +44,7 @@ export default function SignInForm({
       }
       return;
     }
-    result && router.back();
+    result && router.push("/");
   };
   const handleGoogleSignIn = async () => {
     const { result, error } = await signInGoogle();
@@ -60,7 +60,7 @@ export default function SignInForm({
     if (typeof window !== "undefined") {
       window.localStorage.setItem("user", JSON.stringify(accountData));
     }
-    result && router.back();
+    result && router.push("/");
 
     if (error) {
       console.log(error);

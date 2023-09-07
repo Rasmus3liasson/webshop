@@ -17,16 +17,17 @@ export default function Account() {
     accountContext
   ) as AccountContextInterface;
 
-  if (typeof window !== "undefined") {
-    const localStorageAccount = window.localStorage.getItem("user");
-    const dataFromLocalStorage =
-      localStorageAccount !== null ? JSON.parse(localStorageAccount) : null;
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const localStorageAccount = window.localStorage.getItem("user");
+      const dataFromLocalStorage =
+        localStorageAccount !== null ? JSON.parse(localStorageAccount) : null;
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useEffect(() => {
-      setUser(dataFromLocalStorage !== null ? dataFromLocalStorage : null);
-    }, [dataFromLocalStorage, setUser]);
-  }
+      if (dataFromLocalStorage !== null) {
+        setUser(dataFromLocalStorage);
+      }
+    }
+  }, [setUser]);
 
   return (
     <>

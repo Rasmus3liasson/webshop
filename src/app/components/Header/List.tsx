@@ -29,13 +29,15 @@ export default function List({
         </li>
 
         <li
-          onClick={() => setCategoryList(!categoryList)}
           className={`link-text ${
             categoryList && "underline duration-100"
           }  flex `}
         >
-          Kläder
+          <Link href={"/clothes"}>
+            <span>Kläder</span>
+          </Link>
           <Image
+            onClick={() => setCategoryList(!categoryList)}
             className={`ml-2 ${categoryList && "rotate-180 duration-100"}`}
             src={"/list/down-arrow.svg"}
             alt="arrow indicator"
@@ -43,6 +45,7 @@ export default function List({
             height={20}
           />
         </li>
+
         {categoryList && (
           <CategoryList
             setListState={setCategoryList}

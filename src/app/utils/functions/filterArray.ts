@@ -36,9 +36,7 @@ export const filterItemsArray = (dataArray: FilteredItemDataInterface[]) => {
   const filteredItems = dataArray.filter((productItem) => {
     const colorMatches = queryStringColor
       ? queryStringColor.some((queryColor) =>
-          [productItem.itemColor.text, productItem.itemColor.code].includes(
-            queryColor
-          )
+          [productItem.itemColor].includes(queryColor)
         )
       : true;
 

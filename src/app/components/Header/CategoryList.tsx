@@ -6,8 +6,10 @@ import { filterOptionsMock } from "../../../../mockData/items";
 
 export default function CategoryList({
   setListState: setListState,
+  setNavActive: setNavActive,
 }: {
   setListState: (newState: boolean) => void;
+  setNavActive: (newState: boolean) => void;
 }) {
   return (
     <>
@@ -19,7 +21,14 @@ export default function CategoryList({
               className="link-text"
               href={`/clothes?category=${categories}`}
             >
-              <li onClick={() => setListState(false)}>{categories}</li>
+              <li
+                onClick={() => {
+                  setListState(false);
+                  setNavActive(false);
+                }}
+              >
+                {categories}
+              </li>
             </Link>
           );
         })}

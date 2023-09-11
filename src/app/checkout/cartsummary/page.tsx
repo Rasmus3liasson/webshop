@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useContext } from "react";
-import CartItems from "../../components/Checkout/CartItems";
-import Summary from "../../components/Checkout/Summary";
+import CartItems from "./components/CartItems";
+import Summary from "./components/Summary";
 import { cartContext } from "@/app/utils/cartContext";
 
 export default function Page() {

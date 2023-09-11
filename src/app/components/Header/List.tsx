@@ -5,15 +5,26 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import CategoryList from "./CategoryList";
 
-export default function List() {
+export default function List({
+  setIsActive,
+}: {
+  setIsActive: (newState: boolean) => void;
+}) {
   const pathName = usePathname();
 
   const [categoryList, setCategoryList] = useState(false);
 
+  const setNavState = () => {
+    setIsActive(false);
+  };
+
   return (
     <>
       <ul className="flex flex-col md:flex-row gap-7 lg:ml-36 md:gap-20 items-center md:m-0 mb-5">
-        <li className={`link-text ${pathName === "/" && "underline"} `}>
+        <li
+          onClick={setNavState}
+          className={`link-text ${pathName === "/" && "underline"} `}
+        >
           <Link href="/">Home</Link>
         </li>
 
@@ -32,8 +43,16 @@ export default function List() {
             height={20}
           />
         </li>
-        {categoryList && <CategoryList setListState={setCategoryList} />}
-        <li className={`link-text ${pathName === "/about" && "underline"} `}>
+        {categoryList && (
+          <CategoryList
+            setListState={setCategoryList}
+            setNavActive={setIsActive}
+          />
+        )}
+        <li
+          onClick={setNavState}
+          className={`link-text ${pathName === "/about" && "underline"} `}
+        >
           <Link href="/about">Om oss</Link>
         </li>
       </ul>

@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import ImageContainer from "@/app/components/ItemPage/ImageContainer";
-import Description from "@/app/components/ItemPage/Description";
+import ImageContainer from "./components/ImageContainer";
+import Description from "./components/Description";
 import { uniqueItemMock } from "../../../../mockData/uniqueItemMock";
 import { uniqueItemInterface } from "@/types/uniqueItem";
 import Loading from "./loading";

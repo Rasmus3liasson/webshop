@@ -30,10 +30,25 @@ export default function ActiveFilter({
       setCategoryFilter(updatedCategoryFilter);
     }
   };
-  useEffect(
-    () => setActiveFilters([...categoryFilter, ...colorFilter]),
-    [colorFilter, categoryFilter]
-  );
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const categoryQuery = params.get("category");
+
+    if (categoryQuery) {
+      setCategoryFilter([categoryQuery]);
+    }
+  }, [setCategoryFilter]);
+
+  useEffect(() => {
+    const updatedActiveFilters = [...colorFilter];
+
+    // Check if "categoryFilter" is not empty and add it to the active filters
+    if (categoryFilter.length > 0) {
+      updatedActiveFilters.push(...categoryFilter);
+    }
+
+    setActiveFilters(updatedActiveFilters);
+  }, [colorFilter, categoryFilter]);
 
   return (
     <>
@@ -45,12 +60,13 @@ export default function ActiveFilter({
               <span onClick={() => handleEdit(index)}>&#10005;</span>
             </li>
           ))}
+
           <button
             className="text-lg underline hover:scale-105 active:scale-98 duration-150"
             onClick={() => {
               setActiveFilters([]);
               setColorFilter([]);
-              setColorFilter([]);
+              setCategoryFilter([]);
             }}
           >
             Clear

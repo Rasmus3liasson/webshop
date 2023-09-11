@@ -73,13 +73,16 @@ export default function Header() {
         </div>
 
         <div className="flex items-center justify-center">
-          <div className="flex items-center">
+          <div className="flex items-center justify-center">
             <div
+              className="relative"
               onClick={() => {
                 setCartState(!cartState);
               }}
             >
-              <span className="cartSize">{itemsLength}</span>
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pt-3 pr-1 md:pr-0">
+                <span>{itemsLength}</span>
+              </div>
               <Image
                 className="mr-0.5 lg:mr-0"
                 src={"/header/shopping-cart-icon.png"}

@@ -12,31 +12,22 @@ export interface FilteredItemDataInterface {
   ];
   similarImages: string[];
   clothingSizes: string[];
-  itemColor: string;
+  itemColor:
+    | string
+    | {
+        text: string;
+        code: string;
+      };
   itemColorCode: string;
   itemCategory: string;
 }
 
-export interface FilteredItemDataInterfaceFromHM {
-  find(arg0: (item: { id: string }) => boolean): unknown;
-  id: string;
-  name: string;
-  imagePoster: string;
-  price: number;
-  galleryImages: [
-    {
-      url: string;
-      baseUrl: string;
-    }
-  ];
-  similarImages: string[];
-  clothingSizes: string[];
+export interface FilteredItemDataInterfaceFromHM
+  extends FilteredItemDataInterface {
   itemColor: {
     text: string;
     code: string;
   };
-  itemColorCode: string;
-  itemCategory: string;
 }
 
 export interface SearchInputInterface {

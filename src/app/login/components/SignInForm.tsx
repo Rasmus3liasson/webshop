@@ -31,21 +31,22 @@ export default function SignInForm({
       initialsImageUrl: result?.user.photoURL || "",
     };
 
-    result && setUser(accountData);
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem("user", JSON.stringify(accountData));
-    }
+    if (result) {
+      setUser(accountData);
 
-    if (error) {
-      console.log("Couldn't create account because of " + error);
-
-      if (email || password === "") {
-        alert("Du kan inte lämna fälten tomma");
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem("user", JSON.stringify(accountData));
       }
-      return;
+
+      router.push("/");
+    } else if (!email || !password) {
+      alert("Kan inte lämna fälten tomma");
+    } else if (error) {
+      console.log("Kunde inte skapa konto för att " + error);
+      alert("Detta är inte en giltig inloggning");
     }
-    result && router.push("/");
   };
+
   const handleGoogleSignIn = async () => {
     const { result, error } = await signInGoogle();
 

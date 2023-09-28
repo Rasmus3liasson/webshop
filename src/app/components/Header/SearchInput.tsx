@@ -18,7 +18,7 @@ export default function SearchInput({
     : [];
 
   const [searchInput, setSearchInput] = useState("");
-  const [searchField, setSearchField] = useState(false);
+  const [searchField, setSearchField] = useState(true);
   const [searchResult, setSearchResult] =
     useState<SearchInputInterface[]>(dataFilter);
 

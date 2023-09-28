@@ -35,7 +35,7 @@ export default function SpecificItem({
     fetchData();
   }, [itemId]);
 
-  if (isLoading) {
+  if (!isLoading) {
     return <Loading />;
   }
 

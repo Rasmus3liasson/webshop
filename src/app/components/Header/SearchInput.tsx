@@ -22,7 +22,7 @@ export default function SearchInput({
   const [searchResult, setSearchResult] =
     useState<SearchInputInterface[]>(dataFilter);
 
-  const [debounceValue] = useDebounce(searchInput, 1000);
+  const [debounceValue] = useDebounce(searchInput, 200);
 
   //filter and show result that match value
   const manageInput = (event: ChangeEvent<HTMLInputElement>) => {
@@ -44,6 +44,8 @@ export default function SearchInput({
       setSearchField(!searchField);
     }
   };
+  console.log(searchResult);
+  
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -73,7 +75,7 @@ export default function SearchInput({
       {/* Condition to show dropdown */}
       {searchInput.length > 0 && (
         <div>
-          <ul className="grid grid-cols-4 mt-4 p-4 md:max-h-52 md:w-36 md:overflow-y-auto gap-4 md:flex md:flex-col md:absolute md:right-16 md:scale-110 bg-white">
+          <ul className={`grid grid-cols-4 md:grid-cols-2 md:place-items-start mt-4 md:mt-16 p-5 md:max-h-96 md:overflow-y-auto gap-6 md:absolute md:-right-[105px] md:scale-110 bg-white rounded-md ${searchResult?.length === 0 && "hidden" }`}>
             {searchResult?.map((product, index) => {
               // Retrieve image using the index of title
               const imageUrl = product.imagePoster;
@@ -90,7 +92,7 @@ export default function SearchInput({
                     href={"#"}
                     onClick={() => setSearchInput(product.title)}
                   >
-                    <p>{product.title}</p>
+                    <p className="md:w-20">{product.title}</p>
                     <p>price</p>
                   </Link>
                 </li>

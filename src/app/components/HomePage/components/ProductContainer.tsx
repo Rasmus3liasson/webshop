@@ -46,7 +46,7 @@ export default function ProductContainer() {
         <div
           onClick={() => router.push(`/clothes/${itemDetails.id}`)}
           key={index}
-          className="text-center shadow-lg image-hover"
+          className="text-center shadow-lg image-hover rounded-md"
         >
           <div className="flex flex-col items-center justify-center gap-2 h-full">
             <h2 className="font-bold text-lg mb-2 md:mb-4 md:text-2xl px-2">

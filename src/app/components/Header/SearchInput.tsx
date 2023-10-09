@@ -44,7 +44,7 @@ export default function SearchInput({
       setSearchField(!searchField);
     }
   };
-  console.log(searchResult);
+
   
 
   return (

@@ -1,4 +1,4 @@
-## Deployad [här](https://webshopclothes.netlify.app)
+Deployad [här](https://webshopclothes.netlify.app)
 
 ## Testkort för lyckade transaktioner
 

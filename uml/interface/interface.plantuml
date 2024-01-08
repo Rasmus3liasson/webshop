@@ -1,0 +1,85 @@
+@startuml interface
+
+class ItemImagesInterface {
+  url: string
+  baseUrl: string
+}
+
+class uniqueItemInterface {
+  id: string
+  name: string
+  imagePoster: string
+  price: number
+  galleryImages: List<ItemImagesInterface>
+  similarImages: List<string>
+  clothingSizes: List<string>
+  itemColor: string | { text: string, code: string }
+  itemCategory: string
+}
+
+class StripPaymentInterface {
+  title: string
+  imageUrl: string
+  price: number
+  quantity: number
+}
+
+class FilteredItemDataInterface {
+  id: string
+  name: string
+  imagePoster: string
+  price: number
+  galleryImages: List<ItemImagesInterface>
+  similarImages: List<string>
+  clothingSizes: List<string>
+  itemColor: string | { text: string, code: string }
+  itemColorCode: string
+  itemCategory: string
+}
+
+
+class SearchInputInterface {
+  title: string
+  imagePoster: string
+}
+
+class FilterOptions {
+  color: List<{ text: string, code: string }>
+  categories: List<string>
+}
+
+class FilteredProductData {
+  productItems: List<FilteredItemDataInterface | FilteredItemDataInterfaceFromHM>
+  filterOptions: FilterOptions
+}
+
+class ColorOptions {
+  text: string
+  code: string
+}
+
+class FilterOptionsInterface {
+  color: List<ColorOptions>
+  categories: List<string>
+}
+
+class CartItemInterface {
+  title: string
+  imageUrl: string
+  size: string
+  quantity: number
+  price: number
+}
+
+class UserDataInterface {
+  name?: string
+  email?: string
+  initialsImageUrl?: string
+}
+
+class AccountContextInterface {
+  user: UserDataInterface | null
+  setUser(userData: UserDataInterface | null): void
+}
+
+@enduml

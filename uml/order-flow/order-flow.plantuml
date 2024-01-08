@@ -1,0 +1,36 @@
+@startuml Webshop 
+
+actor User
+participant "OrderProcess" as System
+database Firebase
+database ShoppingCart
+database Stripe
+
+User -> Firebase: Sign in
+activate Firebase
+
+Firebase --> User: User authenticated
+deactivate Firebase
+
+User -> System: Finds item
+activate System
+
+System -> ShoppingCart: Add item to cart
+activate ShoppingCart
+
+System --> User: Item added to cart
+deactivate ShoppingCart
+
+User -> System: Proceeds to checkout
+activate System
+
+System -> Stripe: Payment process (with user data if user is authenticated)
+activate Stripe
+
+Stripe --> System: Payment status
+deactivate Stripe
+
+System --> User: Order confirmation
+deactivate System
+
+@enduml

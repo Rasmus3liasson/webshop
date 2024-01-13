@@ -1,15 +1,15 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import { useContext, useEffect, useState } from "react";
-import SearchInput from "./SearchInput";
-import List from "./List";
-import Account from "./Account";
-import CartDropdown from "./CartDropdown";
 import { cartContext } from "@/app/utils/cartContext";
 import { getItemsFromApi } from "@/app/utils/dataFromApi";
 import { FilteredItemDataInterface } from "@/types/items";
+import Image from "next/image";
+import Link from "next/link";
+import { useContext, useEffect, useState } from "react";
+import Account from "./Account";
+import CartDropdown from "./CartDropdown";
+import List from "./List";
+import SearchInput from "./SearchInput";
 
 export default function Header() {
   const { cart } = useContext(cartContext);
@@ -48,7 +48,7 @@ export default function Header() {
 
   return (
     <header>
-      <nav className="flex items-center justify-between mx-6 pt-5">
+      <nav className="flex items-center justify-between mx-6 pt-5 font">
         <Link href={"/"}>
           <Image
             src={"/header/logo.svg"}
@@ -100,7 +100,7 @@ export default function Header() {
               <Account />
             </div>
           </div>
-          <div onClick={() => setIsActive(!isActive)} className="lg:hidden">
+          <div onClick={() => setIsActive(!isActive)}    className="lg:hidden">
             {!isActive ? (
               <Image
                 src={"/header/burger-menu-icon.svg"}

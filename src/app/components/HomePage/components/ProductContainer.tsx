@@ -1,10 +1,10 @@
 "use client";
+import { getItemsFromApi } from "@/app/utils/dataFromApi";
 import { FilteredItemDataInterface } from "@/types/items";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Loading from "../loading";
-import { getItemsFromApi } from "@/app/utils/dataFromApi";
 
 export default function ProductContainer() {
   const [items, setItems] = useState<FilteredItemDataInterface[]>([]);
@@ -41,7 +41,7 @@ export default function ProductContainer() {
   }
 
   const renderItemsHomePage = () => (
-    <div className="mx-5 my-16 md:my-24 sm:grid grid-cols-3 gap-5 space-y-4 md:space-y-0 justify-items-center md:mx-5">
+    <div className="mx-5 my-16 md:my-24 sm:grid grid-cols-3 gap-12 space-y-4 md:space-y-0 justify-items-center md:mx-5">
       {products.map((itemDetails, index: number) => (
         <div
           onClick={() => router.push(`/clothes/${itemDetails.id}`)}

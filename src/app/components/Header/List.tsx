@@ -23,14 +23,14 @@ export default function List({
       <ul className="flex flex-col md:flex-row gap-7 lg:ml-36 md:gap-20 items-center md:m-0 mb-5">
         <li
           onClick={setNavState}
-          className={`link-text ${pathName === "/" && "underline"} `}
+          className={`link-text-lg ${pathName === "/" && "underline"} `}
         >
           <Link href="/">Home</Link>
         </li>
 
         <li
-          className={`link-text ${
-            categoryList && "underline duration-100"
+          className={`link-text-lg ${
+            categoryList && "duration-100"
           }  flex `}
         >
           <Link href={"/clothes"}>
@@ -38,7 +38,7 @@ export default function List({
           </Link>
           <Image
             onClick={() => setCategoryList(!categoryList)}
-            className={`ml-2 ${categoryList && "rotate-180 duration-100"}`}
+            className={`ml-3 ${categoryList && "rotate-180 duration-100"}`}
             src={"/list/down-arrow.svg"}
             alt="arrow indicator"
             width={20}
@@ -54,7 +54,7 @@ export default function List({
         )}
         <li
           onClick={setNavState}
-          className={`link-text ${pathName === "/about" && "underline"} `}
+          className={`link-text-lg ${pathName === "/about" && "underline"} `}
         >
           <Link href="/about">Om oss</Link>
         </li>

@@ -1,9 +1,9 @@
 "use client";
+import { FilteredItemDataInterface, SearchInputInterface } from "@/types/items";
 import Image from "next/image";
 import Link from "next/link";
 import { ChangeEvent, useState } from "react";
 import { useDebounce } from "use-debounce";
-import { FilteredItemDataInterface, SearchInputInterface } from "@/types/items";
 
 export default function SearchInput({
   data,
@@ -66,7 +66,7 @@ export default function SearchInput({
               onChange={manageInput}
               type="search"
               className="w-full p-2 pl-10 md:pl-3 text-black rounded-xl animate-searchInput"
-              placeholder="Search"
+              placeholder="Sök produkt"
               required
             />
           )}
@@ -92,8 +92,7 @@ export default function SearchInput({
                     href={"#"}
                     onClick={() => setSearchInput(product.title)}
                   >
-                    <p className="md:w-20">{product.title}</p>
-                    <p>price</p>
+                    <p className="md:w-32 text-center pt-2">{product.title}</p>
                   </Link>
                 </li>
               );
@@ -103,9 +102,9 @@ export default function SearchInput({
       )}
       {/* If no matching results */}
       {searchInput.length > 1 && searchResult?.length === 0 && (
-        <div className="md:absolute md:top-20 right-14">
+        <div className="md:absolute md:top-20 mt-3 md:mt-0 right-4">
           <ul>
-            <li className="no-match">Ingen matchning</li>
+            <li className="text-lg font-medium">Ingen produkt hittades</li>
           </ul>
         </div>
       )}

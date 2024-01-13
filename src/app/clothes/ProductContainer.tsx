@@ -2,11 +2,11 @@
 
 "use client";
 
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { FilteredItemDataInterface } from "@/types/items";
+import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function ProductContainer({
   productitems,
@@ -65,7 +65,7 @@ export default function ProductContainer({
   return (
     <section className="my-16 md:w-3/4 w-full">
       <div className="flex gap-1 justify-center items-center flex-col">
-        <div className="mt-2 bg-greyLight w-full text-center p-1">
+        <div className="mt-2 bg-greyLight text-center p-1 font-medium flex justify-center gap-1 w-full rounded-b-md">
           <span>
             {displayedItems > itemData.length
               ? itemData.length
@@ -74,44 +74,55 @@ export default function ProductContainer({
           <span>/</span>
           <span>{itemData.length}</span>
         </div>
-        <div className="w-full">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-5 ">
-            {loading &&
-              itemData.slice(0, displayedItems).map((product) => (
-                <div className="flex flex-col items-center" key={product.id}>
-                  <Link href={`/clothes/${product.id}`}>
-                    <div className="relative">
-                      <Image
-                        src={product.imagePoster}
-                        alt={"product poster image"}
-                        width={200}
-                        height={200}
-                      />
-
-                      {/* overlay for images */}
-                      <div className="absolute top-0 left-0 w-full h-full bg-greyLight opacity-0 duration-150 hover:opacity-60 flex justify-center items-center">
-                        <ul className="w-full h-full overflow-scroll scrollbar-hide px-4 flex flex-col items-center justify-center">
-                          {product.clothingSizes.map((size, index) => (
-                            <li key={index} className="text-xl hover:scale-102">
-                              {size
-                                .toString()
-                                .replaceAll("R", "")
-                                .split(",")
-                                .join(" ")}
-                            </li>
-                          ))}
-                        </ul>
+        <div
+          className={`grid ${
+            itemData.length === 0 && "grid-cols-1"
+          } grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-5`}
+        >
+          {loading && (
+            <>
+              {itemData.length === 0 ? (
+                <p className="text-center font-medium text-2xl pt-5 grid grid-cols-1 place-items-end">
+                  Inga produkter hittades
+                </p>
+              ) : (
+                itemData.slice(0, displayedItems).map((product) => (
+                  <div className="flex flex-col items-center" key={product.id}>
+                    <Link href={`/clothes/${product.id}`}>
+                      <div className="relative shadow-sm">
+                        <Image
+                          src={product.imagePoster}
+                          alt={"product poster image"}
+                          width={200}
+                          height={200}
+                        />
+                        <div className="absolute top-0 left-0 w-full h-full bg-greyLight opacity-0 duration-150 hover:opacity-60 flex justify-center items-center">
+                          <ul className="w-full h-full overflow-scroll scrollbar-hide p-4 grid grid-cols-2 place-items-center">
+                            {product.clothingSizes.map((size, index) => (
+                              <li
+                                key={index}
+                                className="text-xl hover:scale-102 font-medium"
+                              >
+                                {size
+                                  .toString()
+                                  .replaceAll("R", "")
+                                  .split(",")
+                                  .join(" ")}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
+                    </Link>
+                    <div>
+                      <p className="text-greyLight">{product.name}</p>
+                      <p>{product.price}</p>
                     </div>
-                  </Link>
-
-                  <div>
-                    <p className="text-greyLight">{product.name}</p>
-                    <p>{product.price}</p>
                   </div>
-                </div>
-              ))}
-          </div>
+                ))
+              )}
+            </>
+          )}
         </div>
         {itemData.length > displayedItems && (
           <button onClick={handleShowMore}>Show More</button>

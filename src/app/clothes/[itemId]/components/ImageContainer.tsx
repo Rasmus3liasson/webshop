@@ -1,7 +1,7 @@
 import { ItemImagesInterface } from "@/types/uniqueItem";
 
 import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function ImageContainer({
   images,
@@ -69,7 +69,7 @@ export default function ImageContainer({
       <div className="flex gap-4">
         <button onClick={scrollToFirstItem} aria-roledescription="slide button">
           <Image
-            className="rotate-90"
+            className="rotate-90 hover:scale-105 duration-150 active:scale-100"
             src={"/list/down-arrow.svg"}
             alt="arrow button"
             height={20}
@@ -86,7 +86,7 @@ export default function ImageContainer({
 
         <button onClick={scrollToLastItem} aria-roledescription="slide button">
           <Image
-            className="-rotate-90"
+            className="-rotate-90 hover:scale-105 duration-150 active:scale-100"
             src={"/list/down-arrow.svg"}
             alt="arrow button"
             height={20}

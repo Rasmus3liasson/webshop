@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import ProductContainer from "./ProductContainer";
-import FilterAside from "./FilterAside";
 import { FilteredItemDataInterface } from "@/types/items";
+import { useEffect, useState } from "react";
 import { getItemsFromApi } from "../utils/dataFromApi";
+import FilterAside from "./FilterAside";
+import ProductContainer from "./ProductContainer";
 import Loading from "./loading";
 
 export default function Clothes() {

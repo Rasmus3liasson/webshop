@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import ImageContainer from "./components/ImageContainer";
-import Description from "./components/Description";
-import { uniqueItemMock } from "../../../../mockData/uniqueItemMock";
 import { uniqueItemInterface } from "@/types/uniqueItem";
+import { useEffect, useState } from "react";
+import { uniqueItemMock } from "../../../../mockData/uniqueItemMock";
+import Description from "./components/Description";
+import ImageContainer from "./components/ImageContainer";
 import Loading from "./loading";
 
 export default function SpecificItem({

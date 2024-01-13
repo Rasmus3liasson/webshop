@@ -2,7 +2,7 @@ import { cartContext } from "@/app/utils/cartContext";
 import { sizeComparator } from "@/app/utils/functions/sortSizes";
 import { CartItemInterface } from "@/types/cart";
 import { uniqueItemInterface } from "@/types/uniqueItem";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 export default function Description({
   itemData,
@@ -61,46 +61,48 @@ export default function Description({
   };
 
   return (
-    <div className="flex flex-col gap-5 items-center justify-center md:scale-125">
+    <div className="flex flex-col gap-5 items-center justify-center md:justify-start md:pt-44 md:scale-125">
       <div className="mt-2">
         <p>{itemData.name}</p>
         <p className="font-semibold">{itemData.price}</p>
       </div>
-      <div>
-        <label>Storlek:</label>
-        <select onChange={(e) => setSize(e.target.value)} name="size of item">
-          Storlek
-          {renderOptions()}
-        </select>
-      </div>
-      <div>
-        <label>Antal:</label>
+      <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+        <div className="flex flex-col items-center gap-1">
+          <label>Storlek:</label>
+          <select onChange={(e) => setSize(e.target.value)} name="size of item">
+            Storlek
+            {renderOptions()}
+          </select>
+        </div>
+        <div className="text-center">
+          <label>Antal:</label>
 
-        <div>
-          <span
-            className="text-xl bg-slate-100"
-            onClick={() => {
-              if (quantity !== 1) {
-                setQuantity((quantity) => quantity - 1);
-              }
-            }}
-          >
-            -
-          </span>
-          <input
-            className="text-center pl-3 w-16"
-            type="number"
-            min={1}
-            max={10}
-            value={Number(quantity)}
-            onChange={(e) => setQuantity(parseInt(e.target.value))}
-          />
-          <span
-            className="text-xl bg-slate-100"
-            onClick={() => setQuantity((quantity) => quantity + 1)}
-          >
-            +
-          </span>
+          <div>
+            <span
+              className="text-xl bg-slate-100"
+              onClick={() => {
+                if (quantity !== 1) {
+                  setQuantity((quantity) => quantity - 1);
+                }
+              }}
+            >
+              -
+            </span>
+            <input
+              className="text-center pl-3 w-16"
+              type="number"
+              min={1}
+              max={10}
+              value={Number(quantity)}
+              onChange={(e) => setQuantity(parseInt(e.target.value))}
+            />
+            <span
+              className="text-xl bg-slate-100"
+              onClick={() => setQuantity((quantity) => quantity + 1)}
+            >
+              +
+            </span>
+          </div>
         </div>
       </div>
 

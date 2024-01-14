@@ -1,4 +1,4 @@
-import HomePage from "./components/HomePage/page";
+import HomePage from "./homePage/page";
 
 export const metadata = {
   description: "Home page of webshop",

@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import React from "react";
-import Success from "./Success";
 import Declined from "./Declined";
+import Success from "./Success";
 
 export default function Page() {
   const params = useSearchParams();

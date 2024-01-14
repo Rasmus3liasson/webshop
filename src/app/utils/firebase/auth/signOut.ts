@@ -5,7 +5,6 @@ export default function signOutFromAccount(setUser: (user: null) => void) {
 
   signOut(auth)
     .then(() => {
-      console.log("Sign out from account successfully");
       // Clear user data from local storage
       window.localStorage.removeItem("user");
       setUser(null);

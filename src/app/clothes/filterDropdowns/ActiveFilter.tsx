@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function ActiveFilter({
   colorFilter,
@@ -60,17 +61,18 @@ export default function ActiveFilter({
               <span onClick={() => handleEdit(index)}>&#10005;</span>
             </li>
           ))}
-
-          <button
-            className="text-lg underline hover:scale-105 active:scale-98 duration-150"
-            onClick={() => {
-              setActiveFilters([]);
-              setColorFilter([]);
-              setCategoryFilter([]);
-            }}
-          >
-            Clear
-          </button>
+          <Link href={"/clothes"}>
+            <button
+              className="text-lg underline hover:scale-105 active:scale-98 duration-150"
+              onClick={() => {
+                setActiveFilters([]);
+                setColorFilter([]);
+                setCategoryFilter([]);
+              }}
+            >
+              Clear
+            </button>
+          </Link>
         </ul>
       )}
     </>

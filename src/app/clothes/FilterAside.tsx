@@ -1,14 +1,14 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
-import CategoryDropdown from "./filterDropdowns/categoryDropdown";
 import Image from "next/image";
-import ColorDropdown from "./filterDropdowns/ColorDropdown";
 import Link from "next/link";
+import { useCallback, useEffect, useState } from "react";
 import { filterOptionsMock } from "../../../mockData/items";
+import ColorDropdown from "./filterDropdowns/ColorDropdown";
+import CategoryDropdown from "./filterDropdowns/categoryDropdown";
 
+import { FilterOptionsInterface } from "@/types/filter";
 import { usePathname } from "next/navigation";
 import ActiveFilter from "./filterDropdowns/ActiveFilter";
-import { FilterOptionsInterface } from "@/types/filter";
 
 export default function FilterAside() {
   const [filterBtn, setFilterBtn] = useState(false);
@@ -52,7 +52,7 @@ export default function FilterAside() {
       >
         Filtrera
         <Image
-          className={`${filterBtn && "rotate-180 duration-100"}`}
+          className={`${filterBtn && "rotate-180 duration-100"} ml-0.5`}
           src={"/list/down-arrow.svg"}
           alt="arrow for list to show if dropdown is active"
           width={20}

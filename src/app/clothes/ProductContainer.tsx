@@ -63,9 +63,9 @@ export default function ProductContainer({
   }, [colorQuery, categoryQuery, productitems]);
 
   return (
-    <section className="my-16 md:w-3/4 w-full">
+    <div className="my-16 md:w-3/4 w-full">
       <div className="flex gap-1 justify-center items-center flex-col">
-        <div className="mt-2 bg-greyLight text-center p-1 font-medium flex justify-center gap-1 w-full rounded-b-md">
+        <div className={`mt-2 bg-greyLight text-center p-1 font-medium flex justify-center gap-1 ${itemData.length === 0 ? "w-5/6" : "w-full" } rounded-b-md`}>
           <span>
             {displayedItems > itemData.length
               ? itemData.length
@@ -75,19 +75,19 @@ export default function ProductContainer({
           <span>{itemData.length}</span>
         </div>
         <div
-          className={`grid ${
-            itemData.length === 0 && "grid-cols-1"
-          } grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-5`}
+          className={`${
+            itemData.length === 0 ? "flex justify-center items-center h-96" : "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 my-5 w-full"
+          } `}
         >
           {loading && (
             <>
               {itemData.length === 0 ? (
-                <p className="text-center font-medium text-2xl pt-5 grid grid-cols-1 place-items-end">
+                <p className="font-medium text-2xl pt-5">
                   Inga produkter hittades
                 </p>
               ) : (
                 itemData.slice(0, displayedItems).map((product) => (
-                  <div className="flex flex-col items-center" key={product.id}>
+                  <div className="flex flex-col items-center justify-between" key={product.id}>
                     <Link href={`/clothes/${product.id}`}>
                       <div className="relative shadow-sm">
                         <Image
@@ -128,6 +128,6 @@ export default function ProductContainer({
           <button onClick={handleShowMore}>Show More</button>
         )}
       </div>
-    </section>
+    </div>
   );
 }

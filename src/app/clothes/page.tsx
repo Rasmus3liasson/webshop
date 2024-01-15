@@ -29,7 +29,7 @@ export default function Clothes() {
 
   return (
     <>
-      <section className="flex justify-between">
+      <section className="flex justify-between w-full">
         {loading ? (
           <>
             <FilterAside />

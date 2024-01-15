@@ -1,4 +1,4 @@
-import getOrderData from "@/app/utils/orderData";
+import { getOrderData } from "@/app/utils/orderData";
 
 export async function GET(
   _request: Request,

@@ -1,19 +1,19 @@
-import getOrderData from "@/app/utils/orderData";
+import { addNewOrder, getOrderData } from "@/app/utils/orderData";
 
 export async function GET(_request: Request) {
-try {
-  const orders: OrderWithProducts[] = await getOrderData();
+  try {
+    const orders: OrderWithProducts[] = await getOrderData();
 
-  const responseData: ResponseData = {
-    data: orders,
-  };
+    const responseData: ResponseData = {
+      data: orders,
+    };
 
-  return new Response(JSON.stringify(responseData), {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-} catch (error: any) {
+    return new Response(JSON.stringify(responseData), {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error: any) {
     return new Response(JSON.stringify({ error: error.message }), {
       headers: {
         "Content-Type": "application/json",
@@ -22,3 +22,22 @@ try {
   }
 }
 
+export async function POST(request: Request) {
+  try {
+    const requestBody = await request.json();
+
+    await addNewOrder(requestBody);
+
+    return new Response(JSON.stringify({ message: "Order skapad" }), {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error: any) {
+    return new Response(JSON.stringify({ error: error.message }), {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
+}

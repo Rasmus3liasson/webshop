@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      - .env
+    volumes:
+      - ./data:/var/lib/mysql
+    ports:
+      - 3306:3306

@@ -3,7 +3,7 @@ import { query } from "../../../database/db";
 
 export async function getOrderData() {
   const data = (await query({
-    query: "SELECT * FROM all_orders",
+    query: "CALL GetOrders()",
   })) as RowDataPacket[];
   return data.reduce((order: OrderWithProducts[], row) => {
     const existingOrder = order.find((o) => o.order_id === row.order_id);
@@ -44,11 +44,9 @@ export async function getOrderData() {
   }, []);
 }
 export async function addNewOrder(newOrder: OrderWithProducts) {
-
   // If the customer already exists, use the existing customer information
   await query({
-    query:
-      "INSERT IGNORE INTO customers (customer_id, email, address, phone_number) VALUES (?, ?, ?, ?)",
+    query: "CALL CustomersAlreadyExist( ?, ?, ? , ?)",
     values: [
       newOrder.customer_id,
       newOrder.customer_email,
@@ -59,7 +57,7 @@ export async function addNewOrder(newOrder: OrderWithProducts) {
 
   // Insert order and get the order id
   const orderIdResult = (await query({
-    query: "INSERT INTO orders (customer_id) VALUES (?)",
+    query: "CALL InsertNewCustomer(?)",
     values: [newOrder.customer_id],
   })) as ResultSetHeader;
 
@@ -68,8 +66,7 @@ export async function addNewOrder(newOrder: OrderWithProducts) {
   // Insert order details
   for (const product of newOrder.products) {
     await query({
-      query:
-        "INSERT INTO order_details (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)",
+      query: "CALL InsertProductDetails( ?, ?, ?, ?)",
       values: [
         orderId,
         product.product_id,

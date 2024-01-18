@@ -1,11 +1,32 @@
 version: '3.8'
+
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    networks:
+      - webshop_network
+    env_file: 
+      - .env
+      
+
   db:
     image: mysql:latest
     restart: always
-    environment:
-      - .env
+    env_file:
+      - .env  
     volumes:
       - ./data:/var/lib/mysql
     ports:
-      - 3306:3306
+      - "3306:3306"
+    command: --lower_case_table_names=2
+    networks:
+      - webshop_network
+
+networks:
+  webshop_network:

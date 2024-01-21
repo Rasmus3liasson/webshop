@@ -5,7 +5,7 @@ class ItemImagesInterface {
   baseUrl: string
 }
 
-class uniqueItemInterface {
+class UniqueItemInterface {
   id: string
   name: string
   imagePoster: string
@@ -24,15 +24,8 @@ class StripPaymentInterface {
   quantity: number
 }
 
-class FilteredItemDataInterface {
-  id: string
-  name: string
-  imagePoster: string
-  price: number
-  galleryImages: List<ItemImagesInterface>
-  similarImages: List<string>
-  clothingSizes: List<string>
-  itemColor: string | { text: string, code: string }
+class FilteredItemDataInterface extends UniqueItemInterface {
+  uniqueItem: UniqueItemInterface
   itemColorCode: string
   itemCategory: string
 }
@@ -43,13 +36,9 @@ class SearchInputInterface {
   imagePoster: string
 }
 
-class FilterOptions {
-  color: List<{ text: string, code: string }>
-  categories: List<string>
-}
 
 class FilteredProductData {
-  productItems: List<FilteredItemDataInterface | FilteredItemDataInterfaceFromHM>
+  productItems: List<FilteredItemDataInterface>
   filterOptions: FilterOptions
 }
 
@@ -81,5 +70,15 @@ class AccountContextInterface {
   user: UserDataInterface | null
   setUser(userData: UserDataInterface | null): void
 }
+
+UniqueItemInterface -- ItemImagesInterface
+UniqueItemInterface -- SearchInputInterface
+FilteredItemDataInterface -- ItemImagesInterface
+FilteredProductData -- FilteredItemDataInterface
+FilteredProductData -- FilterOptionsInterface
+FilterOptionsInterface -- ColorOptions
+AccountContextInterface -- UserDataInterface
+UniqueItemInterface -- CartItemInterface
+CartItemInterface -- StripPaymentInterface
 
 @enduml

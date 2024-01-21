@@ -2,33 +2,34 @@
 
 |User|
 :Sign In Method;
-if (Sign in) then (yes)
+
+if (Sign in with Google?) then (yes)
     :Google Login;
     if (Valid Google sign in?) then (yes)
+        :Set Account State;
     else (no)
         :Error indication; 
         stop
     endif
-    :Set Account State;
 else (no)
     if (Sign in with Own Credentials?) then (yes)
         :Own Credentials Login;
-        if (Credentials Valid?) then (yes)
-        else (no)
-            :Error indication; 
-            stop
-        endif
     else (no)
         :Show Create Account Screen;
         if (Account Created?) then (yes)
             :Return to Login;
-            :Sign in with Own Credentials;
         else (no)
             :Error indication;
             stop
         endif
     endif
-      :Set Account State;
+    
+    if (Credentials Valid?) then (yes)
+        :Set Account State;
+    else (no)
+        :Error indication; 
+        stop
+    endif
 endif
 
 @enduml

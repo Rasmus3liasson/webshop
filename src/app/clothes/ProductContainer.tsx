@@ -87,7 +87,7 @@ export default function ProductContainer({
                 </p>
               ) : (
                 itemData.slice(0, displayedItems).map((product) => (
-                  <div className="flex flex-col items-center justify-between" key={product.id}>
+                  <div className="flex flex-col items-center justify-between gap-2 mb-2" key={product.id}>
                     <Link href={`/clothes/${product.id}`}>
                       <div className="relative shadow-sm">
                         <Image
@@ -115,7 +115,7 @@ export default function ProductContainer({
                       </div>
                     </Link>
                     <div>
-                      <p className="text-greyLight">{product.name}</p>
+                      <p className="text-greyLight mt-1">{product.name}</p>
                       <p>{product.price}</p>
                     </div>
                   </div>

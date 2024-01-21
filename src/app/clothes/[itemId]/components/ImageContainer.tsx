@@ -66,7 +66,7 @@ export default function ImageContainer({
           height={300}
         />
       </div>
-      <div className="flex gap-4">
+      <div className="flex gap-4 w-11/12">
         <button onClick={scrollToFirstItem} aria-roledescription="slide button">
           <Image
             className="rotate-90 hover:scale-105 duration-150 active:scale-100"
@@ -78,7 +78,7 @@ export default function ImageContainer({
         </button>
 
         <ul
-          className="flex gap-4 overflow-x-scroll scrollbar-hide my-9 w-96 shadow-sm"
+          className="flex gap-4 overflow-x-scroll scrollbar-hide my-9 w-96 shadow-sm rounded-lg"
           ref={containerRef}
         >
           {allPosters()}

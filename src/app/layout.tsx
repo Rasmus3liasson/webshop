@@ -1,10 +1,10 @@
 import { Montserrat } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
+import Footer from "./components/Footer/page";
 import Header from "./components/Header/page";
 import "./globals.css";
-import Footer from "./components/Footer/page";
-import { AccountContextProvider } from "./utils/firebase/accountContext";
 import { CartContextProvider } from "./utils/cartContext";
-import NextTopLoader from "nextjs-toploader";
+import { AccountContextProvider } from "./utils/firebase/accountContext";
 
 const monteserrat = Montserrat({ subsets: ["latin"] });
 
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${monteserrat.className} m-0 p-0 box-border h-screen flex flex-col bg-background scroll-smooth`}
+        className={`${monteserrat.className} m-0 p-0 box-border h-screen flex flex-col bg-background scroll-smooth overflow-x-hidden`}
       >
         <NextTopLoader
           color="#080707"

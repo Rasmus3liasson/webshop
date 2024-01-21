@@ -36,11 +36,9 @@ export default function Clothes() {
             <ProductContainer productitems={productItems} />
           </>
         ) : (
-          <div>
-            {Array.from({ length: 8 }, (_, index) => (
-              <Loading key={index} />
-            ))}
-          </div>
+          <>
+            <Loading />
+          </>
         )}
       </section>
     </>

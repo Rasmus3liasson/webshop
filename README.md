@@ -1,4 +1,8 @@
-Deployad [här](https://webshopclothes.netlify.app)
+## Starta projekt
+### Klona repo
+```git clone https://github.com/Rasmus3liasson/webshop.git```
+### Kör projekt
+```npm run dev```
 
 ## Testkort för lyckade transaktioner
 

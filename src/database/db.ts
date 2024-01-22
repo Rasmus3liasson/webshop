@@ -10,7 +10,7 @@ export async function query({ query, values = [] }: QueryInterface) {
     host: process.env.MYSQL_HOST,
     port: Number(process.env.MYSQL_PORT),
     database: process.env.MYSQL_DATABASE,
-    user: process.env.MYSQL_USER,
+    user: process.env.MYSQL_USER || "root",
     password: process.env.MYSQL_ROOT_PASSWORD,
     waitForConnections: true,
     connectionLimit: 10,

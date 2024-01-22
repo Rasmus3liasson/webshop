@@ -1,4 +1,4 @@
-import { query } from "../../../database/db";
+import { query } from "../../database/db";
 
 export async function getOrderData() {
   // Destruct and gets first element of array

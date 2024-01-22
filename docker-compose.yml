@@ -22,6 +22,7 @@ services:
       - .env  
     volumes:
       - ./data:/var/lib/mysql
+      - ./src/database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro 
     ports:
       - "3306:3306"
     command: --lower_case_table_names=2

@@ -1,4 +1,4 @@
-import mysql, { Pool, PoolConnection } from "mysql2/promise";
+import mysql, { Pool, PoolConnection, RowDataPacket } from "mysql2/promise";
 
 interface QueryInterface {
   query: string;
@@ -10,7 +10,7 @@ export async function query({ query, values = [] }: QueryInterface) {
     host: process.env.MYSQL_HOST,
     port: Number(process.env.MYSQL_PORT),
     database: process.env.MYSQL_DATABASE,
-    /* user: process.env.MYSQL_USER, */ // This is not needed when using root
+    user: process.env.MYSQL_USER,
     password: process.env.MYSQL_ROOT_PASSWORD,
     waitForConnections: true,
     connectionLimit: 10,
@@ -22,7 +22,7 @@ let connection: PoolConnection | null = null;
 try {
     connection = await pool.getConnection();
     const [results] = await connection.execute(query, values);
-    return results;
+    return results as RowDataPacket[];
 } catch (error: any) {
     throw new Error(error.message);
 } finally {

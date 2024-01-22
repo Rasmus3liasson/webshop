@@ -23,3 +23,6 @@ interface OrderWithProducts extends OrderData {
 interface ResponseData {
   data: OrderWithProducts[];
 }
+
+interface OrderRowsI extends OrderData, ProductData {
+}

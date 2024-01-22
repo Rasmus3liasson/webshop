@@ -1,11 +1,11 @@
-import { ResultSetHeader, RowDataPacket } from "mysql2";
 import { query } from "../../../database/db";
 
 export async function getOrderData() {
-  const data = (await query({
+  // Destruct and gets first element of array
+  const [data] = (await query({
     query: "CALL GetOrders()",
-  })) as RowDataPacket[];
-  return data.reduce((order: OrderWithProducts[], row) => {
+  }));
+  return data.reduce((order: OrderWithProducts[], row: OrderRowsI ) => {
     const existingOrder = order.find((o) => o.order_id === row.order_id);
 
     if (existingOrder) {
@@ -56,12 +56,12 @@ export async function addNewOrder(newOrder: OrderWithProducts) {
   });
 
   // Insert order and get the order id
-  const orderIdResult = (await query({
+  const result = await query({
     query: "CALL InsertNewCustomer(?)",
     values: [newOrder.customer_id],
-  })) as ResultSetHeader;
+  });
 
-  const orderId = orderIdResult.insertId;
+  const orderId = result?.[0]?.[0]?.insertId;
 
   // Insert order details
   for (const product of newOrder.products) {

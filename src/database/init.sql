@@ -38,9 +38,9 @@ CREATE TABLE order_details (
 -- INSERT EXAMPLE DATA
 
 INSERT INTO customers (email, address, phone_number) VALUES
-    ('exempel@exampel.com', 'exempel adress 123', 1234567892),
-    ('exempel@exampel.com', 'exempel adress 123', 1234567893),
-    ('exempel@exampel.com', 'exempel adress 123', 1234567894);
+    ('example1@example.com', 'address1', 1234567892),
+    ('example2@example.com', 'address2', 1234567893),
+    ('example3@example.com', 'address3', 1234567894);
 
 INSERT INTO products (name, price) VALUES
     ('T-shirt', 19.99),

@@ -24,5 +24,7 @@ interface ResponseData {
   data: OrderWithProducts[];
 }
 
-interface OrderRowsI extends OrderData, ProductData {
-}
+interface OrderRowsI extends OrderData, ProductData {}
+
+interface OrderToDatabase
+  extends Omit<OrderWithProducts, "order_id" | "order_date" | "customer_id"> {}

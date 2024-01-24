@@ -66,3 +66,31 @@ export async function addNewOrder(newOrder: OrderWithProducts) {
     throw error;
   }
 }
+
+export async function sendOrderToDatabase(order: OrderToDatabase) {
+  // Change to correct host if this application is deployed
+  const apiUrl = `${process.env.Development_Environment}/api/order`;
+
+  await fetch(apiUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      customer_email: order.customer_email,
+      customer_address: order.customer_address,
+      customer_phone: order.customer_phone,
+      products: order.products,
+    }),
+  });
+}
+
+export function formatPrice(price: number) {
+  const convertedPrice = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  })
+    .format(price / 100)
+    .replace("$", "");
+  return convertedPrice;
+}

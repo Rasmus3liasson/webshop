@@ -2,18 +2,18 @@ import { getOrderData } from "@/app/utils/orderData";
 
 export async function GET(
   _request: Request,
-  { params }: { params: { orderId: string } }
+  { params }: { params: { costumerId: string } }
 ) {
   try {
     const orders: OrderWithProducts[] = await getOrderData();
 
-    const specificOrder = orders.find(
-      (order) => order.order_id === parseInt(params.orderId)
+    const customersOrders = orders.filter(
+      (order) => order.customer_id === parseInt(params.costumerId)
     );
 
-    if (specificOrder) {
+    if (customersOrders) {
       const responseData: ResponseData = {
-        data: [specificOrder],
+        data: customersOrders,
       };
 
       return new Response(JSON.stringify(responseData), {

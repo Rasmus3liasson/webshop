@@ -33,11 +33,19 @@ export async function POST(request: Request) {
         "Content-Type": "application/json",
       },
     });
-  } catch (error: any) {
-    return new Response(JSON.stringify({ error: error.message }), {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+  } catch (error) {
+    if (error instanceof Error) {
+      return new Response(JSON.stringify({ error: error.message }), {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    } else {
+      return new Response(JSON.stringify({ error: "Kunde inte hämta data" }), {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
   }
 }

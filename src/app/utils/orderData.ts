@@ -1,4 +1,3 @@
-import { headers } from "next/dist/client/components/headers";
 import { query } from "../../database/db";
 
 export async function getOrderData() {
@@ -69,9 +68,8 @@ export async function addNewOrder(newOrder: OrderWithProducts) {
 }
 
 export async function sendOrderToDatabase(order: OrderToDatabase) {
-
-  const domain = headers().get("origin");
-  const apiUrl = `${domain}/api/order`;
+  /* const domain = headers().get("origin"); */
+  const apiUrl = `${process.env.DOMAIN}/api/order`;
 
   await fetch(apiUrl, {
     method: "POST",

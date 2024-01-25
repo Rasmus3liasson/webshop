@@ -17,6 +17,7 @@ services:
 
   db:
     image: mysql:latest
+    container_name: mysql-database
     restart: always
     env_file:
       - .env  
@@ -28,6 +29,16 @@ services:
     command: --lower_case_table_names=2
     networks:
       - webshop_network
+
+
+  stripe-cli:
+    image: stripe/stripe-cli
+    container_name: stripe-cli
+    command: "listen --api-key ${STRIPE_SECRET_KEY} --forward-to http://host.docker.internal:3000/api/payment/webhook"
+    env_file:
+      - .env  
+    networks:
+      - webshop_network  
 
 networks:
   webshop_network:

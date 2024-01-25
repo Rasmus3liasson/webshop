@@ -33,6 +33,7 @@ export async function POST(req: Request) {
           const { description, quantity, amount_total, amount_subtotal } =
             lineItem;
 
+          // TODO - Fix a correct order_detais_id && product_id
           return {
             order_detail_id: index + 1,
             product_id: index + 1,

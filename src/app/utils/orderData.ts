@@ -83,6 +83,8 @@ export async function sendOrderToDatabase(order: OrderToDatabase) {
       products: order.products,
     }),
   });
+  console.log("Order sent to database");
+  console.log("order", order);
 }
 
 export function formatPrice(price: number) {

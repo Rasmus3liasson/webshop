@@ -15,6 +15,7 @@ export async function getOrderData() {
           product_id: row.product_id,
           product_name: row.product_name,
           quantity: row.quantity,
+          size: row.size,
           product_price: row.product_price,
           subtotal: row.subtotal,
         });
@@ -32,6 +33,7 @@ export async function getOrderData() {
               product_id: row.product_id,
               product_name: row.product_name,
               quantity: row.quantity,
+              size: row.size,
               product_price: row.product_price,
               subtotal: row.subtotal,
             },
@@ -83,8 +85,6 @@ export async function sendOrderToDatabase(order: OrderToDatabase) {
       products: order.products,
     }),
   });
-  console.log("Order sent to database");
-  console.log("order", order);
 }
 
 export function formatPrice(price: number) {

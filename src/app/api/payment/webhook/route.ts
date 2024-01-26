@@ -2,6 +2,7 @@ import { formatPrice, sendOrderToDatabase } from "@/app/utils/orderData";
 import { NextResponse } from "next/server";
 
 interface ProductItemsI {
+  id: string;
   description: string;
   quantity: number;
   amount_total: number;
@@ -20,6 +21,9 @@ export async function POST(req: Request) {
     const session = event.data.object;
     const { id: session_id } = session;
 
+    const sizes = session.metadata.size.split(",");
+    const productIds = session.metadata.id.split(",");
+
     if (event.type === "checkout.session.completed") {
       const line_items = await stripe.checkout.sessions.listLineItems(
         session_id,
@@ -28,22 +32,27 @@ export async function POST(req: Request) {
         }
       );
 
+      // Assign the result of map to a variable
       const products = line_items.data.map(
         (lineItem: ProductItemsI, index: number) => {
-          const { description, quantity, amount_total, amount_subtotal } =
+          const { id, description, quantity, amount_total, amount_subtotal } =
             lineItem;
 
-          // TODO - Fix a correct order_detais_id && product_id
+          const productSize = sizes[index];
+          const productId = productIds[index];
+
           return {
-            order_detail_id: index + 1,
-            product_id: index + 1,
+            order_detail_id: id,
+            product_id: productId,
             product_name: description,
-            quantity,
+            quantity: quantity,
+            product_size: productSize,
             product_price: Number(formatPrice(amount_total / quantity)),
             subtotal: Number(formatPrice(amount_subtotal)),
           };
         }
       );
+
       await sendOrderToDatabase({
         customer_email: session.customer_details.email,
         customer_address: session.customer_details.address.line1,

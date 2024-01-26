@@ -2,7 +2,7 @@
 
 import { sendStripePayment } from "@/app/utils/functions/stripePayment";
 import { CartItemInterface } from "@/types/cart";
-import React, { useState } from "react";
+import { useState } from "react";
 
 export default function Summary({
   cartData,

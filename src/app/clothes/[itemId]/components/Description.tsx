@@ -37,6 +37,7 @@ export default function Description({
 
   const addToCart = () => {
     const newItemToCart = {
+      id: itemData.id,
       title: itemData.name,
       imageUrl: itemData.galleryImages[0].url,
       size: size,

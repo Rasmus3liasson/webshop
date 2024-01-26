@@ -3,6 +3,7 @@ interface ProductData {
   product_id: number;
   product_name: string;
   quantity: number;
+  size: string;
   product_price: number;
   subtotal: number;
 }

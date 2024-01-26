@@ -11,7 +11,7 @@ CREATE TABLE customers (
 );
 
 CREATE TABLE products (
-    product_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    product_id VARCHAR(255) PRIMARY KEY,
     name VARCHAR(100),
     price DOUBLE NOT NULL
 );
@@ -24,15 +24,16 @@ CREATE TABLE orders (
 );
 
 CREATE TABLE order_details (
-    order_detail_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    order_detail_id VARCHAR(255) NOT NULL,
     order_id INTEGER,
-    product_id INTEGER,
+    product_id VARCHAR(255),
     quantity INTEGER,
+    size VARCHAR(20),
     FOREIGN KEY (order_id) REFERENCES orders(order_id),
-    FOREIGN KEY (product_id) REFERENCES products(product_id),
     price DOUBLE NOT NULL,
     subtotal DOUBLE GENERATED ALWAYS AS (quantity * price)
 );
+
 
 
 -- INSERT EXAMPLE DATA
@@ -42,26 +43,29 @@ INSERT INTO customers (email, address, phone_number) VALUES
     ('example2@example.com', 'address2', 1234567893),
     ('example3@example.com', 'address3', 1234567894);
 
-INSERT INTO products (name, price) VALUES
-    ('T-shirt', 19.99),
-    ('Jeans', 39.99),
-    ('Sneakers', 59.99);
+INSERT INTO products (product_id ,name, price) VALUES
+    ('test1','T-shirt', 19.99),
+    ('test2','Jeans', 39.99),
+    ('test3','Sneakers', 59.99);
 
 INSERT INTO orders (customer_id) VALUES
     (1),
     (2),
     (3);
 
-INSERT INTO order_details (order_id, product_id, quantity, price) VALUES
-    (1, 1, 2, 19.99),
-    (2, 3, 1, 59.99),
-    (3, 1, 3, 19.99);
+INSERT INTO order_details (order_detail_id, order_id, product_id, quantity, size, price)
+VALUES
+    ('hej1', 1, 'test1', 2,'XS', 19.99),
+    ('hej2', 2, 'test2', 1,'M', 59.99),
+    ('hej3', 3, 'test3', 3,'L', 19.99);
+
 
 
 
 
 CREATE VIEW all_orders AS
 SELECT
+    od.order_detail_id,
     o.order_id,
     o.order_date,
     c.customer_id,
@@ -71,6 +75,7 @@ SELECT
     p.product_id,
     p.name AS product_name,
     od.quantity,
+    od.size,
     od.price AS product_price,
     od.subtotal
 FROM
@@ -111,25 +116,48 @@ BEGIN
     FROM customers
     WHERE email = p_customer_email;
 
+    -- Checks if a product already exists
+    -- If a product don't exist, it inserts the product_id, product_name, and a default price of 0.0 into the table.
+    INSERT INTO products (product_id, name, price)
+    SELECT
+        DISTINCT product.product_id,
+        product.product_name,
+        0.0
+    FROM
+        JSON_TABLE(p_products, '$[*]'
+            COLUMNS (
+                product_id VARCHAR(255) PATH '$.product_id',
+                product_name VARCHAR(100) PATH '$.product_name'
+            )
+        ) AS product
+    LEFT JOIN products p ON product.product_id = p.product_id
+    WHERE p.product_id IS NULL;
+
     -- Insert the order
     INSERT INTO orders (customer_id) VALUES (inserted_customer_id);
 
-    -- Insert products
-    INSERT INTO order_details (order_id, product_id, quantity, price)
+    -- Insert order details
+    INSERT INTO order_details (order_detail_id, order_id, product_id, quantity, size, price)
     SELECT
+        product.order_detail_id,
         LAST_INSERT_ID(),
         product.product_id,
         product.quantity,
+        product.size,
         product.product_price
     FROM
         JSON_TABLE(p_products, '$[*]'
             COLUMNS (
-                product_id INT PATH '$.product_id',
-                quantity INT PATH '$.quantity',
+                order_detail_id VARCHAR(255) PATH '$.order_detail_id',
+                product_id VARCHAR(255) PATH '$.product_id',
+                quantity INTEGER PATH '$.quantity',
+                size VARCHAR(20) PATH '$.product_size' ,
                 product_price DOUBLE PATH '$.product_price'
             )
         ) AS product;
 END //
+
+
 
 DELIMITER ;
 

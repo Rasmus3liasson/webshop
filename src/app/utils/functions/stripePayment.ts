@@ -15,7 +15,6 @@ export const sendStripePayment = async (cart: CartItemInterface[]) => {
         data: cart,
         email: email,
       };
-
       const res = await fetch("/api/payment", {
         method: "POST",
         headers: {

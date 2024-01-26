@@ -40,7 +40,7 @@ export default function ProductContainer() {
     return <Loading />;
   }
 
-  const renderItemsHomePage = () => (
+  return (
     <div className="mx-5 my-16 md:my-24 sm:grid grid-cols-3 gap-12 space-y-4 md:space-y-0 justify-items-center md:mx-5">
       {products.map((itemDetails, index: number) => (
         <div
@@ -64,6 +64,4 @@ export default function ProductContainer() {
       ))}
     </div>
   );
-
-  return renderItemsHomePage();
 }

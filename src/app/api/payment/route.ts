@@ -21,6 +21,12 @@ export async function POST(request: Request) {
       quantity: item.quantity,
     }));
 
+    const metadata = {
+      size: data.map((item: { size: string }) => item.size).toString(),
+      id: data.map((item: { id: string }) => item.id).toString(),
+    };
+    
+
     const session = await stripe.checkout.sessions.create({
       line_items: lineItems,
       shipping_address_collection: {
@@ -33,6 +39,7 @@ export async function POST(request: Request) {
       mode: "payment",
       success_url: `${domain}/order-confirmation?status=success`,
       cancel_url: `${domain}/order-confirmation?status=declined`,
+      metadata: metadata,
     });
 
     return new Response(JSON.stringify({ session }), {
@@ -42,11 +49,20 @@ export async function POST(request: Request) {
       status: 200,
     });
   } catch (error) {
-    return new Response(JSON.stringify({ error: "Felaktig" }), {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      status: 400,
-    });
+    if (error instanceof Error) {
+      return new Response(JSON.stringify({ error: error.message }), {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        status: 500,
+      });
+    } else {
+      return new Response(JSON.stringify({ error: "Kunde inte hämta data" }), {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        status: 400,
+      });
+    }
   }
 }

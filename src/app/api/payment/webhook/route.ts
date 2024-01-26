@@ -62,6 +62,6 @@ export async function POST(req: Request) {
       return NextResponse.json({ result: event, ok: true });
     }
   } catch (error) {
-    return NextResponse.json({ message: "Something went wrong", ok: false });
+    return NextResponse.json({ message: "Något gick fel", ok: false });
   }
 }

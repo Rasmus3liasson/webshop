@@ -49,3 +49,22 @@ Använd dessa testkort för betalningar:
 ### <span style="color:#fc4e03"> Misslyckad </span> transaktion
 
 - **Kortnummer:** `4000 0000 0000 0002`
+
+## Använd egen Databas
+
+Ändra MySQL-databasvärden i MySQL konfigurationen. För att använda egen databas lokalt. Anges inget värde till **MYSQL_USER** tilldelas det värdet **root** automatiskt.
+
+    MYSQL_HOST=din_host (127.0.0.1)
+    MYSQL_PORT=3306
+    MYSQL_DATABASE=web_shop
+    MYSQL_USER=ditt_mysql_användarnamn (default:root)
+    MYSQL_ROOT_PASSWORD=ditt_mysql_lösenord
+
+## Använd Docker-compose
+
+Värderna för att köra genom docker-compose volymen i mappen
+
+    MYSQL_HOST=din_host=db
+    MYSQL_PORT=3306
+    MYSQL_DATABASE=web_shop
+    MYSQL_ROOT_PASSWORD=något_lösenord

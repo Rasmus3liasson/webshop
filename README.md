@@ -27,6 +27,9 @@ En Docker engine i gång (Docker Desktop).
 
 `docker-compose up -d --build`
 
+### Steg 4: Besök applikationen
+Applikationen hittas på port [3000](http://localhost:3000/)
+
 ## Avsluta programmet
 
 `docker-compose down`

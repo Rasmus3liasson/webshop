@@ -2,7 +2,6 @@
 
 import { cartContext } from "@/app/utils/cartContext";
 import { getItemsFromApi } from "@/app/utils/dataFromApi";
-import { FilteredItemDataInterface } from "@/types/items";
 import Image from "next/image";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
@@ -14,30 +13,30 @@ import SearchInput from "./SearchInput";
 export default function Header() {
   const { cart } = useContext(cartContext);
 
-  const [isActive, setIsActive] = useState(false);
-  const [cartState, setCartState] = useState(false);
-  const [itemsLength, setItemLength] = useState(cart?.length);
-  const [copyCartLength, setCopyCartLength] = useState(cart?.length || 0);
-  const [itemData, setItemData] = useState<FilteredItemDataInterface[]>([]);
+  const [state, setState] = useState({
+    isActive: false,
+    cartState: false,
+    itemsLength: cart?.length || 0,
+    copyCartLength: cart?.length || 0,
+    itemData: [],
+  });
 
   useEffect(() => {
-    // Compare the current cart length with the previous cart length
-    // to show the cartDropdown when items are added
     const currentCartLength = cart?.length || 0;
 
-    if (currentCartLength > copyCartLength) {
-      setCartState(true);
-    }
-
-    setCopyCartLength(currentCartLength);
-    setItemLength(cart?.length);
-  }, [cart, copyCartLength]);
+    setState((prev) => ({
+      ...prev,
+      copyCartLength: currentCartLength,
+      itemsLength: cart?.length || 0,
+      cartState: currentCartLength > prev.copyCartLength ? true : prev.cartState,
+    }));
+  }, [cart]);
 
   useEffect(() => {
     async function fetchData() {
       try {
         const data = await getItemsFromApi();
-        setItemData(data);
+        setState((prev) => ({ ...prev, itemData: data }));
       } catch (error) {
         console.error("Kunde inte hämta datan", error);
       }
@@ -58,30 +57,28 @@ export default function Header() {
             quality={100}
           />
         </Link>
+
         <div
-          className={`flex items-center justify-between flex-col md:flex-row absolute md:relative top-24 md:top-0 right-0 p-5 rounded-b-2xl md:rounded-none w-full lg:flex animate-slideInNav bg-background z-10 -mt-9 md:mt-0  ${
-            !isActive && "hidden"
+          className={`flex items-center justify-between flex-col md:flex-row absolute md:relative top-24 md:top-0 right-0 p-5 rounded-b-2xl md:rounded-none w-full lg:flex animate-slideInNav bg-background z-10 -mt-9 md:mt-0 ${
+            !state.isActive && "hidden"
           }`}
         >
-          <>
-            <List setIsActive={setIsActive} />
-          </>
-
-          <>
-            <SearchInput data={itemData} />
-          </>
+          <List
+            setIsActive={(isActive) => setState((prev) => ({ ...prev, isActive }))}
+          />
+          <SearchInput data={state.itemData} />
         </div>
 
         <div className="flex items-center justify-center">
           <div className="flex items-center justify-center">
             <div
               className="relative"
-              onClick={() => {
-                setCartState(!cartState);
-              }}
+              onClick={() =>
+                setState((prev) => ({ ...prev, cartState: !prev.cartState }))
+              }
             >
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pt-3 pr-1 md:pr-0">
-                <span>{itemsLength}</span>
+                <span>{state.itemsLength}</span>
               </div>
               <Image
                 className="mr-0.5 lg:mr-0"
@@ -92,16 +89,19 @@ export default function Header() {
                 quality={100}
               />
             </div>
-            {cartState && (
-              <CartDropdown cartState={cartState} setCartState={setCartState} />
+            {state.cartState && (
+              <CartDropdown
+                cartState={state.cartState}
+                setCartState={() => setState((prev) => ({ ...prev, cartState: !prev.cartState }))}
+              />
             )}
-
-            <div>
-              <Account />
-            </div>
+            <Account />
           </div>
-          <div onClick={() => setIsActive(!isActive)}    className="lg:hidden">
-            {!isActive ? (
+          <div
+            onClick={() => setState((prev) => ({ ...prev, isActive: !prev.isActive }))}
+            className="lg:hidden"
+          >
+            {!state.isActive ? (
               <Image
                 src={"/header/burger-menu-icon.svg"}
                 alt="hamburger menu icon"

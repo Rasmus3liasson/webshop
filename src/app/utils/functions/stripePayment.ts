@@ -24,8 +24,10 @@ export const sendStripePayment = async (cart: CartItemInterface[]) => {
       });
 
       if (!res.ok) {
+        console.log(cartData);
         throw new Error("Kunde inte göra betalningen");
       }
+      console.log(cartData);
 
       // Handle the response from the server and direct the user to a new URL
       const { session } = await res.json();

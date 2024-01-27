@@ -16,7 +16,7 @@ export async function POST(request: Request) {
           name: item.title,
           images: [item.imageUrl],
         },
-        unit_amount: item.price * 100,
+        unit_amount: Math.round(item.price * 100),
       },
       quantity: item.quantity,
     }));
@@ -25,7 +25,6 @@ export async function POST(request: Request) {
       size: data.map((item: { size: string }) => item.size).toString(),
       id: data.map((item: { id: string }) => item.id).toString(),
     };
-    
 
     const session = await stripe.checkout.sessions.create({
       line_items: lineItems,

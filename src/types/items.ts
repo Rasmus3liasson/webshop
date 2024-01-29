@@ -1,5 +1,4 @@
 export interface FilteredItemDataInterface {
-  find(arg0: (item: { id: string }) => boolean): unknown;
   id: string;
   name: string;
   imagePoster: string;
@@ -43,4 +42,26 @@ export interface FilterOptions {
 export interface FilteredProductData {
   productItems: FilteredItemDataInterface[] | FilteredItemDataInterfaceFromHM[];
   filterOptions: FilterOptions;
+}
+
+export interface ItemInterface {
+  code: string;
+  name: string;
+  articles: {
+    color: {
+      text: string;
+      code: string;
+    };
+  }[];
+  images: {
+    url: string;
+  }[];
+  price: {
+    value: number;
+  };
+  galleryImages: string;
+  allArticleBaseImages: string;
+  variantSizes: {
+    filterCode: string;
+  }[];
 }

@@ -2,10 +2,11 @@ import {
   FilterOptions,
   FilteredItemDataInterfaceFromHM,
   FilteredProductData,
+  ItemInterface,
 } from "@/types/items";
-import { sizeComparator } from "./functions/sortSizes";
 import { config } from "dotenv";
 import { itemsMock } from "../../../mockData/items";
+import { sizeComparator } from "./functions/sortSizes";
 
 config();
 
@@ -33,7 +34,7 @@ export async function getItemData() {
 
     // Filtering the necassary data I want
     const filteredItemData: FilteredItemDataInterfaceFromHM[] =
-      data.results.map((item: any) => {
+      data.results.map((item: ItemInterface) => {
         const itemColorText = item.articles[0].color.text
           .toUpperCase()
           .split("/")[0];

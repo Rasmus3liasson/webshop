@@ -28,7 +28,7 @@
     "nextjs-toploader": "^1.4.2",
     "node-fetch": "^3.3.2",
     "npm": "^9.7.1",
-    "postcss": "8.4.24",
+    "postcss": "8.4.31",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sharp": "^0.32.6",

@@ -59,9 +59,12 @@ export async function POST(req: Request) {
         customer_phone: session.customer_details.phone,
         products,
       });
-      return NextResponse.json({ result: event, ok: true });
+      return NextResponse.json({ result: event, ok: true }, { status: 200 });
     }
   } catch (error) {
-    return NextResponse.json({ message: "Något gick fel", ok: false });
+    return NextResponse.json(
+      { message: "Något gick fel", ok: false },
+      { status: 500 }
+    );
   }
 }

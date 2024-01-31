@@ -28,7 +28,8 @@ export default function Header() {
       ...prev,
       copyCartLength: currentCartLength,
       itemsLength: cart?.length || 0,
-      cartState: currentCartLength > prev.copyCartLength ? true : prev.cartState,
+      cartState:
+        currentCartLength > prev.copyCartLength ? true : prev.cartState,
     }));
   }, [cart]);
 
@@ -47,7 +48,7 @@ export default function Header() {
 
   return (
     <header>
-      <nav className="flex items-center justify-between mx-6 pt-5 font">
+      <nav className="flex items-center justify-between mx-6 pt-5">
         <Link href={"/"}>
           <Image
             src={"/header/logo.svg"}
@@ -59,13 +60,16 @@ export default function Header() {
         </Link>
 
         <div
-          className={`flex items-center justify-between flex-col md:flex-row absolute md:relative top-24 md:top-0 right-0 p-5 rounded-b-2xl md:rounded-none w-full lg:flex animate-slideInNav bg-background z-10 -mt-9 md:mt-0 ${
+          className={`flex items-center justify-between flex-col md:flex-row absolute md:relative top-24 md:top-0 right-0 p-5 rounded-b-2xl md:rounded-none w-full lg:flex animate-slideInNav bg-background z-20 -mt-9 md:mt-0 ${
             !state.isActive && "hidden"
           }`}
         >
           <List
-            setIsActive={(isActive) => setState((prev) => ({ ...prev, isActive }))}
+            setIsActive={(isActive) =>
+              setState((prev) => ({ ...prev, isActive }))
+            }
           />
+
           <SearchInput data={state.itemData} />
         </div>
 
@@ -92,13 +96,17 @@ export default function Header() {
             {state.cartState && (
               <CartDropdown
                 cartState={state.cartState}
-                setCartState={() => setState((prev) => ({ ...prev, cartState: !prev.cartState }))}
+                setCartState={() =>
+                  setState((prev) => ({ ...prev, cartState: !prev.cartState }))
+                }
               />
             )}
             <Account />
           </div>
           <div
-            onClick={() => setState((prev) => ({ ...prev, isActive: !prev.isActive }))}
+            onClick={() =>
+              setState((prev) => ({ ...prev, isActive: !prev.isActive }))
+            }
             className="lg:hidden"
           >
             {!state.isActive ? (

@@ -97,7 +97,10 @@ export default function CartDropdown({
               )}
 
               <button
-                onClick={() => setCartState(!cartState)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setCartState(!cartState);
+                }}
                 className="text-sm text-gray-500 underline underline-offset-4 transition hover:text-grey"
               >
                 Fortsätt handla

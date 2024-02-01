@@ -31,7 +31,7 @@ export async function POST(request: Request) {
       shipping_address_collection: {
         allowed_countries: ["US", "SE"],
       },
-      customer_email: email !== null ? email : "test@example.com",
+      customer_email: email,
       phone_number_collection: {
         enabled: true,
       },

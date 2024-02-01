@@ -1,14 +1,14 @@
 import { CartItemInterface } from "@/types/cart";
 
 export const sendStripePayment = async (cart: CartItemInterface[]) => {
-  let accountLocalStorage;
+  let cartFromSessionStorage;
   if (typeof window !== "undefined") {
-    accountLocalStorage = window.localStorage.getItem("user");
+    cartFromSessionStorage = window.sessionStorage.getItem("cart");
   }
 
-  if (accountLocalStorage) {
-    const parsedData = JSON.parse(accountLocalStorage);
-    const {email} = parsedData || null;
+  if (cartFromSessionStorage) {
+    const userFromLocalStorage = window.localStorage.getItem("user");
+    const { email } = JSON.parse(userFromLocalStorage as string) || "";
 
     try {
       const cartData = {

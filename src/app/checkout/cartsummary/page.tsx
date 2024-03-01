@@ -1,15 +1,15 @@
 "use client";
 
-import React, { useContext } from "react";
+import { cartContext } from "@/app/utils/cartContext";
+import { useContext } from "react";
 import CartItems from "./components/CartItems";
 import Summary from "./components/Summary";
-import { cartContext } from "@/app/utils/cartContext";
 
 export default function Page() {
   const { cart, setCart } = useContext(cartContext);
 
   return (
-    <div className="flex flex-col items-center md:flex-row shadow-md my-10 mx-10 bg-white">
+    <div className={`flex flex-col items-center ${cart?.length == 0 ? "md:flex-col whitespace-nowrap" : "md:flex-row" }  shadow-md my-10 mx-10 bg-white rounded-lg`}>
       <div className="md:w-3/4 px-10 py-10 w-full">
         <div className="flex justify-between border-b pb-8">
           <h1 className="font-semibold text-2xl">Kundkorg</h1>

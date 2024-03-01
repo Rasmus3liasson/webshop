@@ -2,10 +2,20 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+import Loading from "../loading";
 import Declined from "./Declined";
 import Success from "./Success";
 
 export default function Page() {
+  return (
+    <Suspense fallback={<Loading/>}> 
+      <Content />
+    </Suspense>
+  );
+}
+
+function Content() { 
   const params = useSearchParams();
   const query = params.get("status");
 

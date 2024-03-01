@@ -25,7 +25,7 @@ export default function List({
           onClick={setNavState}
           className={`link-text-lg ${pathName === "/" && "underline"} `}
         >
-          <Link href="/">Home</Link>
+          <Link href="/">Hem</Link>
         </li>
 
         <li

@@ -125,7 +125,7 @@ export default function ProductContainer({
           )}
         </div>
         {itemData.length > displayedItems && (
-          <button onClick={handleShowMore}>Show More</button>
+          <button onClick={handleShowMore}>Visa mer</button>
         )}
       </div>
     </div>

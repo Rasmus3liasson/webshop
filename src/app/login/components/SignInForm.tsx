@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
-import signIn from "@/app/utils/firebase/auth/signIn";
-import { useRouter } from "next/navigation";
-import signInGoogle from "@/app/utils/firebase/auth/signInGoogle";
-import Image from "next/image";
 import { accountContext } from "@/app/utils/firebase/accountContext";
+import signIn from "@/app/utils/firebase/auth/signIn";
+import signInGoogle from "@/app/utils/firebase/auth/signInGoogle";
 import { AccountContextInterface } from "@/types/account";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import React, { useContext, useState } from "react";
 
 export default function SignInForm({
   showSignIn,
@@ -86,7 +86,7 @@ export default function SignInForm({
                   placeholder="Email address"
                 />
                 <label className="absolute left-0 -top-3.5 text-grey text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">
-                  Email Address
+                  E-post
                 </label>
               </div>
               <div className="relative">
@@ -97,7 +97,7 @@ export default function SignInForm({
                   placeholder="Password"
                 />
                 <label className="absolute left-0 -top-3.5 text-grey text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">
-                  Password
+                  Lösenord
                 </label>
               </div>
             </div>

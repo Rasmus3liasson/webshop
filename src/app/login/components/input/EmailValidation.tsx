@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { ErrorState } from "../SignUpForm";
 
 export default function EmailValidation({
@@ -37,7 +36,7 @@ export default function EmailValidation({
         />
       )}
       <label className="absolute left-0 -top-3.5 text-grey text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">
-        Email Address
+        E-post
       </label>
     </div>
   );

@@ -1,5 +1,5 @@
-import { useSearchParams } from "next/navigation";
 import { FilteredItemDataInterface } from "@/types/items";
+import { useSearchParams } from "next/navigation";
 
 // Add or removes to filter Arr
 export const handleFilterSettings = (
@@ -35,8 +35,10 @@ export const filterItemsArray = (dataArray: FilteredItemDataInterface[]) => {
 
   const filteredItems = dataArray.filter((productItem) => {
     const colorMatches = queryStringColor
-      ? queryStringColor.some((queryColor) =>
-          [productItem.itemColor].includes(queryColor)
+      ? queryStringColor.some(
+          (queryColor) =>
+            productItem.itemColor.text.toLowerCase() ===
+            queryColor.toLowerCase()
         )
       : true;
 

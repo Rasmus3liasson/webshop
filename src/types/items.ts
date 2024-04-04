@@ -11,12 +11,10 @@ export interface FilteredItemDataInterface {
   ];
   similarImages: string[];
   clothingSizes: string[];
-  itemColor:
-    | string
-    | {
-        text: string;
-        code: string;
-      };
+  itemColor: {
+    text: string;
+    code: string;
+  };
   itemColorCode: string;
   itemCategory: string;
 }

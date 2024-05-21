@@ -15,6 +15,9 @@ export default function Description({
     itemData.clothingSizes.sort(sizeComparator)[0]
   );
 
+  console.log(itemData);
+  
+
   // Load cart data from sessionStorage when the component mounts
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -59,6 +62,12 @@ export default function Description({
     if (typeof window !== "undefined") {
       sessionStorage.setItem("cart", JSON.stringify(updatedCart));
     }
+  };
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -108,9 +117,11 @@ export default function Description({
       </div>
 
       <button
-        onClick={addToCart}
-        className="bg-green text-white p-3 rounded-full mt-5 hover:scale-102 hover:opacity-90 shadow-lg
-        "
+        onClick={() => {
+          addToCart();
+          scrollToTop();
+        }}
+        className="bg-green text-white p-3 rounded-full mt-5 hover:scale-102 hover:opacity-90 shadow-lg"
       >
         Lägg till i varukorg +
       </button>

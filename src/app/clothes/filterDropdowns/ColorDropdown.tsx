@@ -1,9 +1,9 @@
 import { ColorOptions, FilterOptionsInterface } from "@/types/filter";
 import Image from "next/image";
 
+import { handleFilterSettings } from "@/app/utils/functions/filterArray";
 import { useSearchParams } from "next/navigation";
 import React, { useState } from "react";
-import { handleFilterSettings } from "@/app/utils/functions/filterArray";
 
 export default function ColorDropdown({
   filterData,
@@ -34,7 +34,7 @@ export default function ColorDropdown({
             key={index}
             className={`flex justify-center items-center gap-2 ${className}`}
           >
-            <p>{colorObj.text}</p>
+            <p className="w-20">{colorObj.text}</p>
             <span
               style={{ background: `#${colorObj.code}` }}
               className="w-5 h-5 rounded-full opacity-80 border-2 border-grey"
@@ -50,7 +50,7 @@ export default function ColorDropdown({
   return (
     <>
       <li className="text-lg flex items-center gap-1" onClick={toggleDropdown}>
-        Färg{" "}
+        Färg
         <Image
           className={`${color && "rotate-180 duration-100"}`}
           src={"/list/down-arrow.svg"}

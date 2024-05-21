@@ -40,11 +40,16 @@ export async function getItemData() {
           .split("/")[0];
         const itemColorCode = item.articles[0].color.code;
 
+        const formattedPrice = item.price.formattedValue
+          .split(" ")
+          .reverse()
+          .join(" ");
+
         return {
           id: item.code,
           name: item.name,
           imagePoster: item.images[0].url,
-          price: item.price.value,
+          price: formattedPrice,
           galleryImages: item.galleryImages,
           similarImages: item.allArticleBaseImages,
           clothingSizes: item.variantSizes

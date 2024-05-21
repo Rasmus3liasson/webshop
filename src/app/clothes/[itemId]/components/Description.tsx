@@ -16,7 +16,6 @@ export default function Description({
   );
 
   console.log(itemData);
-  
 
   // Load cart data from sessionStorage when the component mounts
   useEffect(() => {
@@ -74,7 +73,7 @@ export default function Description({
     <div className="flex flex-col gap-5 items-center justify-center md:justify-start md:pt-44 md:scale-125">
       <div className="mt-2">
         <p>{itemData.name}</p>
-        <p className="font-semibold">{itemData.price}</p>
+        <p className="font-semibold">{itemData.price} $</p>
       </div>
       <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
         <div className="flex flex-col items-center gap-1">

@@ -17,7 +17,7 @@ export default function Page() {
         {cart?.length !== 0 && (
           <div className="flex mt-10 mb-5">
             <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/5">
-              Product
+              Produkt
             </h3>
             <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">
               Antal

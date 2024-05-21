@@ -34,7 +34,7 @@ export interface SearchInputInterface {
 
 export interface FilterOptions {
   color: { text: string; code: string }[];
-  categories: string  [];
+  categories: string[];
 }
 
 export interface FilteredProductData {
@@ -55,7 +55,6 @@ export interface ItemInterface {
     url: string;
   }[];
   price: {
-    formattedValue: string;
     value: number;
   };
   galleryImages: string;

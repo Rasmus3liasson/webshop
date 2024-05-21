@@ -125,7 +125,7 @@ export default function ProductContainer({
                     </Link>
                     <div className="h-full">
                       <p className="text-greyLight mt-1 flex">{product.name}</p>
-                      <p>{product.price}</p>
+                      <p>{product.price} $</p>
                     </div>
                   </div>
                 ))

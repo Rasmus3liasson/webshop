@@ -51,11 +51,11 @@ export default function CartItems({
               {item.quantity}
             </span>
           </div>
-          <span className="text-center w-1/5 font-semibold text-sm">
-            {item.price}
+          <span className="text-center w-1/5 font-semibold text-sm whitespace-nowrap">
+            {item.price}$
           </span>
-          <span className="text-center w-1/5 font-semibold text-sm">
-            {item.price * item.quantity}
+          <span className="text-center w-1/5 font-semibold text-sm whitespace-nowrap">
+            {item.price * item.quantity}$
           </span>
         </div>
       ))}

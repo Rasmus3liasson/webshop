@@ -15,7 +15,7 @@ const nextConfig = {
         hostname: "lh3.googleusercontent.com",
       },
     ],
-    formats: ["image/avif", "image/webp", "image/png", "image/jpeg"],
+    formats: ["image/avif", "image/webp"],
   },
 };
 

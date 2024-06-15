@@ -4,7 +4,7 @@ import { cartContext } from "@/app/utils/cartContext";
 import { getItemsFromApi } from "@/app/utils/dataFromApi";
 import Image from "next/image";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Account from "./Account";
 import CartDropdown from "./CartDropdown";
 import List from "./List";
@@ -12,6 +12,7 @@ import SearchInput from "./SearchInput";
 
 export default function Header() {
   const { cart } = useContext(cartContext);
+  const cartDropdownRef = useRef<HTMLDivElement>(null);
 
   const [state, setState] = useState({
     isActive: false,
@@ -45,6 +46,27 @@ export default function Header() {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const clickOutsideDropdown = (e: MouseEvent) => {
+      if (
+        cartDropdownRef.current &&
+        !cartDropdownRef.current.contains(e.target as Node)
+      ) {
+        setState((prev) => ({ ...prev, cartState: false }));
+      }
+    };
+
+    if (state.cartState) {
+      document.addEventListener("mousedown", clickOutsideDropdown);
+    } else {
+      document.removeEventListener("mousedown", clickOutsideDropdown);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", clickOutsideDropdown);
+    };
+  }, [state.cartState]);
 
   return (
     <header>
@@ -100,12 +122,17 @@ export default function Header() {
             </div>
 
             {state.cartState && (
-              <CartDropdown
-                cartState={state.cartState}
-                setCartState={() =>
-                  setState((prev) => ({ ...prev, cartState: !prev.cartState }))
-                }
-              />
+              <div ref={cartDropdownRef}>
+                <CartDropdown
+                  cartState={state.cartState}
+                  setCartState={() =>
+                    setState((prev) => ({
+                      ...prev,
+                      cartState: !prev.cartState,
+                    }))
+                  }
+                />
+              </div>
             )}
             <Account />
           </div>

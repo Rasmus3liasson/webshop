@@ -5,6 +5,7 @@ import Header from "./components/Header/page";
 import "./globals.css";
 import { CartContextProvider } from "./utils/cartContext";
 import { AccountContextProvider } from "./utils/firebase/accountContext";
+import Transition from "./utils/ui/transition";
 
 const monteserrat = Montserrat({ subsets: ["latin"] });
 
@@ -31,9 +32,7 @@ export default function RootLayout({
           <AccountContextProvider>
             <>
               <Header />
-              <main className="flex items-center justify-center flex-col">
-                {children}
-              </main>
+              <Transition>{children}</Transition>
               <Footer />
             </>
           </AccountContextProvider>

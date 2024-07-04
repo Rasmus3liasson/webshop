@@ -10,7 +10,7 @@ export default function Transition({
 }) {
   return (
     <motion.main
-      className="flex items-center justify-center flex-col"
+      className="flex items-center justify-center flex-col flex-grow"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}

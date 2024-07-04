@@ -15,8 +15,6 @@ export default function Description({
     itemData.clothingSizes.sort(sizeComparator)[0]
   );
 
-  console.log(itemData);
-
   // Load cart data from sessionStorage when the component mounts
   useEffect(() => {
     if (typeof window !== "undefined") {

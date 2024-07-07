@@ -24,7 +24,7 @@ export default function SpecificItem({
       try {
         const itemData = await fetch(`/api/items/${itemId}`);
         const data = await itemData.json();
-        setProductItems(data);
+        setProductItems((data as uniqueItemInterface) || uniqueItemMock[0]);
       } catch (error) {
         console.error("Kunde inte hämta datan", error);
       } finally {
@@ -39,14 +39,13 @@ export default function SpecificItem({
     return <Loading />;
   }
 
-  const data = productItems || uniqueItemMock[0];
-  const itemImages = data.galleryImages || [];
+  const itemImages = productItems?.galleryImages || [];
 
   return (
     <>
       <section className="mx-2 py-6 flex flex-col md:flex-row justify-evenly my-9 lg:gap-20 md:gap-11">
         <ImageContainer images={itemImages} />
-        <Description itemData={data} />
+        {productItems && <Description itemData={productItems} />}
       </section>
     </>
   );

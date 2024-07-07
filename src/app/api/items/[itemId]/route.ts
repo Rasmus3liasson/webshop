@@ -1,6 +1,5 @@
-import { FilteredItemDataInterface, FilteredProductData } from "@/types/items";
+import { FilteredItemDataInterface } from "@/types/items";
 import { getItemData } from "../../../utils/ItemData";
-import { itemsMock } from "../../../../../mockData/items";
 
 export async function GET(
   _request: Request,
@@ -10,8 +9,7 @@ export async function GET(
 
   try {
     const dataFromApi = await getItemData();
-    const itemData: FilteredItemDataInterface[] = (dataFromApi.productItems ||
-      itemsMock.productItems) as FilteredItemDataInterface[];
+    const itemData: FilteredItemDataInterface[] = (dataFromApi.productItems) as FilteredItemDataInterface[];
     const uniqedItems = itemData.find(
       (item: { id: string }) => item.id === itemId
     );

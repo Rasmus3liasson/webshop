@@ -1,5 +1,4 @@
 import Image from "next/image";
-import React from "react";
 
 export default function Footer() {
   return (
@@ -46,7 +45,7 @@ export default function Footer() {
         <div className="mt-5 lg:scale-110 flex flex-col items-center">
           <div className="flex flex-col items-center mt-5">
             <p className="text-xl">Samarbete med:</p>
-            <ul className="flex items-center justify-center gap-3 flex-col lg:flex-row mt-2">
+            <ul className="flex items-center justify-center gap-5 flex-col-reverse md:flex-row mt-2">
               <li>
                 <Image
                   className="w-auto h-auto"

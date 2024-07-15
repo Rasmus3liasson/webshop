@@ -29,8 +29,8 @@ export default function List({
         </li>
 
         <li
-          className={`link-text-lg ${
-            categoryList && "duration-100"
+          className={`link-text-lg ${categoryList && "duration-100"} ${
+            pathName === "/clothes" && "underline"
           }  flex `}
         >
           <Link href={"/clothes"}>

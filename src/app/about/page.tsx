@@ -1,10 +1,8 @@
-import React from "react";
 
 export default function page() {
   return (
     <>
       <section className="mx-5 my-4">
-        <h1 className="mb-3">Om Oss</h1>
         <p className="mb-5">
           Välkommen till oss, din ultimata destination för trendiga kläder och
           accessoarer. Vi brinner för att erbjuda de senaste trenderna och

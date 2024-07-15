@@ -35,11 +35,11 @@ export default function SpecificItem({
     fetchData();
   }, [itemId]);
 
-  if (isLoading) {
+  if (isLoading || !productItems) {
     return <Loading />;
   }
 
-  const itemImages = productItems?.galleryImages || [];
+  const itemImages = (productItems && productItems?.galleryImages) || [];
 
   return (
     <>

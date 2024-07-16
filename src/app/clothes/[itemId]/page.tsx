@@ -22,7 +22,7 @@ export default function SpecificItem({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const itemData = await fetch(`/api/items/${itemId}`);
+        const itemData = await fetch(`/api/items/${itemId}` );
         const data = await itemData.json();
         setProductItems((data as uniqueItemInterface) || uniqueItemMock[0]);
       } catch (error) {

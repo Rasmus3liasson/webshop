@@ -82,7 +82,7 @@ export default function Header() {
         </Link>
 
         <div
-          className={`flex items-center justify-between flex-col md:flex-row absolute md:relative top-28 md:top-0 right-0 p-5 rounded-b-2xl md:rounded-none w-full lg:flex animate-slideInNav bg-background z-20 -mt-9 md:mt-0 ${
+          className={`flex items-center justify-between flex-col md:flex-row absolute md:relative top-28 md:top-0 right-0 px-5 rounded-b-2xl md:rounded-none w-full lg:flex animate-slideInNav bg-background z-20 -mt-9 md:mt-0 ${
             !state.isActive && "hidden"
           }`}
         >
@@ -103,7 +103,7 @@ export default function Header() {
                 setState((prev) => ({ ...prev, cartState: !prev.cartState }))
               }
             >
-              <div className="relative py-2 mr-3">
+              <div className="relative py-2 mr-3 cursor-pointer">
                 <div className="t-0 absolute left-3">
                   <p className="flex h-2 w-2 items-center justify-center rounded-full bg-black p-3 text-sm text-white">
                     {state.itemsLength}

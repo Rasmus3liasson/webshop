@@ -51,7 +51,7 @@ export default function SearchInput({
     <div className="flex flex-col items-center justify-center">
       <form>
         <div className="relative md:flex max-w-sm">
-          <div className="absolute md:relative inset-y-0 left-0 flex items-center pl-2 z-10">
+          <div className="absolute md:relative inset-y-0 left-0 flex items-center pl-2 z-10 cursor-pointer">
             <Image
               onClick={toggleSearchField}
               src={"/header/search-icon.svg"}

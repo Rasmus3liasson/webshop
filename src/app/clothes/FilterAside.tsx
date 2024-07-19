@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
-import { filterOptionsMock } from "../../../mockData/items";
 import ColorDropdown from "./filterDropdowns/ColorDropdown";
 import CategoryDropdown from "./filterDropdowns/categoryDropdown";
 
@@ -17,8 +16,6 @@ export default function FilterAside() {
   const [colorFilter, setColorFilter] = useState<string[]>([]);
   const [categoryFilter, setCategoryFilter] = useState<string[]>([]);
 
-  const data = filterOptionsMock;
-
   const pathname = usePathname();
 
   const toggleFilter = () => {
@@ -26,8 +23,15 @@ export default function FilterAside() {
   };
 
   useEffect(() => {
-    setFilterAlternativesData(data);
-  }, [data]);
+    const fetchData = async () => {
+      const filterData = await fetch("/api/items");
+      const res = await filterData.json();
+
+      setFilterAlternativesData(res.filterOptions);
+    };
+
+    fetchData();
+  }, []);
 
   //Creates a queryString based on a the filters applied
   const createQueryString = useCallback(() => {

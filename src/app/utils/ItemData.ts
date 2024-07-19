@@ -40,8 +40,6 @@ export async function getItemData() {
           .split("/")[0];
         const itemColorCode = item.articles[0].color.code;
 
-        
-
         return {
           id: item.code,
           name: item.name,

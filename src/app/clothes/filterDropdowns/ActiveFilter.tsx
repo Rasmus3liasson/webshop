@@ -70,7 +70,7 @@ export default function ActiveFilter({
                 setCategoryFilter([]);
               }}
             >
-              Clear
+              Rensa
             </button>
           </Link>
         </ul>

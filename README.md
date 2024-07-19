@@ -10,7 +10,7 @@ Stripe är integerat och fungerar i en testmiljö så denna applikation tar
 <span style="text-decoration:underline">**inte**</span> emot några "riktiga pengar" om man skulle ange autentisk information i betalningsprocessen.
 
 # Deployad sida (Ingen databas för ordrar)
-Deployad webbsida är hostad av netlify och hittas [här](https://webshopclothes.netlify.app/) 
+Deployad webbsida är hostad av vercel och hittas [här](https://webshop-phi-lime.vercel.app/) 
 
 # Projektet inkluderat med mina miljö variabler (databasen fungerar ej)
 Skulle du vilja ha egna värden i din `.env` fil så kan du använda `.env.example` och fylla i den med egna värden.

@@ -4,6 +4,7 @@ import { cartContext } from "@/app/utils/cartContext";
 import { getItemsFromApi } from "@/app/utils/dataFromApi";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useContext, useEffect, useRef, useState } from "react";
 import Account from "./Account";
 import CartDropdown from "./CartDropdown";
@@ -13,6 +14,8 @@ import SearchInput from "./SearchInput";
 export default function Header() {
   const { cart } = useContext(cartContext);
   const cartDropdownRef = useRef<HTMLDivElement>(null);
+  const pathName = usePathname();
+  const prevPath = useRef<string>(pathName);
 
   const [state, setState] = useState({
     isActive: false,
@@ -68,6 +71,13 @@ export default function Header() {
     };
   }, [state.cartState]);
 
+  useEffect(() => {
+    if (prevPath.current !== pathName) {
+      setState((prev) => ({ ...prev, isActive: false }));
+      prevPath.current = pathName;
+    }
+  }, [pathName]);
+
   return (
     <header>
       <nav className="flex items-center justify-between mx-6 pt-5">
@@ -90,6 +100,7 @@ export default function Header() {
             setIsActive={(isActive) =>
               setState((prev) => ({ ...prev, isActive }))
             }
+            pathName={pathName}
           />
 
           <SearchInput data={state.itemData} />

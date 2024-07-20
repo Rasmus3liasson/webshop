@@ -1,17 +1,17 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+
 import { useState } from "react";
 import CategoryList from "./CategoryList";
 
 export default function List({
   setIsActive,
+  pathName,
 }: {
   setIsActive: (newState: boolean) => void;
+  pathName: string;
 }) {
-  const pathName = usePathname();
-
   const [categoryList, setCategoryList] = useState(false);
 
   const setNavState = () => {

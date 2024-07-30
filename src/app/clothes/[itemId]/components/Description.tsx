@@ -73,7 +73,7 @@ export default function Description({
         <p>{itemData.name}</p>
         <p className="font-semibold">{itemData.price} $</p>
       </div>
-      <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+      <div className="flex flex-row md:flex-row items-center md:items-start gap-8">
         <div className="flex flex-col items-center gap-1">
           <label>Storlek:</label>
           <select onChange={(e) => setSize(e.target.value)} name="size of item">

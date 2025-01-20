@@ -13,11 +13,10 @@ export default function ProductContainer({
 }: {
   productitems: FilteredItemDataInterface[];
 }) {
-  // copy of the data so i can reset to the originaldata om getting
   const [itemData, setItemData] = useState<FilteredItemDataInterface[]>([
     ...productitems,
   ]);
-  const [displayedItems, setDisplayedItems] = useState(8);
+  const [displayedItems, setDisplayedItems] = useState(0);
   const [loading, setLoading] = useState(false);
 
   const searchParams = useSearchParams();
@@ -25,25 +24,36 @@ export default function ProductContainer({
   const colorQuery = searchParams.get("color");
   const categoryQuery = searchParams.get("category");
 
-  // adding items
-  const handleShowMore = () => {
-    if (displayedItems + 8 <= itemData.length) {
-      setDisplayedItems((prevCount) => prevCount + 8);
+  const handleResize = () => {
+    const width = window.innerWidth;
+    if (width >= 1280) {
+      setDisplayedItems(10);
+    } else if (width >= 1024) {
+      setDisplayedItems(8);
+    } else if (width >= 768) {
+      setDisplayedItems(6);
     } else {
-      setDisplayedItems(itemData.length);
+      setDisplayedItems(8);
     }
   };
 
-  //setting loading state
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleShowMore = () => {
+    setDisplayedItems((prevCount) => prevCount + 8);
+  };
+
   useEffect(() => {
     if (productitems) {
       setLoading(true);
     }
   }, [productitems]);
 
-  // Updating the state everytime the query changes or doesn't exist
   useEffect(() => {
-    // No queries, display all items
     if (colorQuery === null && categoryQuery === null) {
       setItemData([...productitems]);
     } else {

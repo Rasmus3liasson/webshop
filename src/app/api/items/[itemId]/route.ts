@@ -9,7 +9,15 @@ export async function GET(
 
   try {
     const dataFromApi = await getItemData();
-    const itemData: FilteredItemDataInterface[] = (dataFromApi.productItems) as FilteredItemDataInterface[];
+    if (!dataFromApi) {
+      return new Response(JSON.stringify({ error: "Ingen data från API" }), {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
+    const itemData: FilteredItemDataInterface[] = dataFromApi.productItems as FilteredItemDataInterface[];
     const uniqedItems = itemData.find(
       (item: { id: string }) => item.id === itemId
     );

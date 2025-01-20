@@ -2,7 +2,6 @@
 
 import { uniqueItemInterface } from "@/types/uniqueItem";
 import { useEffect, useState } from "react";
-import { uniqueItemMock } from "../../../../mockData/uniqueItemMock";
 import Description from "./components/Description";
 import ImageContainer from "./components/ImageContainer";
 import Loading from "./loading";
@@ -22,9 +21,10 @@ export default function SpecificItem({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const itemData = await fetch(`/api/items/${itemId}` );
+        const itemData = await fetch(`/api/items/${itemId}`);
         const data = await itemData.json();
-        setProductItems((data as uniqueItemInterface) || uniqueItemMock[0]);
+
+        setProductItems(data as uniqueItemInterface);
       } catch (error) {
         console.error("Kunde inte hämta datan", error);
       } finally {

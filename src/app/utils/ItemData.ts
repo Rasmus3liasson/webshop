@@ -5,7 +5,6 @@ import {
   ItemInterface,
 } from "@/types/items";
 import { config } from "dotenv";
-import { itemsMock } from "../../../mockData/items";
 import { sizeComparator } from "./functions/sortSizes";
 
 config();
@@ -81,14 +80,21 @@ export async function getItemData() {
       ),
     };
 
+
+    // Todo remove this when the data is updated
+    const itemsToRemoveArr = ["0735094_group_002"];
+
+    const removedData = filteredItemData.filter((item) => {
+      return !itemsToRemoveArr.includes(item.id);
+    });
+
     const productData: FilteredProductData = {
-      productItems: filteredItemData,
+      productItems: removedData,
       filterOptions: filterOptions,
     };
 
     return productData;
   } catch (error) {
     console.error("Error:", error);
-    return itemsMock;
   }
 }

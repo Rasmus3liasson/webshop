@@ -1,6 +1,6 @@
 ## Beskrivning
-
-Detta är en e-commerce sida där man kan handla kläder.
+Detta är en e-commerce webbplats där användare kan handla kläder. 
+Projektet är utvecklat som mitt examensarbete inom min utbildning inom systemutveckling Javascript/Java som jag gjorde på Lernia.
 
 Fungerar att logga in på sitt konto för att inkludera sparade uppgifter i din order(endast email).
 
